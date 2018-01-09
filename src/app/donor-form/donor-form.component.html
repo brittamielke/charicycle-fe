@@ -11,29 +11,29 @@
   <form novalidate (ngSubmit)="saveDonor(donorForm)"  #donorForm="ngForm" class="form-horizontal">
     <input [ngModel]="donor?.id" ngModel #donor_id="ngModel" type="hidden" name="id">
     <div class="form-group">
-      <label for="company" class="col-sm-2 control-label">Company Name</label>
+      <label for="companyName" class="col-sm-2 control-label">Company Name</label>
       <div class="col-sm-10">
-        <input [ngModel]="donor?.company" ngModel #donor_company="ngModel" type="text" class="form-control" id="company" name="company" placeholder="e.g. Target" minlength="2" maxlength="30">
-         <span *ngIf="formErrors.company" class="text-danger">
-          {{ formErrors.company }}
+        <input [ngModel]="donor?.companyName" ngModel #companyName="ngModel" type="text" class="form-control" id="companyName" name="companyName" placeholder="e.g. Target" minlength="2" maxlength="30">
+         <span *ngIf="formErrors.companyName" class="text-danger">
+          {{ formErrors.companyName }}
         </span>
       </div>
     </div>
     <div class="form-group">
-      <label for="firstName" class="col-sm-2 control-label">Contact First Name</label>
+      <label for="contactFirstName" class="col-sm-2 control-label">Contact First Name</label>
       <div class="col-sm-10">
-        <input [ngModel]="donor?.firstName" ngModel #firstName="ngModel" type="text" class="form-control" id="firstName" name="firstName" placeholder="e.g. Bill" required minlength="2" maxlength="30" >
-        <span *ngIf="formErrors.firstName" class="text-danger">
-          {{ formErrors.firstName }}
+        <input [ngModel]="donor?.contactFirstName" ngModel #contactFirstName="ngModel" type="text" class="form-control" id="contactFirstName" name="contactFirstName" placeholder="e.g. Bill" required minlength="2" maxlength="30" >
+        <span *ngIf="formErrors.contactFirstName" class="text-danger">
+          {{ formErrors.contactFirstName }}
         </span>
       </div>
     </div>
     <div class="form-group">
-      <label for="lastName" class="col-sm-2 control-label">Contact Last Name</label>
+      <label for="contactLastName" class="col-sm-2 control-label">Contact Last Name</label>
       <div class="col-sm-10">
-        <input [ngModel]="movie?.lastName" ngModel #lastName="ngModel" type="text" class="form-control" id="lastName" name="lastName"  placeholder="e.g. Smith" required minlength="2" maxlength="30" >
-        <span *ngIf="formErrors.lastName" class="text-danger">
-          {{ formErrors.lastName }}
+        <input [ngModel]="movie?.contactLastName" ngModel #contactLastName="ngModel" type="text" class="form-control" id="contactLastName" name="contactLastName"  placeholder="e.g. Smith" required minlength="2" maxlength="30" >
+        <span *ngIf="formErrors.contactLastName" class="text-danger">
+          {{ formErrors.contactLastName }}
         </span>
       </div>
     </div>
@@ -65,11 +65,11 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="zipcode" class="col-sm-2 control-label">Zipcode</label>
+      <label for="zip" class="col-sm-2 control-label">Zipcode</label>
       <div class="col-sm-10">
-        <input [ngModel]="donor?.zipcode" ngModel #zipcode="ngModel" type="text" class="form-control" id="zipcode" name="zipcode"  placeholder="e.g. 46074" minlength="2" maxlength="30" pattern="\d+" >
-        <span *ngIf="formErrors.zipcode" class="text-danger">
-          {{ formErrors.zipcode }}
+        <input [ngModel]="donor?.zip" ngModel #zip="ngModel" type="text" class="form-control" id="zip" name="zip"  placeholder="e.g. 46074" minlength="2" maxlength="30" pattern="\d+" >
+        <span *ngIf="formErrors.zip" class="text-danger">
+          {{ formErrors.zip }}
         </span>
       </div>
     </div>

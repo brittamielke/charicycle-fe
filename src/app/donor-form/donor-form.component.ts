@@ -89,23 +89,28 @@ export class DonorFormComponent implements OnInit {
   }
 
   formErrors = {
-    'firstName': '',
-    'lastName': '',
+    'companyName': '',
+    'contactFirstName': '',
+    'contactLastName': '',
     'addressLine': '',
     'city': '',
     'state': '',
-    'zipcode': '',
+    'zip': '',
     'phoneNumber': '',
     'email': '',
   };
 
   validationMessages = {
-    'firstName': {
+    'companyName': {
+      'minlength': 'Company name must be at least 2 characters long.',
+      'maxlength': 'Company name cannot be more than 30 characters long.'
+    },
+    'contactFirstName': {
       'required': 'First name is required.',
       'minlength': 'First name must be at least 2 characters long.',
       'maxlength': 'First name cannot be more than 30 characters long.'
     },
-    'lastName': {
+    'contactLastName': {
       'required': 'Last name is required.',
       'minlength': 'Last name must be at least 2 characters long.',
       'maxlength': 'Last name cannot be more than 30 characters long.'
@@ -122,7 +127,7 @@ export class DonorFormComponent implements OnInit {
       'minlength': 'The State must be at least 2 characters long.',
       'maxlength': 'The State cannot be more than 30 characters long.'
     },
-    'zipcode': {
+    'zip': {
       'minlength': 'The Zipcode must be at least 2 characters long.',
       'maxlength': 'The Zipcode cannot be more than 30 characters long.',
       'pattern': 'The Zipcode must be a number'
