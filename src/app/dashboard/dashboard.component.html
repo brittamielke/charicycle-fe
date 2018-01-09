@@ -1,0 +1,35 @@
+<div id="donor-things">
+  <a routerLink="/donatedItem/add" class="btn btn-default">Add a donated Item (Donors)</a><br>
+    <a routerLink="" class="btn btn-default">Browse Needed Things (Donors)</a>
+    <h2>Current list of needed items</h2>
+</div>
+<br>
+<br>
+<h1>Charity stuff</h1>
+<div id="charity-things">
+  <a routerLink="" class="btn btn-default">Add a need(charity)</a><br>
+  <h2>Current list of donated items</h2>
+  <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Image URL</th>
+        <th>Claim Item</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let donatedItem of donatedItems">
+        <td>{{donatedItem.category}}</td>
+        <td>{{donatedItem.description}}</td>
+        <td>{{donatedItem.itemImageUrl}}</td>
+        <td class="text-center">
+          <a class="btn btn-primary" [routerLink]="['/movie/edit/']">Claim Item</a>&nbsp;
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div id="admin-things">
+  <a routerLink="" class="btn btn-default">Admin Dashboard (Admins)</a>
+</div>

@@ -6,23 +6,6 @@ import { DataService } from './data.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
- 
-  itemsList;
+export class AppComponent {
 
-  constructor(private dataService: DataService) {}
-
-  getDataFromService() {
-    this.dataService.getItemsList()
-      .subscribe(
-      itemsList => {
-
-        this.itemsList = itemsList[0];
-      }
-      )
-  }
-  ngOnInit() {
-    this.getDataFromService()
-  }
-} 
 }

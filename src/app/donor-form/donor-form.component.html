@@ -1,0 +1,101 @@
+<section @fadeInAnimation>
+  <ol class="breadcrumb">
+    <li><a routerLink="/home">Home</a></li>
+    <li class="active">Donor</li>
+</ol>
+
+  <h1>Donor Information</h1>
+
+  <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+
+  <form novalidate (ngSubmit)="saveDonor(donorForm)"  #donorForm="ngForm" class="form-horizontal">
+    <input [ngModel]="donor?.id" ngModel #donor_id="ngModel" type="hidden" name="id">
+    <div class="form-group">
+      <label for="company" class="col-sm-2 control-label">Company Name</label>
+      <div class="col-sm-10">
+        <input [ngModel]="donor?.company" ngModel #donor_company="ngModel" type="text" class="form-control" id="company" name="company" placeholder="e.g. Target" minlength="2" maxlength="30">
+         <span *ngIf="formErrors.company" class="text-danger">
+          {{ formErrors.company }}
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="firstName" class="col-sm-2 control-label">Contact First Name</label>
+      <div class="col-sm-10">
+        <input [ngModel]="donor?.firstName" ngModel #firstName="ngModel" type="text" class="form-control" id="firstName" name="firstName" placeholder="e.g. Bill" required minlength="2" maxlength="30" >
+        <span *ngIf="formErrors.firstName" class="text-danger">
+          {{ formErrors.firstName }}
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName" class="col-sm-2 control-label">Contact Last Name</label>
+      <div class="col-sm-10">
+        <input [ngModel]="movie?.lastName" ngModel #lastName="ngModel" type="text" class="form-control" id="lastName" name="lastName"  placeholder="e.g. Smith" required minlength="2" maxlength="30" >
+        <span *ngIf="formErrors.lastName" class="text-danger">
+          {{ formErrors.lastName }}
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="addressLine" class="col-sm-2 control-label">Address Line</label>
+      <div class="col-sm-10">
+        <input [ngModel]="donor?.addressLine" ngModel #addressLine="ngModel" type="text" class="form-control" id="addressLine" name="addressLine"  placeholder="e.g. 1213 Happy Ln"  minlength="2" maxlength="50" >
+        <span *ngIf="formErrors.addressLine" class="text-danger">
+          {{ formErrors.addressLine }}
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="city" class="col-sm-2 control-label">City</label>
+      <div class="col-sm-10">
+        <input [ngModel]="donor?.city" ngModel #city="ngModel" type="text" class="form-control" id="city" name="city"  placeholder="e.g. Westfield" minlength="2" maxlength="30" >
+        <span *ngIf="formErrors.city" class="text-danger">
+          {{ formErrors.city }}
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="state" class="col-sm-2 control-label">State</label>
+      <div class="col-sm-10">
+        <input [ngModel]="donor?.state" ngModel #state="ngModel" type="text" class="form-control" id="state" name="state"  placeholder="e.g. Indiana" minlength="2" maxlength="30" >
+        <span *ngIf="formErrors.state" class="text-danger">
+          {{ formErrors.state }}
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="zipcode" class="col-sm-2 control-label">Zipcode</label>
+      <div class="col-sm-10">
+        <input [ngModel]="donor?.zipcode" ngModel #zipcode="ngModel" type="text" class="form-control" id="zipcode" name="zipcode"  placeholder="e.g. 46074" minlength="2" maxlength="30" pattern="\d+" >
+        <span *ngIf="formErrors.zipcode" class="text-danger">
+          {{ formErrors.zipcode }}
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber" class="col-sm-2 control-label">Phone Number</label>
+      <div class="col-sm-10">
+        <input [ngModel]="donor?.phoneNumber" ngModel #phoneNumber="ngModel" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="eg (317)-222-5555" pattern = "(\\d-)?(\\d{3}-)?\\d{3}-\\d{4}" >
+        <span *ngIf="formErrors.phoneNumber" class="text-danger">
+          {{ formErrors.phoneNumber }}
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email" class="col-sm-2 control-label">Email</label>
+      <div class="col-sm-10">
+        <input [ngModel]="donor?.email" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email" placeholder="eg bill.smith@gmail" pattern = "^(.+)@(.+)$" >
+        <span *ngIf="formErrors.email" class="text-danger">
+          {{ formErrors.email }}
+        </span>
+      </div>
+    </div>
+     <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button [disabled]="!donorForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</section>
+
