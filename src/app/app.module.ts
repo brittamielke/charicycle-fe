@@ -16,7 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
     DonatedItemFormComponent,
     DashboardComponent
   ],
