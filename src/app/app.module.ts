@@ -15,18 +15,19 @@ import { FormsModule } from '@angular/forms';
 import { DonatedItemFormComponent } from './donated-item-form/donated-item-form.component';
 import { DataService } from './data.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { StatusMessageComponent } from './status-message/status-message.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
 
-    DonorFormComponent
-
+    DonorFormComponent,
     HomeComponent,
     NavigationComponent,
     DonatedItemFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    StatusMessageComponent
 
   ],
   imports: [
@@ -39,4 +40,4 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   providers: [DataService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
