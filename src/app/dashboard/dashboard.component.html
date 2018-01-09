@@ -17,7 +17,7 @@
       <tr>
         <th>Category</th>
         <th>Description</th>
-        <th>Image URL</th>
+        <th>Image (Click to download)</th>
         <th>Claim Item</th>
       </tr>
     </thead>
@@ -25,7 +25,7 @@
       <tr *ngFor="let donatedItem of donatedItems">
         <td>{{donatedItem.category}}</td>
         <td>{{donatedItem.description}}</td>
-        <td>{{donatedItem.itemImageUrl}}</td>
+        <td><a href= {{donatedItem.itemImageUrl}} target="_new"><img [src]= "donatedItem.itemImageUrl" /></a></td>
         <td class="text-center">
           <a class="btn btn-primary" [routerLink]="['/movie/edit/']">Claim Item</a>&nbsp;
         </td>
