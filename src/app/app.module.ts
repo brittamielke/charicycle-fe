@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { DonorFormComponent } from './donor-form/donor-form.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DonorFormComponent
   ],
   imports: [
     BrowserModule
