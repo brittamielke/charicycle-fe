@@ -11,7 +11,6 @@ export class DataService {
 
     private baseUrl = 'http://localhost:8080/api/'
 
-
     constructor(private http: Http) { }
 
     getRecords(endpoint: string): Observable<any[]> {
@@ -28,8 +27,7 @@ export class DataService {
             .map(this.extractData)
             .catch(this.handleError);
     }
-
-
+   
     deleteRecord(endpoint: string, id: number): Observable<object> {
 
         let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
@@ -38,7 +36,6 @@ export class DataService {
             .catch(this.handleError);
     }
 
-
     editRecord(endpoint: string, record: object, id: number): Observable<object> {
 
         let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
@@ -46,7 +43,6 @@ export class DataService {
             .map(this.extractData)
             .catch(this.handleError);
     }
-
 
     addRecord(endpoint: string, record: object): Observable<any> {
 
@@ -86,4 +82,6 @@ export class DataService {
 
 
 }
+
+
 
