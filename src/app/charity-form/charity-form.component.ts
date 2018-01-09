@@ -35,7 +35,8 @@ export class CharityFormComponent implements OnInit {
 }
 
   saveCharity(charityForm: NgForm){
-      this.dataService.addRecord("charity/"+this.Id+"charityForm", charityForm.value) 
+    console.log(charityForm.value);
+      this.dataService.addRecord("charity/charityForm", charityForm.value) 
           .subscribe(
             result => this.successMessage = "Record updated successfully",
             error =>  this.errorMessage = <any>error);
