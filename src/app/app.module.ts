@@ -21,9 +21,7 @@ import { NeededItemFormComponent } from './needed-item-form/needed-item-form.com
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-
-
-
+import { ClaimItemComponent } from './claim-item/claim-item.component';
 
 @NgModule({
   declarations: [
@@ -40,8 +38,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     NeededItemFormComponent,
     CategoryFormComponent,
     ContactUsComponent,
-    AboutUsComponent
-
+    AboutUsComponent,
+    ClaimItemComponent
 
   ],
   imports: [
