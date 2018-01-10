@@ -31,8 +31,18 @@
     </div>
     <!-- Need to update (ngSubmit)="method". It will authenticate the user and display the appropriate dashboard (donor/charity)-->
     <button type="submit" class="btn btn-primary">Login</button>
-    <a class="btn btn-primary" [routerLink]="['/dashboard']">temp button to Dashboard</a>&nbsp;
+   
   </form>
+  Select a Charity:
+  <ul>
+    <li *ngFor='let charity of charities' ><a [routerLink]="['/dashboard/charity/', charity.id]">{{charity.organizationName}}</a></li>
+  </ul>
+ <br>
+  Select a Donor:
+  <ul>
+    <li *ngFor='let donor of donors' ><a [routerLink]="['/dashboard/donor/', donor.id]">{{donor.companyName}}</a></li>
+  </ul>
+  
 
   <hr>
   <!-- /END THE FEATURETTES -->
