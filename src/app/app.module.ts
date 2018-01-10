@@ -17,6 +17,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { DonatedItemFormComponent } from './donated-item-form/donated-item-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AppRoutingModule} from'./routing/routing.module';
+import { CategoryFormComponent } from './category-form/category-form.component';
 
 
 
@@ -31,7 +32,9 @@ import {AppRoutingModule} from'./routing/routing.module';
     NavigationComponent,
     DonatedItemFormComponent,
     DashboardComponent,
-    StatusMessageComponent
+    StatusMessageComponent,
+    CategoryFormComponent
+
 
   ],
   imports: [
