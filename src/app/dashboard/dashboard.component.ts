@@ -11,7 +11,10 @@ import { DataService } from '../data.service';
 })
 export class DashboardComponent implements OnInit {
   donatedItems;
+
   neededItems;
+  id;
+  type;
 
   constructor(private dataService: DataService,
     private route: ActivatedRoute,
@@ -20,8 +23,9 @@ export class DashboardComponent implements OnInit {
   getItems(endpoint: string) {
     this.dataService.getRecords(endpoint)
       .subscribe(
-      records => console.log(this.donatedItems = records),
-      error => console.log(error));
+        records => console.log(this.donatedItems = records),
+        error => console.log(error)
+      );
   }
 
   getNeededItems(endpoint: string) {
@@ -33,7 +37,17 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getItems('donatedItems');
+
     this.getNeededItems('neededItems')
+
+    this.route.params
+    .subscribe((params: Params) =>{
+      (+params['id']) ? this.id = +params['id']: null;
+      console.log(this.id);
+      (params['type']) ? this.type = params['type']: null;
+      console.log(this.type)
+  });
+
   }
 
 }

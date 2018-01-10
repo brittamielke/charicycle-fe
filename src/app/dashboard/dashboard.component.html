@@ -1,13 +1,11 @@
-<div id="donor-things">
+<div id="donor-things" *ngIf="type == 'donor'">
   <h1>Donor stuff</h1>
   <a routerLink="/donatedItem/add" class="btn btn-default">Add a donated Item (Donors)</a><br>
     <h2>Current list of needed items</h2>
     <h2>List of items the donor has available for donation (ability to delete)</h2>
 </div>
-<br>
-<hr>
-<br>
-<h1>Charity stuff</h1>
+<div id="charity-things" *ngIf="type == 'charity'">
+    <h1>Charity stuff</h1>
 <div id="charity-things">
   <a [routerLink]="['/neededItem/add']" class="btn btn-default">Add a need(charity)</a><br>
   <h2>My list of needed items (ability to delete)</h2>
