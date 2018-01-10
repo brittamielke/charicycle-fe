@@ -9,9 +9,28 @@
 <br>
 <h1>Charity stuff</h1>
 <div id="charity-things">
-  <a routerLink="" class="btn btn-default">Add a need(charity)</a><br>
-  <h2>List of currently needed items (ability to delete)</h2>
-  <h2>Current list of donated items</h2>
+  <a [routerLink]="['/neededItem/add']" class="btn btn-default">Add a need(charity)</a><br>
+  <h2>My list of needed items (ability to delete)</h2>
+  <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Delete Item</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let neededItem of neededItems">
+        <td>{{neededItem.category}}</td>
+        <td>{{neededItem.description}}</td>
+        <td class="text-center">
+          <a class="btn btn-primary" [routerLink]="">Delete Item</a>&nbsp;
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2>Browse list of donated items</h2>
   <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
     <thead>
       <tr>
