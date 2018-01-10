@@ -19,6 +19,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from'./routing/routing.module';
 import { NeededItemFormComponent } from './needed-item-form/needed-item-form.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
+import { ClaimItemComponent } from './claim-item/claim-item.component';
 
 
 
@@ -36,7 +37,8 @@ import { CategoryFormComponent } from './category-form/category-form.component';
     DashboardComponent,
     StatusMessageComponent,
     NeededItemFormComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    ClaimItemComponent
 
   ],
   imports: [
