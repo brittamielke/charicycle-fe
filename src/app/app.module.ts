@@ -18,6 +18,8 @@ import { DonatedItemFormComponent } from './donated-item-form/donated-item-form.
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from'./routing/routing.module';
 import { NeededItemFormComponent } from './needed-item-form/needed-item-form.component';
+import { CategoryFormComponent } from './category-form/category-form.component';
+
 
 
 
@@ -33,7 +35,8 @@ import { NeededItemFormComponent } from './needed-item-form/needed-item-form.com
     DonatedItemFormComponent,
     DashboardComponent,
     StatusMessageComponent,
-    NeededItemFormComponent
+    NeededItemFormComponent,
+    CategoryFormComponent
 
   ],
   imports: [
