@@ -19,7 +19,7 @@ export class CharityFormComponent implements OnInit {
   successMessage: string;
   errorMessage: string;
 
-  Id: number;
+  id: number;
 
   constructor( 
     private dataService: DataService,
@@ -30,7 +30,7 @@ export class CharityFormComponent implements OnInit {
   ngOnInit() {
     this.route.params
     .subscribe((params: Params) =>{
-      (+params['id']) ? this.Id = +params['id']: null;
+      (+params['id']) ? this.id = +params['id']: null;
   });
 }
 

@@ -19,10 +19,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from'./routing/routing.module';
 import { NeededItemFormComponent } from './needed-item-form/needed-item-form.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 import { ClaimItemComponent } from './claim-item/claim-item.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -38,6 +37,8 @@ import { ClaimItemComponent } from './claim-item/claim-item.component';
     StatusMessageComponent,
     NeededItemFormComponent,
     CategoryFormComponent,
+    ContactUsComponent,
+    AboutUsComponent,
     ClaimItemComponent
 
   ],
