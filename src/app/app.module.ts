@@ -19,6 +19,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from'./routing/routing.module';
 import { NeededItemFormComponent } from './needed-item-form/needed-item-form.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 
@@ -36,7 +38,10 @@ import { CategoryFormComponent } from './category-form/category-form.component';
     DashboardComponent,
     StatusMessageComponent,
     NeededItemFormComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    ContactUsComponent,
+    AboutUsComponent
+
 
   ],
   imports: [
