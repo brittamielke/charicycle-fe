@@ -1,6 +1,9 @@
 <div id="donor-things" *ngIf="type == 'donor'">
-  <h1>Donor stuff</h1>
-  <a routerLink="/donatedItem/add" class="btn btn-default">Add a donated Item (Donors)</a><br>
+  <h1>Welcome,
+    <span *ngIf="loggedInUser.companyName">{{ loggedInUser.companyName }} </span>
+    <span *ngIf="!loggedInUser.companyName">{{ loggedInUser.contactFirstName }} {{ loggedInUser.contactLastName }}</span> to the Donor Dashboard
+  </h1>
+  <a [routerLink]="['/donatedItem/add/', id]" class="btn btn-default">Add a donated Item (Donors)</a><br>
     <h2>Current list of needed items</h2>
       <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
         <thead>
@@ -46,9 +49,8 @@
       </table>
 </div>
 <div id="charity-things" *ngIf="type == 'charity'">
-    <h1>Charity stuff</h1>
-<div id="charity-things">
-  <a [routerLink]="['/neededItem/add']" class="btn btn-default">Add a need(charity)</a><br>
+  <h1>Welcome, {{ loggedInUser.organizationName }} to the Charity Dashboard</h1>
+  <a [routerLink]="['/neededItem/add/', id]" class="btn btn-primary">Add a need</a><br>
   <h2>My list of needed items (ability to delete)</h2>
   <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
     <thead>

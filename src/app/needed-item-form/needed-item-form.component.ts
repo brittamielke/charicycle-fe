@@ -38,7 +38,7 @@ export class NeededItemFormComponent implements OnInit {
   saveItem(neededItemForm: NgForm) {
     let neededItem = neededItemForm.value;
         console.log(neededItem);
-       this.dataService.addRecord("neededItems", neededItem)
+       this.dataService.addRecord(`neededItems/${this.charityId}`, neededItem)
          .subscribe(
          result => console.log(this.successMessage = "Record added successfully"),
          error => this.errorMessage = <any>error);

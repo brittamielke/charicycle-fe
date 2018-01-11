@@ -1,4 +1,4 @@
-<a class="btn btn-primary" routerLink="/dashboard">Return to dashboard</a>
+<a class="btn btn-primary" [routerLink]="['/dashboard/donor/', donorId]">Return to dashboard</a>
 <h1>Add an Item to donate</h1>
 <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 <div class="container">
