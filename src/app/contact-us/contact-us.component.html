@@ -1,10 +1,10 @@
 <section @fadeInAnimation>
-  <div class="jumbotron">
+  
     <ol class="breadcrumb">
       <li><a routerLink="/home">Home</a></li>
       <li class="active">Contact Us</li>
   </ol>
-  </div>
+
 
  
 
@@ -52,6 +52,9 @@
           <h3>Location</h3>
           <p>12400 North Meridian Street</p>
            <p> Carmel, IN, 46032</p>
+           <agm-map [latitude]="lat" [longitude]="lng">
+             <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+           </agm-map>
         </div>
       </div>
     </div>
