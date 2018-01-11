@@ -3,7 +3,7 @@
 <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 <div class="container">
   
-  <form novalidate (ngSubmit)="saveItem(donatedItemForm)" #donatedItemForm="ngForm" class="form-horizontal">
+  <form (ngSubmit)="saveItem(donatedItemForm)" #donatedItemForm="ngForm" class="form-horizontal">
     <div class="form-group">
       <label for="category" class="col-sm-2 control-label">Category</label>
       <div class="col-sm-10">

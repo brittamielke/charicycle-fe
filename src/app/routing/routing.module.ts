@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'category', component: CategoryFormComponent },
   { path: 'contactUs', component: ContactUsComponent },
   { path: 'aboutUs', component: AboutUsComponent },
-  { path: 'claimItem', component: ClaimItemComponent }
+  { path: 'claimItem/:id', component: ClaimItemComponent }
 ];
 
 @NgModule({

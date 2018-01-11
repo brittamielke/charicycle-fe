@@ -55,7 +55,7 @@
       <tr>
         <th>Category</th>
         <th>Description</th>
-        <th>Delete Item</th>
+        <th>Delete Need</th>
       </tr>
     </thead>
     <tbody>
@@ -85,7 +85,7 @@
         <td>{{donatedItem.description}}</td>
         <td><span *ngIf="donatedItem.itemImageUrl"><a href= {{donatedItem.itemImageUrl}} target="_new"><img [src]= "donatedItem.itemImageUrl" /></a></span></td>
         <td class="text-center">
-          <a class="btn btn-primary" [routerLink]="['/claimItem']">Claim Item</a>&nbsp;
+          <a class="btn btn-primary" (click)="updateDonatedItemToClaimed(donatedItem.id)" [routerLink]="['/claimItem/', donatedItem.id]">Claim Item</a>&nbsp;
         </td>
       </tr>
     </tbody>

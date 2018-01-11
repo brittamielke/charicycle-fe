@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   neededItems;
   id;
   type;
+  donatedItem;
 
   constructor(private dataService: DataService,
     private route: ActivatedRoute,
@@ -22,8 +23,8 @@ export class DashboardComponent implements OnInit {
   getDonatedItems() {
     this.dataService.getRecords('donatedItems')
       .subscribe(
-        records => console.log(this.donatedItems = records),
-        error => console.log(error)
+      records => console.log(this.donatedItems = records),
+      error => console.log(error)
       );
   }
 
@@ -32,31 +33,47 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => console.log(this.neededItems = records),
       error => console.log("error: " + error)
-    );
+      );
   }
-  deleteDonatedItem(id){
+  deleteDonatedItem(id) {
     this.dataService.deleteRecord('donatedItems', id)
       .subscribe(
       records => this.getDonatedItems(),
       error => console.log(error)
-    );
+      );
   }
 
   deleteNeededItem(id) {
     this.dataService.deleteRecord('neededItems', id)
       .subscribe(
-      records => this.getNeededItems(),
-      error => console.log(error)
-    );
+        records => this.getNeededItems(),
+        error => console.log(error)
+      );
+  }
+  updateDonatedItemToClaimed(donatedItemId) {
+    this.dataService
+      .getRecord('donatedItems', donatedItemId)
+      .subscribe(
+        donatedItem => {
+          this.donatedItem = donatedItem;
+          this.donatedItem['claimedCharityId'] = '3';
+          console.log(this.donatedItem);
+          this.dataService
+            .editRecord('donatedItems', this.donatedItem, donatedItemId)
+            .subscribe(
+              record => console.log("Successfully Updated")
+            );
+        }
+      );
   }
 
   ngOnInit() {
 
     this.route.params
-    .subscribe((params: Params) =>{
-      (+params['id']) ? this.id = +params['id']: null;
-      (params['type']) ? this.type = params['type']: null;
-  });
+      .subscribe((params: Params) => {
+        (+params['id']) ? this.id = +params['id'] : null;
+        (params['type']) ? this.type = params['type'] : null;
+      });
 
     this.getDonatedItems();
     this.getNeededItems()
