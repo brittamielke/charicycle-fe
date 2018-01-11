@@ -63,10 +63,10 @@ export class DonatedItemFormComponent implements OnInit {
     console.log(donatedItem);
        this.dataService.addRecord("donatedItems", donatedItem)
          .subscribe(
-          student => console.log(this.successMessage = "Record added successfully"),
+          result => this.successMessage = "Record added successfully",
           error => this.errorMessage = <any>error
           );
-      //  this.movie = {};
+      donatedItemForm.reset();
    }
 
 

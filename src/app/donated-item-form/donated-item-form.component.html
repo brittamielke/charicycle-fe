@@ -1,5 +1,8 @@
+<a class="btn btn-primary" routerLink="/dashboard">Return to dashboard</a>
+<h1>Add an Item to donate</h1>
+<app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 <div class="container">
-  <a class="btn btn-primary" routerLink="/dashboard">Return to dashboard</a>
+  
   <form novalidate (ngSubmit)="saveItem(donatedItemForm)" #donatedItemForm="ngForm" class="form-horizontal">
     <div class="form-group">
       <label for="category" class="col-sm-2 control-label">Category</label>

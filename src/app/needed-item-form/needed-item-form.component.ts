@@ -42,6 +42,7 @@ export class NeededItemFormComponent implements OnInit {
          .subscribe(
          result => console.log(this.successMessage = "Record added successfully"),
          error => this.errorMessage = <any>error);
+    neededItemForm.reset();
    }
 
 }
