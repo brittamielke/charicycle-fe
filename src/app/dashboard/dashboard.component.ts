@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   id;
   type;
   loggedInUser=[];
+  donatedItem;
 
   constructor(private dataService: DataService,
     private route: ActivatedRoute,
@@ -53,7 +54,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => this.neededItems = records,
       error => console.log("error: " + error)
-    );
+      );
   }
   
   //delete a donated item (no changes)
@@ -62,16 +63,32 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => this.getDonatedItems(),
       error => console.log(error)
-    );
+      );
   }
 
   //delete a needed item
   deleteNeededItem(id) {
     this.dataService.deleteRecord('neededItems', id)
       .subscribe(
-      records => this.getNeededItems(),
-      error => console.log(error)
-    );
+        records => this.getNeededItems(),
+        error => console.log(error)
+      );
+  }
+  updateDonatedItemToClaimed(donatedItemId) {
+    this.dataService
+      .getRecord('donatedItems', donatedItemId)
+      .subscribe(
+        donatedItem => {
+          this.donatedItem = donatedItem;
+          this.donatedItem['claimedCharityId'] = '3';
+          console.log(this.donatedItem);
+          this.dataService
+            .editRecord('donatedItems', this.donatedItem, donatedItemId)
+            .subscribe(
+              record => console.log("Successfully Updated")
+            );
+        }
+      );
   }
 
   //get the logged in user
@@ -86,10 +103,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
     this.route.params
-    .subscribe((params: Params) =>{
-      (+params['id']) ? this.id = +params['id']: null;
-      (params['type']) ? this.type = params['type']: null;
-  });
+      .subscribe((params: Params) => {
+        (+params['id']) ? this.id = +params['id'] : null;
+        (params['type']) ? this.type = params['type'] : null;
+      });
 
   if(this.type == "donor"){
     this.getUser('donor/' + this.id);
