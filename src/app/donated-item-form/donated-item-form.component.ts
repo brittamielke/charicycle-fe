@@ -61,7 +61,7 @@ export class DonatedItemFormComponent implements OnInit {
     let donatedItem = donatedItemForm.value;
     donatedItem["itemImageUrl"] = this.imageUrl;
     console.log(donatedItem);
-       this.dataService.addRecord("donatedItems", donatedItem)
+       this.dataService.addRecord(`donatedItems/${this.donorId}`, donatedItem)
          .subscribe(
           result => this.successMessage = "Record added successfully",
           error => this.errorMessage = <any>error
