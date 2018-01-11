@@ -1,5 +1,5 @@
 <div class="container">
-  <a class="btn btn-primary" routerLink="/dashboard">Return to dashboard</a>
+  <a [routerLink]="['/dashboard/charity', charityId]" class="btn btn-primary">Return to dashboard</a>
   <h1>Add a needed item</h1>
   <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
   <form (ngSubmit)="saveItem(neededItemForm)" #neededItemForm="ngForm" class="form-horizontal">
