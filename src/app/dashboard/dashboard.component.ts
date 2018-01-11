@@ -14,26 +14,49 @@ export class DashboardComponent implements OnInit {
   neededItems;
   id;
   type;
+  loggedInUser=[];
 
   constructor(private dataService: DataService,
     private route: ActivatedRoute,
     private location: Location) { }
 
+    //get the donated items for a specific donor
   getDonatedItems() {
-    this.dataService.getRecords('donatedItems')
+    this.dataService.getRecords(`/donor/${this.id}/donatedItems`)
       .subscribe(
-        records => console.log(this.donatedItems = records),
+        records => this.donatedItems = records,
         error => console.log(error)
       );
   }
 
+  //get all the donated items
+  getAllDonatedItems() {
+    this.dataService.getRecords(`/donatedItems`)
+      .subscribe(
+      records => this.donatedItems = records,
+      error => console.log(error)
+      );
+  }
+
+  //get needed items for specific charity
   getNeededItems() {
+    this.dataService.getRecords(`charity/${this.id}/neededItems`)
+      .subscribe(
+      records => this.neededItems = records,
+      error => console.log("error: " + error)
+      );
+  }
+
+  //get all the needed items
+  getAllNeededItems() {
     this.dataService.getRecords('neededItems')
       .subscribe(
-      records => console.log(this.neededItems = records),
+      records => this.neededItems = records,
       error => console.log("error: " + error)
     );
   }
+  
+  //delete a donated item (no changes)
   deleteDonatedItem(id){
     this.dataService.deleteRecord('donatedItems', id)
       .subscribe(
@@ -42,12 +65,22 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  //delete a needed item
   deleteNeededItem(id) {
     this.dataService.deleteRecord('neededItems', id)
       .subscribe(
       records => this.getNeededItems(),
       error => console.log(error)
     );
+  }
+
+  //get the logged in user
+  getUser(endpoint: string) {
+    this.dataService.getRecords(endpoint)
+      .subscribe(
+      records => console.log(this.loggedInUser = records),
+      error => console.log(error)
+      );
   }
 
   ngOnInit() {
@@ -58,8 +91,20 @@ export class DashboardComponent implements OnInit {
       (params['type']) ? this.type = params['type']: null;
   });
 
+  if(this.type == "donor"){
+    this.getUser('donor/' + this.id);
     this.getDonatedItems();
-    this.getNeededItems()
+    this.getAllNeededItems();
+  }
+
+  if (this.type == "charity") {
+    this.getUser('charity/charityForm/' + this.id);
+    this.getAllDonatedItems();
+    this.getNeededItems();
+  }
+
+    
+    
   }
 
 }
