@@ -14,7 +14,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let neededItem of neededItems">
-            <td>{{neededItem.category}}</td>
+            <td>{{neededItem.category.name}}</td>
             <td>{{neededItem.description}}</td>
           </tr>
         </tbody>
@@ -62,7 +62,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let neededItem of neededItems">
-        <td>{{neededItem.category}}</td>
+        <td>{{neededItem.category.name}}</td>
         <td>{{neededItem.description}}</td>
         <td class="text-center">
           <a class="btn btn-primary" (click)="deleteNeededItem(neededItem.id)">Delete Item</a>&nbsp;
