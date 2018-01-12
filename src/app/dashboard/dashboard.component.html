@@ -42,7 +42,7 @@
               </span>
             </td>
             <td class="text-center">
-              <a class="btn btn-primary" (click)='deleteDonatedItem(donatedItem.id)'>Delete Item</a>&nbsp;
+              <a class="btn btn-primary" (click)='deleteDonatedItem(donatedItem)'>Delete Item</a>&nbsp;
             </td>
           </tr>
         </tbody>
@@ -65,7 +65,7 @@
         <td>{{neededItem.category.name}}</td>
         <td>{{neededItem.description}}</td>
         <td class="text-center">
-          <a class="btn btn-primary" (click)="deleteNeededItem(neededItem.id)">Delete Item</a>&nbsp;
+          <a class="btn btn-primary" (click)="deleteNeededItem(neededItem)">Delete Item</a>&nbsp;
         </td>
       </tr>
     </tbody>

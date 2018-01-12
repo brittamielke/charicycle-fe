@@ -22,6 +22,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ClaimItemComponent } from './claim-item/claim-item.component';
 import { AdminformComponent } from './adminform/adminform.component';
 import { AgmCoreModule } from '@agm/core';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AgmCoreModule } from '@agm/core';
     HttpModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD9Pnb3RyP2NpVrHsQo8VkyZBL48Y2favY'
     })
