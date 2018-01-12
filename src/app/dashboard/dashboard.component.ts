@@ -14,19 +14,20 @@ export class DashboardComponent implements OnInit {
   neededItems;
   id;
   type;
-  loggedInUser=[];
+  loggedInUser = [];
   donatedItem;
+  donorId;
 
   constructor(private dataService: DataService,
     private route: ActivatedRoute,
     private location: Location) { }
 
-    //get the donated items for a specific donor
+  //get the donated items for a specific donor
   getDonatedItems() {
     this.dataService.getRecords(`/donor/${this.id}/donatedItems`)
       .subscribe(
-        records => this.donatedItems = records,
-        error => console.log(error)
+      records => this.donatedItems = records,
+      error => console.log(error)
       );
   }
 
@@ -56,9 +57,9 @@ export class DashboardComponent implements OnInit {
       error => console.log("error: " + error)
       );
   }
-  
+
   //delete a donated item (no changes)
-  deleteDonatedItem(id){
+  deleteDonatedItem(id) {
     this.dataService.deleteRecord('donatedItems', id)
       .subscribe(
       records => this.getDonatedItems(),
@@ -70,45 +71,49 @@ export class DashboardComponent implements OnInit {
   deleteNeededItem(id) {
     this.dataService.deleteRecord('neededItems', id)
       .subscribe(
-        records => this.getNeededItems(),
-        error => console.log(error)
+      records => this.getNeededItems(),
+      error => console.log(error)
       );
   }
   updateDonatedItemToClaimed(donatedItemId) {
     this.dataService
       .getRecord('donatedItems', donatedItemId)
       .subscribe(
-        donatedItem => {
-          this.donatedItem = donatedItem;
-          this.donatedItem['claimedCharityId'] = '3';
-          console.log(this.donatedItem);
-          this.dataService
-            .editRecord('donatedItems', this.donatedItem, donatedItemId)
-            .subscribe(
-              record => console.log("Successfully Updated")
-            );
-        }
+      donatedItem => {
+        this.donatedItem = donatedItem;
+        console.log(this.donatedItem);
+        this.donatedItem['claimedCharityId'] = this.id;
+        console.log(this.donatedItem);
+        let donorId = this.donatedItem.donorView.id;
+        this.dataService
+          .editRecord('donatedItems/'+ this.donatedItem.donorView.id, this.donatedItem, donatedItemId)
+          .subscribe(
+          donatedItem => { 
+            this.donatedItem = donatedItem,
+            console.log(this.donatedItem)}
       );
   }
-
-  //get the logged in user
-  getUser(endpoint: string) {
-    this.dataService.getRecords(endpoint)
-      .subscribe(
-      records => console.log(this.loggedInUser = records),
-      error => console.log(error)
       );
-  }
+}
 
-  ngOnInit() {
+//get the logged in user
+getUser(endpoint: string) {
+  this.dataService.getRecords(endpoint)
+    .subscribe(
+    records => console.log(this.loggedInUser = records),
+    error => console.log(error)
+    );
+}
 
-    this.route.params
-      .subscribe((params: Params) => {
-        (+params['id']) ? this.id = +params['id'] : null;
-        (params['type']) ? this.type = params['type'] : null;
-      });
+ngOnInit() {
 
-  if(this.type == "donor"){
+  this.route.params
+    .subscribe((params: Params) => {
+      (+params['id']) ? this.id = +params['id'] : null;
+      (params['type']) ? this.type = params['type'] : null;
+    });
+
+  if (this.type == "donor") {
     this.getUser('donor/' + this.id);
     this.getDonatedItems();
     this.getAllNeededItems();
@@ -120,8 +125,8 @@ export class DashboardComponent implements OnInit {
     this.getNeededItems();
   }
 
-    
-    
-  }
+
+
+}
 
 }

@@ -21,11 +21,13 @@ export class ClaimItemComponent implements OnInit {
 
   donatedItemId: number;
   donatedItem: object;
+  charityId: number;
 
   ngOnInit() {
     this.route.params
       .subscribe((params: Params) => {
         (+params['id']) ? this.donatedItemId = +params['id'] : null;
+        (+params['loggedInUserId']) ? this.charityId = +params['loggedInUserId'] : null;
         this.getDonatedItemFromService();
       })
   }
@@ -37,5 +39,5 @@ export class ClaimItemComponent implements OnInit {
       this.donatedItem = donatedItem;
     });
   }
-  // 
+
 }

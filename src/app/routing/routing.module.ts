@@ -24,9 +24,10 @@ const routes: Routes = [
   { path: 'category', component: CategoryFormComponent },
   { path: 'contactUs', component: ContactUsComponent },
   { path: 'aboutUs', component: AboutUsComponent },
-  { path: 'claimItem/:id', component: ClaimItemComponent },
+  { path: 'claimItem/:id/:loggedInUserId', component: ClaimItemComponent },
   { path: 'donatedItem/add/:id', component: DonatedItemFormComponent },
   { path: 'dashboard/donor/:id', component: DashboardComponent }
+
 ];
 
 @NgModule({
