@@ -19,7 +19,6 @@ const routes: Routes = [
   { path: 'home',  component: HomeComponent },
   { path: 'donatedItem/add', component: DonatedItemFormComponent },
   { path: 'dashboard/:type/:id', component: DashboardComponent},
-  { path: 'donor', component: DonorFormComponent},
   { path: 'donorForm/add',  component: DonorFormComponent },
   { path: 'charityForm/add', component: CharityFormComponent },
   { path: 'neededItem/add', component: NeededItemFormComponent },

@@ -32,7 +32,7 @@ export class DonorFormComponent implements OnInit {
 
   getRecordForEdit(){
     this.route.params
-      .switchMap((params: Params) => this.dataService.getRecord("donor/donorForm", +params['id']))
+      .switchMap((params: Params) => this.dataService.getRecord("donor", +params['id']))
       .subscribe(donor => this.donor = donor);
   }
 
@@ -45,12 +45,12 @@ export class DonorFormComponent implements OnInit {
 
   saveDonor(donorForm: NgForm){
     if(typeof donorForm.value.id === "number"){
-      this.dataService.editRecord("donor/donorForm", donorForm.value, donorForm.value.id)
+      this.dataService.editRecord("donor", donorForm.value, donorForm.value.id)
           .subscribe(
             donor => this.successMessage = "Record updated successfully",
             error =>  this.errorMessage = <any>error);
     }else{
-      this.dataService.addRecord("donor/donorForm", donorForm.value)
+      this.dataService.addRecord("donor", donorForm.value)
           .subscribe(
             donor => this.successMessage = "Record added successfully",
             error =>  this.errorMessage = <any>error);
