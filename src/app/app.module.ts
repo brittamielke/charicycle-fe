@@ -1,5 +1,3 @@
-
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
@@ -22,6 +20,7 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ClaimItemComponent } from './claim-item/claim-item.component';
+import { AdminformComponent } from './adminform/adminform.component';
 
 @NgModule({
   declarations: [
@@ -39,16 +38,18 @@ import { ClaimItemComponent } from './claim-item/claim-item.component';
     CategoryFormComponent,
     ContactUsComponent,
     AboutUsComponent,
-    ClaimItemComponent
+    ClaimItemComponent,
+    AdminformComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
     HttpModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    
+
   ],
     entryComponents: [DeleteConfirmComponent],
   providers: [DataService],

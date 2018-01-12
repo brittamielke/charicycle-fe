@@ -10,21 +10,27 @@ import { CategoryFormComponent } from '../category-form/category-form.component'
 import { ContactUsComponent } from '../contact-us/contact-us.component';
 import { AboutUsComponent } from '../about-us/about-us.component';
 import { ClaimItemComponent } from '../claim-item/claim-item.component';
+import { AdminformComponent } from '../adminform/adminform.component';
 
 
- 
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home',  component: HomeComponent },
   { path: 'donatedItem/add', component: DonatedItemFormComponent },
   { path: 'dashboard/:type/:id', component: DashboardComponent},
-  { path: 'donor',  component: DonorFormComponent },
+  { path: 'donor', component: DonorFormComponent},
+  { path: 'donorForm/add',  component: DonorFormComponent },
   { path: 'charityForm/add', component: CharityFormComponent },
   { path: 'neededItem/add', component: NeededItemFormComponent },
   { path: 'category', component: CategoryFormComponent },
   { path: 'contactUs', component: ContactUsComponent },
   { path: 'aboutUs', component: AboutUsComponent },
-  { path: 'claimItem', component: ClaimItemComponent }
+  { path: 'claimItem', component: ClaimItemComponent },
+  { path: 'adminForm', component: AdminformComponent },
+ 
+  
+ 
 ];
 
 @NgModule({

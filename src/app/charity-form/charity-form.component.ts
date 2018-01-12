@@ -43,6 +43,15 @@ export class CharityFormComponent implements OnInit {
             this.charityForm.form.markAsPristine();
    
     }
+    deleteCharity(charityForm: NgForm){
+      console.log(charityForm.value);
+        this.dataService.deleteRecord("charity/charityForm", charityForm.value) 
+            .subscribe(
+              result => this.successMessage = "Record deleted successfully",
+              error =>  this.errorMessage = <any>error);
+              this.charityForm.form.markAsPristine();
+     
+      }
     ngAfterViewChecked() {
       this.formChanged();
     }
