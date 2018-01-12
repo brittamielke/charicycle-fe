@@ -6,24 +6,22 @@ import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service'
 
 @Component({
-  selector: 'app-adminform',
-  templateUrl: './adminform.component.html',
-  styleUrls: ['./adminform.component.css']
+  selector: 'app-managecharities',
+  templateUrl: './managecharities.component.html',
+  styleUrls: ['./managecharities.component.css']
 })
-
-export class AdminformComponent implements OnInit {
+export class ManagecharitiesComponent implements OnInit {
 
   private charities;
   private updateCharity = null;
-  private donors;
-  private updateDonor = null;
-  
+
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
     private location: Location
   ) {}
-
+    
+  
   editCharity(charity){
     this.updateCharity = charity;
     console.log(charity);
@@ -65,57 +63,20 @@ export class AdminformComponent implements OnInit {
         this.getCharities();
       }
       )
-  }
-  editDonor(donor){
-    this.updateDonor = donor;
-    console.log(donor);
-  }
   
-  getDonors() {
-    this.dataService.getRecords("donor")
-      .subscribe(donorFromAPIS => {
-        this.donors = donorFromAPIS;
-      })
-  }
-
-
-  submitDonor(donorForm: NgForm) {
-    console.log(donorForm.value);
-    if(!this.updateDonor){
-      this.dataService.addRecord("donor", donorForm.value)
-        .subscribe(
-        donorInfo => {
-          this.getDonors();
-        });
-    }
-    else{
-      this.dataService.editRecord("donor", donorForm.value, this.updateDonor.id)
-        .subscribe(
-          donorInfo => {
-            this.getDonors();
-          }
-        )
-      this.updateDonor = null;
-    }
-    donorForm.resetForm();
-  }
-
-
-  deleteDonor(donorId) {
-    this.dataService.deleteRecord("donor", donorId)
-      .subscribe(
-      donorInfo => {
-        this.getDonors();
-      }
-      )
   }
   
   ngOnInit() {
     this.getCharities();
-    this.getDonors();
+   
   }
 
+ 
+  
+   
 }
+    
+
   
   
  

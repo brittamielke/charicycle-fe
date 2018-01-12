@@ -115,7 +115,7 @@ export class DashboardComponent implements OnInit {
   }
 
   if (this.type == "charity") {
-    this.getUser('charity/charityForm/' + this.id);
+    this.getUser('charity/' + this.id);
     this.getAllDonatedItems();
     this.getNeededItems();
   }
