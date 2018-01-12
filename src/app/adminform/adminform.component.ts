@@ -74,12 +74,13 @@ export class AdminformComponent implements OnInit {
   getDonors() {
     this.dataService.getRecords("donor")
       .subscribe(donorFromAPIS => {
-        this.charities = donorFromAPIS;
+        this.donors = donorFromAPIS;
       })
   }
 
 
   submitDonor(donorForm: NgForm) {
+    console.log(donorForm.value);
     if(!this.updateDonor){
       this.dataService.addRecord("donor", donorForm.value)
         .subscribe(

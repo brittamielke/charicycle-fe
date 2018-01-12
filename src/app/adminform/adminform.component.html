@@ -134,7 +134,7 @@
   <div class="form-group">
     <label for="inputEmailAddress" class="col-sm-2 control-label">Email Address</label>
     <div class="col-sm-1">
-      <input type="text" class="form-control" id="inputEmailAddress" name="emailAddress" [ngModel]="updateDonor?.emailAddress" ngModel #emailAddress="ngModel"
+      <input type="text" class="form-control" id="inputEmailAddress" name="email" [ngModel]="updateDonor?.emailAddress" ngModel #email="ngModel"
         placeholder="Email Address">
     </div>
   </div>
@@ -172,7 +172,7 @@
         <td>{{ donor.state }}</td>
         <td>{{ donor.zip }}</td>
         <td>{{ donor.phoneNumber }}</td>
-        <td>{{ donor.emailAddress }}</td>
+        <td>{{ donor.email }}</td>
        <td>
           <button class="btn btn-info" (click)='editDonor(donor)'>Update</button>
         </td>
