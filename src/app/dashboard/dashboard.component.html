@@ -85,7 +85,7 @@
     <tbody>
       <ng-container *ngFor="let donatedItem of donatedItems">
         <tr *ngIf="!donatedItem.claimedCharityId">
-          <td>{{donatedItem.category}}</td>
+          <td>{{donatedItem.category.name}}</td>
           <td>{{donatedItem.description}}</td>
           <td>
             <span *ngIf="donatedItem.itemImageUrl">
