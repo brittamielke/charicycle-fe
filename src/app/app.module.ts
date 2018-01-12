@@ -40,12 +40,7 @@ import { AgmCoreModule } from '@agm/core';
     ContactUsComponent,
     AboutUsComponent,
     ClaimItemComponent,
-<<<<<<< HEAD
     AdminformComponent
-=======
-    
-
->>>>>>> 2c250efd3fd51e81c746be495f190f4df2b662a8
 
   ],
   imports: [
@@ -54,14 +49,9 @@ import { AgmCoreModule } from '@agm/core';
     HttpModule,
     BrowserAnimationsModule,
     FormsModule,
-<<<<<<< HEAD
-    
-
-=======
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD9Pnb3RyP2NpVrHsQo8VkyZBL48Y2favY'
     })
->>>>>>> 2c250efd3fd51e81c746be495f190f4df2b662a8
   ],
     entryComponents: [DeleteConfirmComponent],
   providers: [DataService],
