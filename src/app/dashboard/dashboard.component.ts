@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   type;
   loggedInUser = [];
   donatedItem;
+  donorId;
 
   constructor(private dataService: DataService,
     private route: ActivatedRoute,
@@ -92,48 +93,52 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       donatedItem => {
         this.donatedItem = donatedItem;
-        this.donatedItem['claimedCharityId'] = '3';
         console.log(this.donatedItem);
+        this.donatedItem['claimedCharityId'] = this.id;
+        console.log(this.donatedItem);
+        let donorId = this.donatedItem.donorView.id;
         this.dataService
-          .editRecord('donatedItems', this.donatedItem, donatedItemId)
+          .editRecord('donatedItems/'+ this.donatedItem.donorView.id, this.donatedItem, donatedItemId)
           .subscribe(
-          record => console.log("Successfully Updated")
-          );
-      }
+          donatedItem => { 
+            this.donatedItem = donatedItem,
+            console.log(this.donatedItem)}
       );
   }
-
-  //get the logged in user
-  getUser(endpoint: string) {
-    this.dataService.getRecords(endpoint)
-      .subscribe(
-      records => console.log(this.loggedInUser = records),
-      error => console.log(error)
       );
+}
+
+//get the logged in user
+getUser(endpoint: string) {
+  this.dataService.getRecords(endpoint)
+    .subscribe(
+    records => console.log(this.loggedInUser = records),
+    error => console.log(error)
+    );
+}
+
+ngOnInit() {
+
+  this.route.params
+    .subscribe((params: Params) => {
+      (+params['id']) ? this.id = +params['id'] : null;
+      (params['type']) ? this.type = params['type'] : null;
+    });
+
+  if (this.type == "donor") {
+    this.getUser('donor/' + this.id);
+    this.getDonatedItems();
+    this.getAllNeededItems();
   }
 
-  ngOnInit() {
-
-    this.route.params
-      .subscribe((params: Params) => {
-        (+params['id']) ? this.id = +params['id'] : null;
-        (params['type']) ? this.type = params['type'] : null;
-      });
-
-    if (this.type == "donor") {
-      this.getUser('donor/' + this.id);
-      this.getDonatedItems();
-      this.getAllNeededItems();
-    }
-
-    if (this.type == "charity") {
-      this.getUser('charity/charityForm/' + this.id);
-      this.getAllDonatedItems();
-      this.getNeededItems();
-    }
-
-
-
+  if (this.type == "charity") {
+    this.getUser('charity/' + this.id);
+    this.getAllDonatedItems();
+    this.getNeededItems();
   }
+
+
+
+}
 
 }

@@ -20,8 +20,10 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ClaimItemComponent } from './claim-item/claim-item.component';
-import { AdminformComponent } from './adminform/adminform.component';
 import { AgmCoreModule } from '@agm/core';
+import { ManagecharitiesComponent } from './managecharities/managecharities.component';
+import { ManagedonorsComponent } from './managedonors/managedonors.component';
+import { AdminComponent } from './admin/admin.component';
 import { MatDialogModule } from '@angular/material';
 
 @NgModule({
@@ -41,7 +43,9 @@ import { MatDialogModule } from '@angular/material';
     ContactUsComponent,
     AboutUsComponent,
     ClaimItemComponent,
-    AdminformComponent
+    ManagecharitiesComponent,
+    ManagedonorsComponent,
+    AdminComponent
 
   ],
   imports: [

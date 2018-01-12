@@ -36,7 +36,7 @@ export class CharityFormComponent implements OnInit {
 
   saveCharity(charityForm: NgForm){
     console.log(charityForm.value);
-      this.dataService.addRecord("charity/charityForm", charityForm.value) 
+      this.dataService.addRecord("charity", charityForm.value) 
           .subscribe(
             result => this.successMessage = "Record updated successfully",
             error =>  this.errorMessage = <any>error);
@@ -45,7 +45,7 @@ export class CharityFormComponent implements OnInit {
     }
     deleteCharity(charityForm: NgForm){
       console.log(charityForm.value);
-        this.dataService.deleteRecord("charity/charityForm", charityForm.value) 
+        this.dataService.deleteRecord("charity", charityForm.value) 
             .subscribe(
               result => this.successMessage = "Record deleted successfully",
               error =>  this.errorMessage = <any>error);

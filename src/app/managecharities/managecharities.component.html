@@ -1,0 +1,78 @@
+<ol class="breadcrumb">
+  <li><a routerLink="/home">Home</a></li>
+  <li class="active">Manage Charities</li>
+  
+</ol>
+
+<h2>Manage Charities</h2>
+ <input [ngModel]="charityId" ngModel #charity_charityId="ngModel" type="hidden" name="charityId">
+<form class="form-horizontal" #charityForm="ngForm" (ngSubmit)="submitCharity(charityForm)">
+  <div class="form-group">
+    <label for="inputOrganizationtName" class="col-sm-2 control-label">Organization Name</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="inputOrganizationName" name="organizationName" [ngModel]="updateCharity?.organizationName" ngModel #organizationName="ngModel" placeholder="Organization Name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputTaxId" class="col-sm-2 control-label">Tax Id</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="inputTaxId" name="taxId" [ngModel]="updateCharity?.taxId" ngModel #taxId="ngModel" placeholder="Tax Id">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress" class="col-sm-2 control-label">Address</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="inputAddress" name="address" [ngModel]="updateCharity?.address" ngModel #address="ngModel" placeholder="Address">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputContactName" class="col-sm-2 control-label">Contact Name</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" id="inputContactName" name="contactName" [ngModel]="updateCharity?.contactName" ngModel #contactName="ngModel"
+        placeholder="Contact Name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmailAddress" class="col-sm-2 control-label">Email Address</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" id="inputEmailAddress" name="emailAddress" [ngModel]="updateCharity?.emailAddress" ngModel #emailAddress="ngModel"
+        placeholder="Email Address">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary"><span *ngIf='!updateCharity'>Add Charity</span><span *ngIf='updateCharity'>Update Charity</span></button>
+    </div>
+  </div>
+</form>
+<!-- display charities in database -->
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Organization Name</th>
+        <th>Tax Id</th>
+        <th>Address</th>
+        <th>Contact Name</th>
+        <th>Email Address</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let charity of charities">
+        <td>{{ charity.organizationName }}</td>
+        <td>{{ charity.TaxId }}</td>
+        <td>{{ charity.address }}</td>
+        <td>{{ charity.contactName }}</td>
+        <td>{{ charity.emailAddress }}</td>
+        <td>
+          <button class="btn btn-info" (click)='editCharity(charity)'>Update</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)='deleteCharity(charity.id)'>Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

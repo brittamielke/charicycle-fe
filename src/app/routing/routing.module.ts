@@ -10,8 +10,9 @@ import { CategoryFormComponent } from '../category-form/category-form.component'
 import { ContactUsComponent } from '../contact-us/contact-us.component';
 import { AboutUsComponent } from '../about-us/about-us.component';
 import { ClaimItemComponent } from '../claim-item/claim-item.component';
-import { AdminformComponent } from '../adminform/adminform.component';
-
+import { ManagecharitiesComponent } from '../managecharities/managecharities.component';
+import { ManagedonorsComponent } from '../managedonors/managedonors.component';
+import { AdminComponent } from '../admin/admin.component';
 
 
 const routes: Routes = [
@@ -25,10 +26,13 @@ const routes: Routes = [
   { path: 'category', component: CategoryFormComponent },
   { path: 'contactUs', component: ContactUsComponent },
   { path: 'aboutUs', component: AboutUsComponent },
-  { path: 'adminForm', component: AdminformComponent },
-  { path: 'claimItem/:id', component: ClaimItemComponent },
+  { path: 'manageCharities', component: ManagecharitiesComponent },
+  { path: 'manageDonors', component: ManagedonorsComponent },
+  { path: 'claimItem/:id/:loggedInUserId', component: ClaimItemComponent },
   { path: 'donatedItem/add/:id', component: DonatedItemFormComponent },
-  { path: 'dashboard/donor/:id', component: DashboardComponent }
+  { path: 'dashboard/donor/:id', component: DashboardComponent },
+  { path: 'admin', component: AdminComponent },
+ 
 ];
 
 @NgModule({
