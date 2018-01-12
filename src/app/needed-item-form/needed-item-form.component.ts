@@ -18,6 +18,7 @@ export class NeededItemFormComponent implements OnInit {
   @ViewChild('neededItemForm')
   currentForm: NgForm;
   charityId: number;
+  categories = [];
 
   successMessage: string;
   errorMessage: string;
@@ -33,12 +34,23 @@ export class NeededItemFormComponent implements OnInit {
       .subscribe((params: Params) => {
         (+params['id']) ? this.charityId = +params['id'] : null;
       });
+      this.getCategories();
+  }
+
+  getCategories(){
+    this.dataService.getRecords(`category`)
+      .subscribe(
+      records => this.categories = records,
+      error => console.log(error)
+      );
   }
 
   saveItem(neededItemForm: NgForm) {
     let neededItem = neededItemForm.value;
+    let categoryId = neededItem.category;
+    neededItem["category"] = { id: categoryId };
         console.log(neededItem);
-       this.dataService.addRecord("neededItems", neededItem)
+       this.dataService.addRecord(`neededItems/${this.charityId}`, neededItem)
          .subscribe(
          result => console.log(this.successMessage = "Record added successfully"),
          error => this.errorMessage = <any>error);

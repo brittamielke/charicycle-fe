@@ -15,7 +15,7 @@ export class DonatedItemFormComponent implements OnInit {
   @ViewChild('donatedItemForm')
   currentForm: NgForm;
   donorId: number;
-
+  categories = [];
   successMessage: string;
   errorMessage: string;
   imageUrl: string;
@@ -33,8 +33,15 @@ export class DonatedItemFormComponent implements OnInit {
       .subscribe((params: Params) => {
         (+params['id']) ? this.donorId = +params['id'] : null;
       });
+      this.getCategories();
   }
-
+  getCategories() {
+    this.dataService.getRecords(`category`)
+      .subscribe(
+      records => this.categories = records,
+      error => console.log(error)
+      );
+  }
   imageUpload(image: any) {
     this.buttonText = "Loading...";
     console.log(AWS);
@@ -59,9 +66,11 @@ export class DonatedItemFormComponent implements OnInit {
     console.log(`val: ${donatedItemForm.value}`);
     console.log(`loc: ${this.imageUrl}`);
     let donatedItem = donatedItemForm.value;
+    let categoryId = donatedItem.category;
     donatedItem["itemImageUrl"] = this.imageUrl;
+    donatedItem["category"] = { id: categoryId };
     console.log(donatedItem);
-       this.dataService.addRecord("donatedItems", donatedItem)
+       this.dataService.addRecord(`donatedItems/${this.donorId}`, donatedItem)
          .subscribe(
           result => this.successMessage = "Record added successfully",
           error => this.errorMessage = <any>error

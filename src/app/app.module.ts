@@ -21,6 +21,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ClaimItemComponent } from './claim-item/claim-item.component';
 import { AdminformComponent } from './adminform/adminform.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,12 @@ import { AdminformComponent } from './adminform/adminform.component';
     ContactUsComponent,
     AboutUsComponent,
     ClaimItemComponent,
+<<<<<<< HEAD
     AdminformComponent
+=======
+    
+
+>>>>>>> 2c250efd3fd51e81c746be495f190f4df2b662a8
 
   ],
   imports: [
@@ -48,8 +54,14 @@ import { AdminformComponent } from './adminform/adminform.component';
     HttpModule,
     BrowserAnimationsModule,
     FormsModule,
+<<<<<<< HEAD
     
 
+=======
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD9Pnb3RyP2NpVrHsQo8VkyZBL48Y2favY'
+    })
+>>>>>>> 2c250efd3fd51e81c746be495f190f4df2b662a8
   ],
     entryComponents: [DeleteConfirmComponent],
   providers: [DataService],

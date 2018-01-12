@@ -21,15 +21,14 @@ const routes: Routes = [
   { path: 'dashboard/:type/:id', component: DashboardComponent},
   { path: 'donorForm/add',  component: DonorFormComponent },
   { path: 'charityForm/add', component: CharityFormComponent },
-  { path: 'neededItem/add', component: NeededItemFormComponent },
+  { path: 'neededItem/add/:id', component: NeededItemFormComponent },
   { path: 'category', component: CategoryFormComponent },
   { path: 'contactUs', component: ContactUsComponent },
   { path: 'aboutUs', component: AboutUsComponent },
-  { path: 'claimItem', component: ClaimItemComponent },
   { path: 'adminForm', component: AdminformComponent },
- 
-  
- 
+  { path: 'claimItem/:id', component: ClaimItemComponent },
+  { path: 'donatedItem/add/:id', component: DonatedItemFormComponent },
+  { path: 'dashboard/donor/:id', component: DashboardComponent }
 ];
 
 @NgModule({
