@@ -1,0 +1,116 @@
+<ol class="breadcrumb">
+  <li><a routerLink="/home">Home</a></li>
+  <li class="active">Manage Donors</li>
+
+<h2>Manage Donors</h2>
+<input [ngModel]="donorId" ngModel #donor_donorId="ngModel" type="hidden" name="donorId">
+<form class="form-horizontal" #donorForm="ngForm" (ngSubmit)="submitDonor(donorForm)">
+  <div class="form-group">
+    <label for="inputCompanyName" class="col-sm-2 control-label">Company Name</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="inputCompanyName" name="companyName" [ngModel]="updateDonor?.companynName" ngModel #companyName="ngModel" placeholder="Company Name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputContactFirstName" class="col-sm-2 control-label">Contact First Name</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="inputContactFirstName" name="contactFirstName" [ngModel]="updateDonor?.contactFirstName" ngModel #contactFirstName="ngModel" placeholder="Contact First Name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputContactLastName" class="col-sm-2 control-label">Contact Last Name</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="inputContactLastName" name="contactLastName" [ngModel]="updateDonor?.contactLastName" ngModel #contactLastName="ngModel" placeholder="Contact Last Name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddressLine" class="col-sm-2 control-label">Address Line</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" id="inputAddressLine" name="addressLine" [ngModel]="updateDonor?.addressLine" ngModel #addressLine="ngModel"
+        placeholder="Address Line">
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="inputCity" class="col-sm-2 control-label">City</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" id="inputCity" name="city" [ngModel]="updateDonor?.city" ngModel #city="ngModel"
+        placeholder="City">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputState" class="col-sm-2 control-label">State</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" id="inputState" name="state" [ngModel]="updateDonor?.state" ngModel #state="ngModel"
+        placeholder="State">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputZip" class="col-sm-2 control-label">Zip</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" id="inputZip" name="zip" [ngModel]="updateDonor?.zip" ngModel #zip="ngModel"
+        placeholder="Zip">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPhoneNumber" class="col-sm-2 control-label">Phone Number</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" id="inputPhoneNumber" name="phoneNumber" [ngModel]="updateDonor?.phoneNumber" ngModel #phoneNumber="ngModel"
+        placeholder="Phone Number">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmailAddress" class="col-sm-2 control-label">Email Address</label>
+    <div class="col-sm-1">
+      <input type="text" class="form-control" id="inputEmailAddress" name="email" [ngModel]="updateDonor?.email" ngModel #email="ngModel"
+        placeholder="Email Address">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary"><span *ngIf='!updateDonor'>Add Donor</span><span *ngIf='updateDonor'>Update Donor</span></button>
+    </div>
+  </div>
+</form>
+<!-- display donors in database -->
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Contact First Name</th>
+        <th>Contact Last Name</th>
+        <th>Address Line</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Phone Number</th>
+        <th>Email Address</th>
+        <th>Update</th>
+        <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let donor of donors">
+        <td>{{ donor.companyName }}</td>
+        <td>{{ donor.contactFirstName }}</td>
+        <td>{{ donor.contactLastName }}</td>
+        <td>{{ donor.addressLine }}</td>
+        <td>{{ donor.city }}</td>
+        <td>{{ donor.state }}</td>
+        <td>{{ donor.zip }}</td>
+        <td>{{ donor.phoneNumber }}</td>
+        <td>{{ donor.email }}</td>
+       <td>
+          <button class="btn btn-info" (click)='editDonor(donor)'>Update</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)='deleteDonor(donor.id)'>Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+      
+      
+  

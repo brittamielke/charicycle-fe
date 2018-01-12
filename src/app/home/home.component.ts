@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   getCharity() {
-    this.dataService.getRecords("charity/charityForm")
+    this.dataService.getRecords("charity")
       .subscribe(
         charity => console.log(this.charities = charity),
         error =>  this.errorMessage = <any>error);

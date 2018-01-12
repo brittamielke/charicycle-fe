@@ -1,5 +1,3 @@
-
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
@@ -23,6 +21,9 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ClaimItemComponent } from './claim-item/claim-item.component';
 import { AgmCoreModule } from '@agm/core';
+import { ManagecharitiesComponent } from './managecharities/managecharities.component';
+import { ManagedonorsComponent } from './managedonors/managedonors.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -41,14 +42,14 @@ import { AgmCoreModule } from '@agm/core';
     ContactUsComponent,
     AboutUsComponent,
     ClaimItemComponent,
-    
-
+    ManagecharitiesComponent,
+    ManagedonorsComponent,
+    AdminComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
     HttpModule,
     BrowserAnimationsModule,
     FormsModule,

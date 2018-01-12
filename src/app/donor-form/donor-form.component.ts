@@ -37,7 +37,10 @@ export class DonorFormComponent implements OnInit {
   }
 
   ngOnInit() {
-  
+    this.route.params
+      .subscribe((params: Params) => {
+        (+params['id']) ? this.getRecordForEdit() : null;
+      });
   }
 
   saveDonor(donorForm: NgForm){
