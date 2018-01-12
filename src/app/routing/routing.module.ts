@@ -28,11 +28,11 @@ const routes: Routes = [
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'manageCharities', component: ManagecharitiesComponent },
   { path: 'manageDonors', component: ManagedonorsComponent },
-  { path: 'claimItem/:id', component: ClaimItemComponent },
+  { path: 'claimItem/:id/:loggedInUserId', component: ClaimItemComponent },
   { path: 'donatedItem/add/:id', component: DonatedItemFormComponent },
   { path: 'dashboard/donor/:id', component: DashboardComponent },
   { path: 'admin', component: AdminComponent },
-  
+ 
 ];
 
 @NgModule({
