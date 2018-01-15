@@ -98,12 +98,22 @@ export class DonorFormComponent implements OnInit {
     'zip': '',
     'phoneNumber': '',
     'email': '',
+    'userName': '',
+    'password': '',
   };
 
   validationMessages = {
     'companyName': {
       'minlength': 'Company name must be at least 2 characters long.',
       'maxlength': 'Company name cannot be more than 30 characters long.'
+    },
+    'userName': {
+      'required': 'User name is required.',
+      'minlength': 'User name must be at least 2 characters long.'
+    },
+    'password': {
+      'required': 'Password is required.',
+      'minlength': 'Password must be at least 6 characters long.'
     },
     'contactFirstName': {
       'required': 'First name is required.',

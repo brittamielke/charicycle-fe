@@ -14,6 +14,8 @@ export class ManagecharitiesComponent implements OnInit {
 
   private charities;
   private updateCharity = null;
+  successMessage: string;
+  errorMessage: string;
 
   constructor(
     private dataService: DataService,
@@ -41,14 +43,23 @@ export class ManagecharitiesComponent implements OnInit {
         .subscribe(
         charityInfo => {
           this.getCharities();
-        });
+          this.successMessage = "Charity Added Successfully";
+        },
+        error => {
+          this.errorMessage = <any>error;  
+    });
+      charityForm.resetForm();
     }
     else{
       this.dataService.editRecord("charity", charityForm.value, this.updateCharity.id)
         .subscribe(
-          charityInfo => {
-            this.getCharities();
-          }
+        charityInfo => {
+          this.successMessage = "Charity Updated Successfully"
+          this.getCharities();
+        },
+        error => {
+          this.errorMessage = <any>error;
+        }
         )
       this.updateCharity = null;
     }
