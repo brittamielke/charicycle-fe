@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   loggedInUser = [];
   donatedItem;
   donorId;
+  claimedByCharity;
 
   constructor(private dataService: DataService,
     private route: ActivatedRoute,
@@ -90,57 +91,60 @@ export class DashboardComponent implements OnInit {
     })
   }
   updateDonatedItemToClaimed(donatedItemId) {
+    //sends the donatedItem id to the API and returns dontatedItem Object (donated item view)
     this.dataService
       .getRecord('donatedItems', donatedItemId)
       .subscribe(
       donatedItem => {
         this.donatedItem = donatedItem;
-        console.log(this.donatedItem);
-        this.donatedItem['claimedCharityId'] = this.id;
-        console.log(this.donatedItem);
-        let donorId = this.donatedItem.donorView.id;
-        this.dataService
-          .editRecord('donatedItems/'+ this.donatedItem.donorView.id, this.donatedItem, donatedItemId)
+        //save off the donor ID since it wont be returned in the object
+        this.donorId = this.donatedItem.donorView.id;
+        //takes the logged in charity id and sends it to the donateditems API to update the claimedByCharity object on the donated item.
+        this.dataService.editRecord("donatedItems/" + this.id, this.donatedItem, donatedItemId)
           .subscribe(
-          donatedItem => { 
-            this.donatedItem = donatedItem,
-            console.log(this.donatedItem)}
+          donatedItem => {
+            this.donatedItem = donatedItem;
+            //object returned is a donatedItem view and does not include the donor so we have to update the record again to save the donor ID
+            this.dataService
+              .editRecord('donatedItems/' + this.donorId, this.donatedItem, donatedItemId)
+              .subscribe(
+              donatedItem => 
+                this.donatedItem = donatedItem)      
+          });
+      });
+  }
+
+
+
+  //get the logged in user
+  getUser(endpoint: string) {
+    this.dataService.getRecords(endpoint)
+      .subscribe(
+      records => console.log(this.loggedInUser = records),
+      error => console.log(error)
       );
   }
-      );
-}
 
-//get the logged in user
-getUser(endpoint: string) {
-  this.dataService.getRecords(endpoint)
-    .subscribe(
-    records => console.log(this.loggedInUser = records),
-    error => console.log(error)
-    );
-}
+  ngOnInit() {
 
-ngOnInit() {
+    this.route.params
+      .subscribe((params: Params) => {
+        (+params['id']) ? this.id = +params['id'] : null;
+        (params['type']) ? this.type = params['type'] : null;
+      });
 
-  this.route.params
-    .subscribe((params: Params) => {
-      (+params['id']) ? this.id = +params['id'] : null;
-      (params['type']) ? this.type = params['type'] : null;
-    });
+    if (this.type == "donor") {
+      this.getUser('donor/' + this.id);
+      this.getDonatedItems();
+      this.getAllNeededItems();
+    }
 
-  if (this.type == "donor") {
-    this.getUser('donor/' + this.id);
-    this.getDonatedItems();
-    this.getAllNeededItems();
-  }
+    if (this.type == "charity") {
+      this.getUser('charity/' + this.id);
+      this.getAllDonatedItems();
+      this.getNeededItems();
+    }
 
-  if (this.type == "charity") {
-    this.getUser('charity/' + this.id);
-    this.getAllDonatedItems();
-    this.getNeededItems();
-  }
-
-
-
-}
-
+  };
+ 
 }
