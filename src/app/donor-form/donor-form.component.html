@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="contactFirstName" class="col-sm-2 control-label">Contact First Name</label>
+      <label for="contactFirstName" class="col-sm-2 control-label">*Contact First Name</label>
       <div class="col-sm-10">
         <input [ngModel]="donor?.contactFirstName" ngModel #contactFirstName="ngModel" type="text" class="form-control" id="contactFirstName" name="contactFirstName" placeholder="e.g. Bill" required minlength="2" maxlength="30" >
         <span *ngIf="formErrors.contactFirstName" class="text-danger">
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="contactLastName" class="col-sm-2 control-label">Contact Last Name</label>
+      <label for="contactLastName" class="col-sm-2 control-label">*Contact Last Name</label>
       <div class="col-sm-10">
         <input [ngModel]="donor?.contactLastName" ngModel #contactLastName="ngModel" type="text" class="form-control" id="contactLastName" name="contactLastName"  placeholder="e.g. Smith" required minlength="2" maxlength="30" >
         <span *ngIf="formErrors.contactLastName" class="text-danger">
@@ -83,9 +83,9 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="email" class="col-sm-2 control-label">Email</label>
+      <label for="email" class="col-sm-2 control-label">*Email</label>
       <div class="col-sm-10">
-        <input [ngModel]="donor?.email" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email" placeholder="eg bill.smith@gmail.com" pattern = "^(.+)@(.+)$" >
+        <input [ngModel]="donor?.email" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email" required placeholder="eg bill.smith@gmail.com" pattern = "^(.+)@(.+)$" >
         <span *ngIf="formErrors.email" class="text-danger">
           {{ formErrors.email }}
         </span>
@@ -96,6 +96,7 @@
         <button [disabled]="!donorForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
+    <p>Fields marked with a "*" are required</p>
   </form>
 </section>
 
