@@ -2,12 +2,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { DataService } from '../data.service';
+import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
+import { fadeInAnimation } from '../animations/fade-in.animation';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  animations: [fadeInAnimation]
 })
 export class DashboardComponent implements OnInit {
   donatedItems;
@@ -20,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private dataService: DataService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location, public dialog: MatDialog) { }
 
   //get the donated items for a specific donor
   getDonatedItems() {
@@ -59,21 +63,31 @@ export class DashboardComponent implements OnInit {
   }
 
   //delete a donated item (no changes)
-  deleteDonatedItem(id) {
-    this.dataService.deleteRecord('donatedItems', id)
-      .subscribe(
-      records => this.getDonatedItems(),
-      error => console.log(error)
-      );
+  deleteDonatedItem(donatedItem) {
+    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: donatedItem });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataService.deleteRecord('donatedItems', donatedItem.id)
+          .subscribe(
+          records => this.getDonatedItems(),
+          error => console.log(error)
+          );
+      }
+    })
   }
 
   //delete a needed item
-  deleteNeededItem(id) {
-    this.dataService.deleteRecord('neededItems', id)
-      .subscribe(
-      records => this.getNeededItems(),
-      error => console.log(error)
-      );
+  deleteNeededItem(neededItem) {
+    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: neededItem });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataService.deleteRecord('neededItems', neededItem.id)
+          .subscribe(
+          records => this.getNeededItems(),
+          error => console.log(error)
+          );
+      }
+    })
   }
   updateDonatedItemToClaimed(donatedItemId) {
     this.dataService
