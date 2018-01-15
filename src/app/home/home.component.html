@@ -4,8 +4,6 @@
     <p>We help you help others</p>
   </div>
 
-  <!-- START THE FEATURETTES -->
-
   <hr>
 
   <div class="row featurette">
@@ -35,7 +33,7 @@
   </form>
   Select a Charity:
   <ul>
-    <li *ngFor='let charity of charities' ><a [routerLink]="['/dashboard/charity/', charity.id]">{{charity.organizationName}}</a></li>
+    <li *ngFor='let charity of charities' ><a [routerLink]="['/dashboard/charity/', charity.id]">{{charity.companyName}}</a></li>
   </ul>
  <br>
   Select a Donor:

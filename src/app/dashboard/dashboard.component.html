@@ -81,9 +81,9 @@
               </a>
             </span>
           </td>
-          <td class="text-left">This item has been claimed by: {{donatedItem.claimedByCharity.organizationName}}<br>
-          Contact Name: {{donatedItem.claimedByCharity.contactName}} <br>
-          Contact Email: {{donatedItem.claimedByCharity.emailAddress}}
+          <td class="text-left">This item has been claimed by: {{donatedItem.claimedByCharity.companyName}}<br>
+          Contact Name: {{donatedItem.claimedByCharity.contactFirstName}}  {{donatedItem.claimedByCharity.contactLastName}}<br>
+          Contact Email: {{donatedItem.claimedByCharity.email}}
         </td>
         </tr>
       </ng-container>
@@ -92,7 +92,7 @@
 </div>
 <!-- CHARITY VIEW -->
 <div id="charity-things" *ngIf="type == 'charity'">
-  <h1>Welcome, {{ loggedInUser.organizationName }} to the Charity Dashboard</h1>
+  <h1>Welcome, {{ loggedInUser.companyName }} to the Charity Dashboard</h1>
   <a [routerLink]="['/neededItem/add/', id]" class="btn btn-primary">Add a need</a>
   <br>
   <h2>My list of needed items (ability to delete)</h2>

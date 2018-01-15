@@ -82,7 +82,7 @@ export class CharityFormComponent implements OnInit {
     }
   
     formErrors = {
-    'organizationName': '',
+    'CompanyName': '',
     'contactFirstName': '',
     'contactLastName': '',
     'taxId': '',
@@ -98,7 +98,7 @@ export class CharityFormComponent implements OnInit {
     };
   
     validationMessages = {
-      'organizationName': {
+      'CompanyName': {
         'required': 'Organization Name is required.',
         'minlength': 'Company name must be at least 2 characters long.',
         'maxlength': 'Company name cannot be more than 30 characters long.'
