@@ -14,6 +14,8 @@ export class ManagedonorsComponent implements OnInit {
 
   private donors;
   private updateDonor = null;
+  successMessage: string;
+  errorMessage: string;
    
   constructor(
     private dataService: DataService,
@@ -40,14 +42,23 @@ export class ManagedonorsComponent implements OnInit {
         .subscribe(
         donorInfo => {
           this.getDonors();
+          this.successMessage = "Donor Added Successfully";
+        },
+        error => {
+          this.errorMessage = <any>error;
         });
+      donorForm.resetForm();
     }
     else{
       this.dataService.editRecord("donor", donorForm.value, this.updateDonor.id)
         .subscribe(
-          donorInfo => {
-            this.getDonors();
-          }
+        charityInfo => {
+          this.successMessage = "Donor Updated Successfully"
+          this.getDonors();
+        },
+        error => {
+          this.errorMessage = <any>error;
+        }
         )
       this.updateDonor = null;
     }

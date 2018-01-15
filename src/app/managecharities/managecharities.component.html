@@ -1,22 +1,36 @@
 <ol class="breadcrumb">
   <li><a routerLink="/home">Home</a></li>
   <li class="active">Manage Charities</li>
+</ol>
+<app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 
 <h2>Manage Charities</h2>
 <input [ngModel]="charityId" ngModel #charity_charityId="ngModel" type="hidden" name="charityId">
-<form class="form-horizontal" #donorForm="ngForm" (ngSubmit)="submitCharity(charityForm)">
-<div>
+<form class="form-horizontal" #charityForm="ngForm" (ngSubmit)="submitCharity(charityForm)">
+  <div class="form-group">
+    <label for="userName" class="col-sm-2 control-label">User Name*:</label>
+    <div class="col-sm-10">
+      <input [ngModel]="updateCharity?.userName" ngModel #logInId="ngModel" type="text" class="form-control" id="userName" name="userName"
+        placeholder="e.g.lisamar1" required minlength="2">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="col-sm-2 control-label">Password*:</label>
+    <div class="col-sm-10">
+      <input [ngModel]="updateCharity?.password" ngModel #password="ngModel" type="password" class="form-control" id="password" name="password"
+        placeholder="e.g.mickeymouse5" required minlength="6">
+    </div>
+  </div>
 <div class="form-group">
    <label for="inputTaxId" class="col-sm-2 control-label">Tax Id</label>
       <div class="col-sm-5">
         <input type="text" class="form-control" id="taxId" name="taxId" [ngModel]="updateCharity?.taxId" ngModel #taxId="ngModel" placeholder= "12-3456789">
   </div>      
 </div>
-</div> 
 <div class="form-group">
     <label for="inputCompanyName" class="col-sm-2 control-label">Company Name</label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="inputCompanyName" name="companyName" [ngModel]="updateCharity?.companynName" ngModel #companyName="ngModel" placeholder="Company Name">
+        <input type="text" class="form-control" id="inputCompanyName" name="companyName" [ngModel]="updateCharity?.companyName" ngModel #companyName="ngModel" placeholder="Company Name">
       </div>
       </div>
       <div class="form-group">
@@ -75,12 +89,13 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary"><span *ngIf='!updateDonor'>Add Donor</span><span *ngIf='updateCharity'>Update Donor</span></button>
+      <button type="submit" class="btn btn-primary"><span *ngIf='!updateCharity'>Add Charity</span><span *ngIf='updateCharity'>Update Charity</span></button>
     </div>
   </div>
+  </form>
 
 <div class="container">
-  <table class="table">
+  <table class="table"> 
     <thead>
       <tr>
         <th>Company Name</th>
@@ -98,7 +113,7 @@
         </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let donor of donors">
+      <tr *ngFor="let charity of charities">
         <td>{{ charity.companyName }}</td>
         <td>{{ charity.taxId }}</td>
         <td>{{ charity.contactFirstName }}</td>
