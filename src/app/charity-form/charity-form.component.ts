@@ -82,7 +82,7 @@ export class CharityFormComponent implements OnInit {
     }
   
     formErrors = {
-    'comapnyName': '',
+    'companyName': '',
     'contactFirstName': '',
     'contactLastName': '',
     'taxId': '',
