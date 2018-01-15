@@ -1,3 +1,13 @@
+<section @fadeInAnimation>
+  <ol class="breadcrumb">
+    <li>
+      <a routerLink="/home">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/dashboard/charity', charityId]">Dashboard</a>
+    </li>
+    <li class="active"><span>Add</span> Needed Item</li>
+  </ol>
 <div class="container">
   <a [routerLink]="['/dashboard/charity', charityId]" class="btn btn-primary">Return to dashboard</a>
   <h1>Add a needed item</h1>
@@ -23,3 +33,4 @@
     </div>
   </form>
 </div>
+</section>

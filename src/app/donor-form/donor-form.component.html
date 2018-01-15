@@ -31,7 +31,7 @@
     <div class="form-group">
       <label for="contactLastName" class="col-sm-2 control-label">Contact Last Name</label>
       <div class="col-sm-10">
-        <input [ngModel]="movie?.contactLastName" ngModel #contactLastName="ngModel" type="text" class="form-control" id="contactLastName" name="contactLastName"  placeholder="e.g. Smith" required minlength="2" maxlength="30" >
+        <input [ngModel]="donor?.contactLastName" ngModel #contactLastName="ngModel" type="text" class="form-control" id="contactLastName" name="contactLastName"  placeholder="e.g. Smith" required minlength="2" maxlength="30" >
         <span *ngIf="formErrors.contactLastName" class="text-danger">
           {{ formErrors.contactLastName }}
         </span>

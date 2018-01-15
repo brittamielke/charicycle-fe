@@ -2,31 +2,36 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { DataService } from '../data.service';
+import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
+import { fadeInAnimation } from '../animations/fade-in.animation';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  animations: [fadeInAnimation]
 })
 export class DashboardComponent implements OnInit {
   donatedItems;
   neededItems;
   id;
   type;
-  loggedInUser=[];
+  loggedInUser = [];
   donatedItem;
+  donorId;
 
   constructor(private dataService: DataService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location, public dialog: MatDialog) { }
 
-    //get the donated items for a specific donor
+  //get the donated items for a specific donor
   getDonatedItems() {
     this.dataService.getRecords(`/donor/${this.id}/donatedItems`)
       .subscribe(
-        records => this.donatedItems = records,
-        error => console.log(error)
+      records => this.donatedItems = records,
+      error => console.log(error)
       );
   }
 
@@ -56,59 +61,73 @@ export class DashboardComponent implements OnInit {
       error => console.log("error: " + error)
       );
   }
-  
+
   //delete a donated item (no changes)
-  deleteDonatedItem(id){
-    this.dataService.deleteRecord('donatedItems', id)
-      .subscribe(
-      records => this.getDonatedItems(),
-      error => console.log(error)
-      );
+  deleteDonatedItem(donatedItem) {
+    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: donatedItem });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataService.deleteRecord('donatedItems', donatedItem.id)
+          .subscribe(
+          records => this.getDonatedItems(),
+          error => console.log(error)
+          );
+      }
+    })
   }
 
   //delete a needed item
-  deleteNeededItem(id) {
-    this.dataService.deleteRecord('neededItems', id)
-      .subscribe(
-        records => this.getNeededItems(),
-        error => console.log(error)
-      );
+  deleteNeededItem(neededItem) {
+    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: neededItem });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataService.deleteRecord('neededItems', neededItem.id)
+          .subscribe(
+          records => this.getNeededItems(),
+          error => console.log(error)
+          );
+      }
+    })
   }
   updateDonatedItemToClaimed(donatedItemId) {
     this.dataService
       .getRecord('donatedItems', donatedItemId)
       .subscribe(
-        donatedItem => {
-          this.donatedItem = donatedItem;
-          this.donatedItem['claimedCharityId'] = '3';
-          console.log(this.donatedItem);
-          this.dataService
-            .editRecord('donatedItems', this.donatedItem, donatedItemId)
-            .subscribe(
-              record => console.log("Successfully Updated")
-            );
-        }
+      donatedItem => {
+        this.donatedItem = donatedItem;
+        console.log(this.donatedItem);
+        this.donatedItem['claimedCharityId'] = this.id;
+        console.log(this.donatedItem);
+        let donorId = this.donatedItem.donorView.id;
+        this.dataService
+          .editRecord('donatedItems/'+ this.donatedItem.donorView.id, this.donatedItem, donatedItemId)
+          .subscribe(
+          donatedItem => { 
+            this.donatedItem = donatedItem,
+            console.log(this.donatedItem)}
       );
   }
-
-  //get the logged in user
-  getUser(endpoint: string) {
-    this.dataService.getRecords(endpoint)
-      .subscribe(
-      records => console.log(this.loggedInUser = records),
-      error => console.log(error)
       );
-  }
+}
 
-  ngOnInit() {
+//get the logged in user
+getUser(endpoint: string) {
+  this.dataService.getRecords(endpoint)
+    .subscribe(
+    records => console.log(this.loggedInUser = records),
+    error => console.log(error)
+    );
+}
 
-    this.route.params
-      .subscribe((params: Params) => {
-        (+params['id']) ? this.id = +params['id'] : null;
-        (params['type']) ? this.type = params['type'] : null;
-      });
+ngOnInit() {
 
-  if(this.type == "donor"){
+  this.route.params
+    .subscribe((params: Params) => {
+      (+params['id']) ? this.id = +params['id'] : null;
+      (params['type']) ? this.type = params['type'] : null;
+    });
+
+  if (this.type == "donor") {
     this.getUser('donor/' + this.id);
     this.getDonatedItems();
     this.getAllNeededItems();
@@ -120,8 +139,8 @@ export class DashboardComponent implements OnInit {
     this.getNeededItems();
   }
 
-    
-    
-  }
+
+
+}
 
 }

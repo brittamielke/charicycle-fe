@@ -2,13 +2,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
-import { DataService } from '../data.service'
+import { DataService } from '../data.service';
+import { fadeInAnimation } from '../animations/fade-in.animation';
 import * as AWS from 'aws-sdk';
 
 @Component({
   selector: 'app-donated-item-form',
   templateUrl: './donated-item-form.component.html',
-  styleUrls: ['./donated-item-form.component.css']
+  styleUrls: ['./donated-item-form.component.css'],
+  animations: [fadeInAnimation],
+  host: { '[@fadeInAnimation]': '' }
 })
 export class DonatedItemFormComponent implements OnInit {
   donatedItemForm: NgForm;

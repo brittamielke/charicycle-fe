@@ -24,6 +24,7 @@ import { AgmCoreModule } from '@agm/core';
 import { ManagecharitiesComponent } from './managecharities/managecharities.component';
 import { ManagedonorsComponent } from './managedonors/managedonors.component';
 import { AdminComponent } from './admin/admin.component';
+import { MatDialogModule } from '@angular/material';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { AdminComponent } from './admin/admin.component';
     HttpModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD9Pnb3RyP2NpVrHsQo8VkyZBL48Y2favY'
     })
