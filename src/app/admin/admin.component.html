@@ -2,53 +2,29 @@
   <li><a routerLink="/home">Home</a></li>
   <li class="active">Admin</li>
 </ol>
-    <div class="row featurette">
-    <div class="col-md-7">
-      <h2 class="featurette-heading">Login to Manage Donors and Charities
-        <span class="text-muted"></span>
-      </h2>       
-    </div>
-    <div class="col-md-5">
-   
-    </div>
-  <form>
-
-    <div class="form-group">
+<div class="row featurette">
+    <div class="col-md-3">
+        <h2 class="featurette-heading">Log In
+            <span class="text-muted"></span>
+         </h2>
             <label for="updateThis">User Name</label>
-      <input type="text" class="form-control" name="updateThis" id="updateThis" placeholder="User Name" required>
-    </div>
-    <div class="form-group">
-      <label for="updateThisToo">Password</label>
-      <input type="text" class="form-control" name="updateThisToo" id="updateThisToo" placeholder="Password" required>
-    </div>
-    <!-- Need to update (ngSubmit)="method". It will authenticate the user and display the appropriate dashboard (donor/charity)-->
-    <button type="submit" class="btn btn-primary">Login</button>
-  
-  </form>
-
- 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="thumbnail">
-        <img src="assets/images/begging-resize.png" alt="Helping">
-        <div class="caption">
-          <h3>Manage Charities</h3>
-          <p>Lisa is still working on changing pictures. 
-          </p>
-          <p>            
-            <a href="#" class="btn btn-primary" role="button" [routerLink]="['/manageCharities']">Manage Charities</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="thumbnail">
-        <img src="assets/images/begging-resize.png" alt="Helping">
-        <div class="caption">
-          <h3>Manage Donors</h3>
-          <p>Lisa is still working on changing pictures.  </p>
-          <p>
-           <a href="#" class="btn btn-primary" role="button"  [routerLink]="['/manageDonors']">Manage Donors</a>
-        </div>
-      </div>
-    </div>
+             <input type="text" class="form-control" name="updateThis" id="updateThis" placeholder="" required>
+                <p><a href="#">Forgot your username?</a></p> 
+            <label for="updateThis">Password</label>
+             <input type="text" class="form-control" name="updateThis" id="updateThis" placeholder="" required>
+               <p><a href="#">Forgot your password?</a></p> 
+               
+                  <img src="assets/images/adminpicture.jpg" alt="Start Helping">
+                  <div class="caption">
+                      <h3>Manage Charities</h3>         
+                         <a href="#" class="btn btn-primary" role="button" [routerLink]="['/manageCharities']">Manage Charities</a>
+                  <div class="caption">
+                      <h3>Manage Donors</h3>
+                          <a href="#" class="btn btn-primary" role="button"  [routerLink]="['/manageDonors']">Manage Donors</a>
+                        </div>
+                    </div>
+  </div>     
   </div>
+ 
+  
+

@@ -25,6 +25,7 @@ import { ManagecharitiesComponent } from './managecharities/managecharities.comp
 import { ManagedonorsComponent } from './managedonors/managedonors.component';
 import { AdminComponent } from './admin/admin.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { AdminComponent } from './admin/admin.component';
     ClaimItemComponent,
     ManagecharitiesComponent,
     ManagedonorsComponent,
-    AdminComponent
+    AdminComponent,
+    
 
   ],
   imports: [
