@@ -76,7 +76,7 @@
     <div class="form-group">
       <label for="phoneNumber" class="col-sm-2 control-label">Phone Number</label>
       <div class="col-sm-10">
-        <input [ngModel]="donor?.phoneNumber" ngModel #phoneNumber="ngModel" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="eg (317)-222-5555" pattern = "(\\d-)?(\\d{3}-)?\\d{3}-\\d{4}" >
+        <input [ngModel]="donor?.phoneNumber" ngModel #phoneNumber="ngModel" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="eg (317)-222-5555" pattern = "^(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}$" >
         <span *ngIf="formErrors.phoneNumber" class="text-danger">
           {{ formErrors.phoneNumber }}
         </span>

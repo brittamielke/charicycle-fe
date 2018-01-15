@@ -128,18 +128,12 @@ export class DonorFormComponent implements OnInit {
       'maxlength': 'The State cannot be more than 30 characters long.'
     },
     'zip': {
-      'minlength': 'The Zipcode must be at least 2 characters long.',
-      'maxlength': 'The Zipcode cannot be more than 30 characters long.',
       'pattern': 'The Zipcode must be a number'
     },
-    'phoneNumber': {
-      'minlength': 'The Phone Number must be at least 2 characters long.',
-      'maxlength': 'The Phone Number cannot be more than 30 characters long.',
-      'pattern': 'Please enter a phone number'
+    'phoneNumber': { 
+      'pattern': 'Please enter a phone number in the following format: (317)-222-5555'
     },
     'email': {
-      'minlength': 'The Email Address must be at least 2 characters long.',
-      'maxlength': 'The Email Address cannot be more than 30 characters long.',
       'pattern': 'Please enter an email address'
     }
   };
