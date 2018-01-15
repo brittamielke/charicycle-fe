@@ -1,53 +1,89 @@
+<!-- DONOR  VIEW -->
 <div id="donor-things" *ngIf="type == 'donor'">
   <h1>Welcome,
     <span *ngIf="loggedInUser.companyName">{{ loggedInUser.companyName }} </span>
     <span *ngIf="!loggedInUser.companyName">{{ loggedInUser.contactFirstName }} {{ loggedInUser.contactLastName }}</span> to the Donor Dashboard
   </h1>
-  <a [routerLink]="['/donatedItem/add/', id]" class="btn btn-primary">Add a donated Item (Donors)</a><br>
-    <h2>Current list of needed items</h2>
-      <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let neededItem of neededItems">
-            <td>{{neededItem.category.name}}</td>
-            <td>{{neededItem.description}}</td>
-          </tr>
-        </tbody>
-      </table>
-    <h2>List of items the donor has available for donation (ability to delete)</h2>
-    <!-- Fix to make for specific donor ID once ID param is being passed -->
-      <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Image (Click to download)</th>
-            <th>Delete Item</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let donatedItem of donatedItems">
-            <td>{{donatedItem.category.name}}</td>
-            <td>{{donatedItem.description}}</td>
-            <td>
-              <span *ngIf="donatedItem.itemImageUrl">
-                <a href={{donatedItem.itemImageUrl}} target="_new">
-                  <img [src]="donatedItem.itemImageUrl" />
-                </a>
-              </span>
-            </td>
-            <td class="text-center">
-              <a class="btn btn-primary" (click)='deleteDonatedItem(donatedItem)'>Delete Item</a>&nbsp;
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <a [routerLink]="['/donatedItem/add/', id]" class="btn btn-primary">Add an item to donate</a>
+  <br>
+  <h2>Browse the current list of needed items</h2>
+  <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let neededItem of neededItems">
+        <td>{{neededItem.category.name}}</td>
+        <td>{{neededItem.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>My available items</h2>
+  <!-- Fix to make for specific donor ID once ID param is being passed -->
+  <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Image (Click to download)</th>
+        <th>Delete Item</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let donatedItem of donatedItems">
+        <tr *ngIf="!donatedItem.claimedByCharity">
+          <td>{{donatedItem.category.name}}</td>
+          <td>{{donatedItem.description}}</td>
+          <td>
+            <span *ngIf="donatedItem.itemImageUrl">
+              <a href={{donatedItem.itemImageUrl}} target="_new">
+                <img [src]="donatedItem.itemImageUrl" />
+              </a>
+            </span>
+          </td>
+          <td class="text-center">
+            <a class="btn btn-primary" (click)='deleteDonatedItem(donatedItem)'>Delete Item</a>&nbsp;
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+
+  <h2>My claimed donations</h2>
+  <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Image (Click to download)</th>
+        <th>Charity Information</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let donatedItem of donatedItems">
+        <tr *ngIf="donatedItem.claimedByCharity">
+          <td>{{donatedItem.category.name}}</td>
+          <td>{{donatedItem.description}}</td>
+          <td>
+            <span *ngIf="donatedItem.itemImageUrl">
+              <a href={{donatedItem.itemImageUrl}} target="_new">
+                <img [src]="donatedItem.itemImageUrl" />
+              </a>
+            </span>
+          </td>
+          <td class="text-left">This item has been claimed by: {{donatedItem.claimedByCharity.organizationName}}<br>
+          Contact Name: {{donatedItem.claimedByCharity.contactName}} <br>
+          Contact Email: {{donatedItem.claimedByCharity.emailAddress}}
+        </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
 </div>
+<!-- CHARITY VIEW -->
 <div id="charity-things" *ngIf="type == 'charity'">
   <h1>Welcome, {{ loggedInUser.organizationName }} to the Charity Dashboard</h1>
   <a [routerLink]="['/neededItem/add/', id]" class="btn btn-primary">Add a need</a>
@@ -84,7 +120,7 @@
     </thead>
     <tbody>
       <ng-container *ngFor="let donatedItem of donatedItems">
-        <tr *ngIf="!donatedItem.claimedCharityId">
+        <tr *ngIf="!donatedItem.claimedByCharity">
           <td>{{donatedItem.category.name}}</td>
           <td>{{donatedItem.description}}</td>
           <td>
