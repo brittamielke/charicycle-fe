@@ -1,3 +1,14 @@
+<section @fadeInAnimation>
+  <ol class="breadcrumb">
+    <li>
+      <a routerLink="/home">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/dashboard/donor/', donorId]">Dashboard</a>
+    </li>
+    <li class="active">
+      <span>Add</span> Donated Item</li>
+  </ol>
 <a class="btn btn-primary" [routerLink]="['/dashboard/donor/', donorId]">Return to dashboard</a>
 <h1>Add an Item to donate</h1>
 <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>

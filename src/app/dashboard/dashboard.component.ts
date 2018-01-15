@@ -5,11 +5,13 @@ import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DataService } from '../data.service';
 import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
+import { fadeInAnimation } from '../animations/fade-in.animation';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  animations: [fadeInAnimation]
 })
 export class DashboardComponent implements OnInit {
   donatedItems;

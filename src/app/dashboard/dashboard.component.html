@@ -1,4 +1,11 @@
 <!-- DONOR  VIEW -->
+<section @fadeInAnimation>
+  <ol class="breadcrumb">
+    <li>
+      <a routerLink="/home">Home</a>
+    </li>
+    <li class="active">Dashboard</li>
+  </ol>
 <div id="donor-things" *ngIf="type == 'donor'">
   <h1>Welcome,
     <span *ngIf="loggedInUser.companyName">{{ loggedInUser.companyName }} </span>
@@ -141,3 +148,4 @@
 <div id="admin-things">
   <a routerLink="" class="btn btn-default">Admin Dashboard (Admins)</a>
 </div>
+</section>

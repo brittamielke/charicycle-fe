@@ -26,6 +26,7 @@ import { ManagedonorsComponent } from './managedonors/managedonors.component';
 import { AdminComponent } from './admin/admin.component';
 import { MatDialogModule } from '@angular/material';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { MatDialogModule } from '@angular/material';
     ClaimItemComponent,
     ManagecharitiesComponent,
     ManagedonorsComponent,
-    AdminComponent
+    AdminComponent,
+    
 
   ],
   imports: [
