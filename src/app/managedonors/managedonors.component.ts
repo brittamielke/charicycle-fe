@@ -52,7 +52,7 @@ export class ManagedonorsComponent implements OnInit {
     else{
       this.dataService.editRecord("donor", donorForm.value, this.updateDonor.id)
         .subscribe(
-        charityInfo => {
+        donorInfo => {
           this.successMessage = "Donor Updated Successfully"
           this.getDonors();
         },

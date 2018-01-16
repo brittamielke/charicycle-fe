@@ -102,6 +102,7 @@ export class ManagecharitiesComponent implements OnInit {
           this.errorMessage = <any>error;
         }
         )
+      
       }
     })
   
