@@ -6,8 +6,8 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { DataService } from '../data.service';
 import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
 import { fadeInAnimation } from '../animations/fade-in.animation';
+import { Subject } from 'rxjs/Subject';
 import { DistanceDataService } from '../google-distance.service';
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +24,10 @@ export class DashboardComponent implements OnInit {
   donatedItem;
   donorId;
   claimedByCharity;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
   distanceApiResult;
+
 
   constructor(private dataService: DataService,
     private distanceDataService: DistanceDataService,
@@ -35,7 +38,10 @@ export class DashboardComponent implements OnInit {
   getDonatedItems() {
     this.dataService.getRecords(`/donor/${this.id}/donatedItems`)
       .subscribe(
-      records => this.donatedItems = records,
+      records => {
+        this.donatedItems = records;
+        this.dtTrigger.next();
+      },
       error => console.log(error)
       );
   }
@@ -45,7 +51,9 @@ export class DashboardComponent implements OnInit {
     this.dataService.getRecords(`/donatedItems`)
       .subscribe(
       records => {
-        this.donatedItems = records
+
+        this.donatedItems = records;
+        this.dtTrigger.next();
         for (let item of this.donatedItems) {
           this.getDistanceToItem(item)
         }
@@ -57,7 +65,10 @@ export class DashboardComponent implements OnInit {
   getNeededItems() {
     this.dataService.getRecords(`charity/${this.id}/neededItems`)
       .subscribe(
-      records => this.neededItems = records,
+      records => {
+        this.neededItems = records;
+        //this.dtTrigger2.next();
+      },
       error => console.log("error: " + error)
       );
   }
@@ -77,7 +88,7 @@ export class DashboardComponent implements OnInit {
 
   //delete a donated item (no changes)
   deleteDonatedItem(donatedItem) {
-    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: donatedItem });
+    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: `This will delete donated item with description of "${donatedItem.description}"` });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.dataService.deleteRecord('donatedItems', donatedItem.id)
@@ -91,7 +102,7 @@ export class DashboardComponent implements OnInit {
 
   //delete a needed item
   deleteNeededItem(neededItem) {
-    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: neededItem });
+    let dialogRef = this.dialog.open(DeleteConfirmComponent, {data: `This will delete needed item with description of "${neededItem.description}"` });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.dataService.deleteRecord('neededItems', neededItem.id)

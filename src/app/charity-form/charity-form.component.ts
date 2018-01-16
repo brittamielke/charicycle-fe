@@ -38,7 +38,7 @@ export class CharityFormComponent implements OnInit {
     console.log(charityForm.value);
       this.dataService.addRecord("charity", charityForm.value) 
           .subscribe(
-            result => this.successMessage = "Record updated successfully",
+            result => this.successMessage = "Charity submitted for admin approval",
             error =>  this.errorMessage = <any>error);
             this.charityForm.form.markAsPristine();
    
@@ -82,23 +82,23 @@ export class CharityFormComponent implements OnInit {
     }
   
     formErrors = {
-    'CompanyName': '',
+    'companyName': '',
     'contactFirstName': '',
     'contactLastName': '',
     'taxId': '',
-    'logInId': '',
+    'userName': '',
     'password': '',
     'addressLine': '',
     'city': '',
     'state': '',
     'zip': '',
-    'emailAddress': '',
+    'email': '',
     'phoneNumber' : ''
 
     };
   
     validationMessages = {
-      'CompanyName': {
+      'companyName': {
         'required': 'Organization Name is required.',
         'minlength': 'Company name must be at least 2 characters long.',
         'maxlength': 'Company name cannot be more than 30 characters long.'
@@ -107,6 +107,14 @@ export class CharityFormComponent implements OnInit {
         'required': 'First name is required.',
         'minlength': 'First name must be at least 2 characters long.',
         'maxlength': 'First name cannot be more than 30 characters long.'
+      },
+      'userName': {
+        'required': 'User name is required.',
+        'minlength': 'User name must be at least 2 characters long.'
+      },
+      'password': {
+        'required': 'Password is required.',
+        'minlength': 'Password must be at least 6 characters long.'
       },
       'contactLastName': {
         'required': 'Last name is required.',

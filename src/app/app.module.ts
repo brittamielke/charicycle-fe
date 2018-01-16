@@ -25,6 +25,7 @@ import { ManagecharitiesComponent } from './managecharities/managecharities.comp
 import { ManagedonorsComponent } from './managedonors/managedonors.component';
 import { AdminComponent } from './admin/admin.component';
 import { MatDialogModule } from '@angular/material';
+import { DataTablesModule } from 'angular-datatables';
 import { DistanceDataService } from './google-distance.service';
 
 
@@ -60,7 +61,8 @@ import { DistanceDataService } from './google-distance.service';
     MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD9Pnb3RyP2NpVrHsQo8VkyZBL48Y2favY'
-    })
+    }),
+    DataTablesModule
   ],
     entryComponents: [DeleteConfirmComponent],
   providers: [

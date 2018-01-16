@@ -1,33 +1,48 @@
 <ol class="breadcrumb">
   <li><a routerLink="/home">Home</a></li>
   <li class="active">Manage Donors</li>
-
+  </ol>
+  <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 <h2>Manage Donors</h2>
 <input [ngModel]="donorId" ngModel #donor_donorId="ngModel" type="hidden" name="donorId">
 <form class="form-horizontal" #donorForm="ngForm" (ngSubmit)="submitDonor(donorForm)">
-  <div>
+  <div class="form-group">
+    <label for="userName" class="col-sm-2 control-label">User Name*:</label>
+    <div class="col-sm-10">
+      <input [ngModel]="updateDonor?.userName" ngModel #logInId="ngModel" type="text" class="form-control" id="userName" name="userName"
+        placeholder="e.g.lisamar1" required minlength="2">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="col-sm-2 control-label">Password*:</label>
+    <div class="col-sm-10">
+      <input [ngModel]="updateDonor?.password" ngModel #password="ngModel" type="password" class="form-control" id="password"
+        name="password" placeholder="e.g.mickeymouse5" required minlength="6">
+    </div>
+  </div>
   <div class="form-group">
     <label for="inputCompanyName" class="col-sm-2 control-label">Company Name</label>
     <div class="col-sm-5">
       <input type="text" class="form-control" id="inputCompanyName" name="companyName" [ngModel]="updateDonor?.companynName" ngModel #companyName="ngModel" placeholder="Company Name">
     </div>
   </div>
-  </div>
   <div class="form-group">
-    <label for="inputContactFirstName" class="col-sm-2 control-label">Contact First Name</label>
+    <label for="inputContactFirstName" class="col-sm-2 control-label">*Contact First Name</label>
     <div class="col-sm-5">
       <input type="text" class="form-control" id="inputContactFirstName" name="contactFirstName" [ngModel]="updateDonor?.contactFirstName" ngModel #contactFirstName="ngModel" placeholder="Contact First Name">
     </div>
   </div>
   <div class="form-group">
-    <label for="inputContactLastName" class="col-sm-2 control-label">Contact Last Name</label>
+    <label for="inputContactLastName" class="col-sm-2 control-label">*Contact Last Name</label>
     <div class="col-sm-5">
       <input type="text" class="form-control" id="inputContactLastName" name="contactLastName" [ngModel]="updateDonor?.contactLastName" ngModel #contactLastName="ngModel" placeholder="Contact Last Name">
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddressLine" class="col-sm-2 control-label">Address Line</label>
+
     <div class="col-sm-5">
+
       <input type="text" class="form-control" id="inputAddressLine" name="addressLine" [ngModel]="updateDonor?.addressLine" ngModel #addressLine="ngModel"
         placeholder="Address Line">
     </div>
@@ -61,7 +76,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="inputEmailAddress" class="col-sm-2 control-label">Email Address</label>
+    <label for="inputEmailAddress" class="col-sm-2 control-label">*Email:</label>
     <div class="col-sm-5">
       <input type="text" class="form-control" id="inputEmailAddress" name="email" [ngModel]="updateDonor?.email" ngModel #email="ngModel"
         placeholder="Email Address">
@@ -72,6 +87,7 @@
       <button type="submit" class="btn btn-primary"><span *ngIf='!updateDonor'>Add Donor</span><span *ngIf='updateDonor'>Update Donor</span></button>
     </div>
   </div>
+  <p>Fields marked with a "*" are required</p>
 </form>
 <!-- display donors in database -->
 <div class="container">
