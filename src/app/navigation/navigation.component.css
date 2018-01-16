@@ -1,0 +1,17 @@
+nav {
+    background-color: #EAB126;
+    border: 1px solid #dedede;
+    font-size: 18px;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+    color: #888;
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    width: 100%; 
+    float: right;
+}
+
+ul {
+    float: right
+}
