@@ -144,5 +144,33 @@
       </ng-container>
     </tbody>
   </table>
+  <h2>Claimed Items for {{loggedInUser.companyName}}</h2>
+  <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Image (Click to download)</th>
+        <th>Charity Information</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let claimedItem of loggedInUser.claimedItems">
+          <td>{{claimedItem.category.name}}</td>
+          <td>{{claimedItem.description}}</td>
+          <td>
+            <span *ngIf="claimedItem.itemImageUrl">
+              <a href={{claimedItem.itemImageUrl}} target="_new">
+                <img [src]="claimedItem.itemImageUrl" />
+              </a>
+            </span>
+          </td>
+          <td class="text-left">This item was donated by: {{claimedItem.donorView.companyName}}
+            <br> Contact Name: {{claimedItem.donorView.contactFirstName}} {{claimedItem.donorView.contactLastName}}
+            <br> Contact Email: {{claimedItem.donorView.email}}
+          </td>
+        </tr>
+    </tbody>
+  </table>
 </div>
 </section>
