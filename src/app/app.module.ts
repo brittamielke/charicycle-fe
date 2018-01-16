@@ -25,6 +25,7 @@ import { ManagecharitiesComponent } from './managecharities/managecharities.comp
 import { ManagedonorsComponent } from './managedonors/managedonors.component';
 import { AdminComponent } from './admin/admin.component';
 import { MatDialogModule } from '@angular/material';
+import { DistanceDataService } from './google-distance.service';
 
 
 @NgModule({
@@ -62,7 +63,10 @@ import { MatDialogModule } from '@angular/material';
     })
   ],
     entryComponents: [DeleteConfirmComponent],
-  providers: [DataService],
+  providers: [
+    DataService,
+    DistanceDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
