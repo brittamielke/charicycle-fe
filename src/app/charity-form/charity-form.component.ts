@@ -38,7 +38,7 @@ export class CharityFormComponent implements OnInit {
     console.log(charityForm.value);
       this.dataService.addRecord("charity", charityForm.value) 
           .subscribe(
-            result => this.successMessage = "Record updated successfully",
+            result => this.successMessage = "Charity submitted for admin approval",
             error =>  this.errorMessage = <any>error);
             this.charityForm.form.markAsPristine();
    

@@ -5,8 +5,8 @@
 <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 
 <h2>Manage Charities</h2>
-<input [ngModel]="charityId" ngModel #charity_charityId="ngModel" type="hidden" name="charityId">
 <form class="form-horizontal" #charityForm="ngForm" (ngSubmit)="submitCharity(charityForm)">
+  <input [ngModel]="updateCharity?.confirmed" ngModel #confirmed="ngModel" type="hidden" name="confirmed" id="confirmed">
   <div class="form-group">
     <label for="userName" class="col-sm-2 control-label">*User Name:</label>
     <div class="col-sm-10">
@@ -109,8 +109,7 @@
         <th>Zip</th>
         <th>Phone Number</th>
         <th>Email Address</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th>Admin</th>
         </tr>
     </thead>
     <tbody>
@@ -126,10 +125,14 @@
         <td>{{ charity.phoneNumber }}</td>
         <td>{{ charity.email }}</td>
        <td>
-          <button class="btn btn-info" (click)='editCharity(charity)'>Update</button>
-        </td>
-        <td>
-          <button class="btn btn-danger" (click)='deleteCharity(charity.id)'>Delete</button>
+         <span *ngIf="!charity.confirmed">
+          <button class="btn btn-success" (click)='confirmCharity(charity)'>Confirm</button>
+          <button class="btn btn-danger" (click)='deleteCharity(charity)'>Deny</button>
+         </span>
+        <span *ngIf="charity.confirmed">
+            <button class="btn btn-info" (click)='editCharity(charity)'>Update</button>
+            <button class="btn btn-danger" (click)='deleteCharity(charity)'>Delete</button>
+          </span>
         </td>
       </tr>
     </tbody>
