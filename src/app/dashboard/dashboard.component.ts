@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => {
         this.donatedItems = records;
-        this.dtTrigger.next();
+
       },
       error => console.log(error)
       );
@@ -48,7 +48,6 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => {
         this.donatedItems = records;
-        this.dtTrigger.next();
       },
       error => console.log(error)
       );
@@ -60,7 +59,6 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => {
         this.neededItems = records;
-        //this.dtTrigger2.next();
       },
       error => console.log("error: " + error)
       );
@@ -70,7 +68,8 @@ export class DashboardComponent implements OnInit {
   getAllNeededItems() {
     this.dataService.getRecords('neededItems')
       .subscribe(
-      records => this.neededItems = records,
+      records =>{ this.neededItems = records
+      this.dtTrigger.next();},
       error => console.log("error: " + error)
       );
   }
