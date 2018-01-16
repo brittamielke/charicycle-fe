@@ -66,7 +66,6 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => {
         this.neededItems = records;
-        //this.dtTrigger2.next();
       },
       error => console.log("error: " + error)
       );
@@ -76,15 +75,18 @@ export class DashboardComponent implements OnInit {
   getAllNeededItems() {
     this.dataService.getRecords('neededItems')
       .subscribe(
+
       records => {
         this.neededItems = records
-        console.log(this.neededItems)
         this.dtTrigger.next();
         for (let item of this.neededItems) {
           this.getDistanceToItem(item)
         }
-        error => console.log("error: " + error)
-      });
+     
+      },
+      error => console.log("error: " + error)
+      );
+
   }
 
   //delete a donated item (no changes)
