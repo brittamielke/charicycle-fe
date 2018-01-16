@@ -51,11 +51,13 @@ export class DashboardComponent implements OnInit {
     this.dataService.getRecords(`/donatedItems`)
       .subscribe(
       records => {
-
         this.donatedItems = records;
-      },
-      error => console.log(error)
-      );
+        this.dtTrigger.next();
+        for (let item of this.donatedItems) {
+          this.getDistanceToItem(item)
+        }
+        error => console.log(error)
+      });
   }
 
   //get needed items for specific charity
@@ -75,19 +77,13 @@ export class DashboardComponent implements OnInit {
       .subscribe(
 
       records => {
-        this.neededItems = records
+        this.neededItems = records;
+        this.dtTrigger.next();
         for (let item of this.neededItems) {
           this.getDistanceToItem(item)
         }
-        error => console.log("error: " + error)
-      });
-      records =>{ 
-      this.neededItems = records;
-      this.dtTrigger.next();
-      for (let item of this.neededItems) {
-        this.getDistanceToItem(item)
-      }
-},
+     
+      },
       error => console.log("error: " + error)
       );
 
