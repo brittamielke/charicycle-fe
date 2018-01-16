@@ -99,8 +99,10 @@ export class ManagecharitiesComponent implements OnInit {
           this.getCharities();
         }
         )
+      
       }
-    }
+    
+    })
   
   }
   
