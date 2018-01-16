@@ -88,7 +88,9 @@
    
   Select a Charity:
   <ul>
-    <li *ngFor='let charity of charities' ><a [routerLink]="['/dashboard/charity/', charity.id]">{{charity.companyName}}</a></li>
+    <span *ngFor='let charity of charities'>
+    <li  *ngIf="charity.confirmed"><a [routerLink]="['/dashboard/charity/', charity.id]">{{charity.companyName}}</a></li>
+    </span>
   </ul>
  <br>
   Select a Donor:
@@ -98,7 +100,6 @@
   
   
   <hr>
-  <!-- /END THE FEATURETTES -->
   <div class="row">
     <div class="col-md-6">
       <div class="thumbnail">

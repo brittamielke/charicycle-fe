@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
 
   //delete a donated item (no changes)
   deleteDonatedItem(donatedItem) {
-    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: donatedItem });
+    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: `This will delete donated item with description of "${donatedItem.description}"` });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.dataService.deleteRecord('donatedItems', donatedItem.id)
@@ -79,7 +79,7 @@ export class DashboardComponent implements OnInit {
 
   //delete a needed item
   deleteNeededItem(neededItem) {
-    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: neededItem });
+    let dialogRef = this.dialog.open(DeleteConfirmComponent, {data: `This will delete needed item with description of "${neededItem.description}"` });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.dataService.deleteRecord('neededItems', neededItem.id)
