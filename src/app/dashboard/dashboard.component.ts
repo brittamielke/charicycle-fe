@@ -6,6 +6,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { DataService } from '../data.service';
 import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
 import { fadeInAnimation } from '../animations/fade-in.animation';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,6 +23,8 @@ export class DashboardComponent implements OnInit {
   donatedItem;
   donorId;
   claimedByCharity;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
 
   constructor(private dataService: DataService,
     private route: ActivatedRoute,
@@ -31,7 +34,10 @@ export class DashboardComponent implements OnInit {
   getDonatedItems() {
     this.dataService.getRecords(`/donor/${this.id}/donatedItems`)
       .subscribe(
-      records => this.donatedItems = records,
+      records => {
+        this.donatedItems = records;
+        this.dtTrigger.next();
+      },
       error => console.log(error)
       );
   }
@@ -40,7 +46,10 @@ export class DashboardComponent implements OnInit {
   getAllDonatedItems() {
     this.dataService.getRecords(`/donatedItems`)
       .subscribe(
-      records => this.donatedItems = records,
+      records => {
+        this.donatedItems = records;
+        this.dtTrigger.next();
+      },
       error => console.log(error)
       );
   }
@@ -49,7 +58,10 @@ export class DashboardComponent implements OnInit {
   getNeededItems() {
     this.dataService.getRecords(`charity/${this.id}/neededItems`)
       .subscribe(
-      records => this.neededItems = records,
+      records => {
+        this.neededItems = records;
+        //this.dtTrigger2.next();
+      },
       error => console.log("error: " + error)
       );
   }
