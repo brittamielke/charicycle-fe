@@ -97,10 +97,13 @@ export class ManagecharitiesComponent implements OnInit {
         .subscribe(
         charityInfo => {
           this.getCharities();
+        },
+        error => {
+          this.errorMessage = <any>error;
         }
         )
       }
-    }
+    })
   
   }
   
