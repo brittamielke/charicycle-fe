@@ -116,7 +116,7 @@
   </table>
   <hr>
   <h2>Browse list of donated items</h2>
-  <table class="table table-striped table-bordered" id="dataTable" style="width:100%">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
     <thead>
       <tr>
         <th>Category</th>
