@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   distanceApiResult;
+  destination;
 
 
   constructor(private dataService: DataService,
@@ -40,7 +41,6 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => {
         this.donatedItems = records;
-
       },
       error => console.log(error)
       );
@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(
 
       records => {
-        this.neededItems = records;
+        this.neededItems = records
         this.dtTrigger.next();
         for (let item of this.neededItems) {
           this.getDistanceToItem(item)
@@ -161,14 +161,18 @@ export class DashboardComponent implements OnInit {
   }
 
   getDistanceToItem(item) {
-    console.log(this.loggedInUser.zip)
-    console.log(item)
-    this.distanceDataService.getDistanceFromApi(this.loggedInUser.zip, item.donorView.zip)
+    if (this.type == "donor") {
+      this.destination = item.charity.zip;
+    }
+    if (this.type == "charity") {
+      this.destination = item.donorView.zip;
+    }
+    this.distanceDataService.getDistanceFromApi(this.loggedInUser.zip, this.destination)
       .subscribe(
       result => {
         this.distanceApiResult = result;
+        console.log(this.distanceApiResult);
         item.distanceTo = this.distanceApiResult.rows[0].elements[0].distance.text;
-        console.log(item);
       },
       error => console.log(error)
       );
@@ -185,7 +189,6 @@ export class DashboardComponent implements OnInit {
     if (this.type == "donor") {
       this.getUser('donor/' + this.id);
       this.getDonatedItems();
-
     }
 
     if (this.type == "charity") {
