@@ -1,7 +1,7 @@
 nav, {
     background-color: #11A6D4;
     border: 1px solid #dedede;
-    font-size: 18px;
+    font-size: 20px;
     
     border-radius: 4px;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
@@ -19,10 +19,10 @@ nav, {
 
 .navbar-inverse[_ngcontent-c1] .navbar-nav[_ngcontent-c1] > li[_ngcontent-c1] > a[_ngcontent-c1]{
     color: white;
+    font-size: 18px;
 }
 
-
-
+    
 ul {
     float: right
 }
