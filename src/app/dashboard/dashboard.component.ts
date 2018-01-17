@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   distanceApiResult;
   destination;
+  
 
 
   constructor(private dataService: DataService,
@@ -141,8 +142,6 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-
-
   //get the logged in user
   getUser(endpoint: string) {
     this.dataService.getRecords(endpoint)
@@ -171,11 +170,22 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       result => {
         this.distanceApiResult = result;
-        console.log(this.distanceApiResult);
         item.distanceTo = this.distanceApiResult.rows[0].elements[0].distance.text;
+        this.buildLinkURL(item)
       },
       error => console.log(error)
       );
+  }
+
+  buildLinkURL(item) {
+    if (this.type == "donor") {
+      item.directionsURL = this.loggedInUser.addressLine + "+" + this.loggedInUser.city + "+" + this.loggedInUser.state + "+" + this.loggedInUser.zip + "/" + item.charity.addressLine + "+" + item.charity.city + "+" + item.charity.state + "+" + item.charity.zip;
+    }
+    if (this.type == "charity") {
+      item.directionsURL = this.loggedInUser.addressLine + "+" + this.loggedInUser.city + "+" + this.loggedInUser.state + "+" + this.loggedInUser.zip + "/" + item.donorView.addressLine + "+" + item.donorView.city + "+" + item.donorView.state + "+" + item.donorView.zip;;
+    }
+    
+    console.log(item);
   }
 
   ngOnInit() {
