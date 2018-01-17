@@ -26,6 +26,7 @@ import { ManagedonorsComponent } from './managedonors/managedonors.component';
 import { AdminComponent } from './admin/admin.component';
 import { MatDialogModule } from '@angular/material';
 import { DataTablesModule } from 'angular-datatables';
+import { DistanceDataService } from './google-distance.service';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { DataTablesModule } from 'angular-datatables';
     ClaimItemComponent,
     ManagecharitiesComponent,
     ManagedonorsComponent,
-    AdminComponent,
+    AdminComponent
     
 
   ],
@@ -64,7 +65,10 @@ import { DataTablesModule } from 'angular-datatables';
     DataTablesModule
   ],
     entryComponents: [DeleteConfirmComponent],
-  providers: [DataService],
+  providers: [
+    DataService,
+    DistanceDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

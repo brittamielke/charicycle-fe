@@ -7,6 +7,7 @@ import { DataService } from '../data.service';
 import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
 import { fadeInAnimation } from '../animations/fade-in.animation';
 import { Subject } from 'rxjs/Subject';
+import { DistanceDataService } from '../google-distance.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,14 +20,19 @@ export class DashboardComponent implements OnInit {
   neededItems;
   id;
   type;
-  loggedInUser = [];
+  loggedInUser;
   donatedItem;
   donorId;
   claimedByCharity;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  distanceApiResult;
+  destination;
+  
+
 
   constructor(private dataService: DataService,
+    private distanceDataService: DistanceDataService,
     private route: ActivatedRoute,
     private location: Location, public dialog: MatDialog) { }
 
@@ -36,22 +42,23 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => {
         this.donatedItems = records;
-        this.dtTrigger.next();
       },
       error => console.log(error)
       );
   }
 
-  //get all the donated items
+  //get all the donated items from all donors
   getAllDonatedItems() {
     this.dataService.getRecords(`/donatedItems`)
       .subscribe(
       records => {
         this.donatedItems = records;
         this.dtTrigger.next();
-      },
-      error => console.log(error)
-      );
+        for (let item of this.donatedItems) {
+          this.getDistanceToItem(item)
+        }
+        error => console.log(error)
+      });
   }
 
   //get needed items for specific charity
@@ -60,7 +67,6 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => {
         this.neededItems = records;
-        //this.dtTrigger2.next();
       },
       error => console.log("error: " + error)
       );
@@ -70,9 +76,18 @@ export class DashboardComponent implements OnInit {
   getAllNeededItems() {
     this.dataService.getRecords('neededItems')
       .subscribe(
-      records => this.neededItems = records,
+
+      records => {
+        this.neededItems = records
+        this.dtTrigger.next();
+        for (let item of this.neededItems) {
+          this.getDistanceToItem(item)
+        }
+     
+      },
       error => console.log("error: " + error)
       );
+
   }
 
   //delete a donated item (no changes)
@@ -102,6 +117,7 @@ export class DashboardComponent implements OnInit {
       }
     })
   }
+
   updateDonatedItemToClaimed(donatedItemId) {
     //sends the donatedItem id to the API and returns dontatedItem Object (donated item view)
     this.dataService
@@ -120,21 +136,56 @@ export class DashboardComponent implements OnInit {
             this.dataService
               .editRecord('donatedItems/' + this.donorId, this.donatedItem, donatedItemId)
               .subscribe(
-              donatedItem => 
-                this.donatedItem = donatedItem)      
+              donatedItem =>
+                this.donatedItem = donatedItem)
           });
       });
   }
-
-
 
   //get the logged in user
   getUser(endpoint: string) {
     this.dataService.getRecords(endpoint)
       .subscribe(
-      records => console.log(this.loggedInUser = records),
+      records => {
+        console.log(this.loggedInUser = records)
+        if (this.type == "charity") {
+          this.getAllDonatedItems();
+        }
+        if (this.type == "donor") {
+          this.getAllNeededItems();
+        }
+      },
+      error => console.log(error),
+    );
+  }
+
+  getDistanceToItem(item) {
+    if (this.type == "donor") {
+      this.destination = item.charity.zip;
+    }
+    if (this.type == "charity") {
+      this.destination = item.donorView.zip;
+    }
+    this.distanceDataService.getDistanceFromApi(this.loggedInUser.zip, this.destination)
+      .subscribe(
+      result => {
+        this.distanceApiResult = result;
+        item.distanceTo = this.distanceApiResult.rows[0].elements[0].distance.text;
+        this.buildLinkURL(item)
+      },
       error => console.log(error)
       );
+  }
+
+  buildLinkURL(item) {
+    if (this.type == "donor") {
+      item.directionsURL = this.loggedInUser.addressLine + "+" + this.loggedInUser.city + "+" + this.loggedInUser.state + "+" + this.loggedInUser.zip + "/" + item.charity.addressLine + "+" + item.charity.city + "+" + item.charity.state + "+" + item.charity.zip;
+    }
+    if (this.type == "charity") {
+      item.directionsURL = this.loggedInUser.addressLine + "+" + this.loggedInUser.city + "+" + this.loggedInUser.state + "+" + this.loggedInUser.zip + "/" + item.donorView.addressLine + "+" + item.donorView.city + "+" + item.donorView.state + "+" + item.donorView.zip;;
+    }
+    
+    console.log(item);
   }
 
   ngOnInit() {
@@ -148,15 +199,12 @@ export class DashboardComponent implements OnInit {
     if (this.type == "donor") {
       this.getUser('donor/' + this.id);
       this.getDonatedItems();
-      this.getAllNeededItems();
     }
 
     if (this.type == "charity") {
       this.getUser('charity/' + this.id);
-      this.getAllDonatedItems();
       this.getNeededItems();
     }
-
   };
- 
+
 }
