@@ -27,6 +27,7 @@ import { AdminComponent } from './admin/admin.component';
 import { MatDialogModule } from '@angular/material';
 import { DataTablesModule } from 'angular-datatables';
 import { DistanceDataService } from './google-distance.service';
+import { DonatedItemTableComponent } from './donated-item-table/donated-item-table.component';
 import { LoginComponent } from './login/login.component';
 
 
@@ -50,9 +51,8 @@ import { LoginComponent } from './login/login.component';
     ManagecharitiesComponent,
     ManagedonorsComponent,
     AdminComponent,
+    DonatedItemTableComponent,
     LoginComponent,
-    
-
   ],
   imports: [
     BrowserModule,
