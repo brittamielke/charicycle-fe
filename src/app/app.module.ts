@@ -27,6 +27,7 @@ import { AdminComponent } from './admin/admin.component';
 import { MatDialogModule } from '@angular/material';
 import { DataTablesModule } from 'angular-datatables';
 import { DistanceDataService } from './google-distance.service';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { DistanceDataService } from './google-distance.service';
     ManagecharitiesComponent,
     ManagedonorsComponent,
     AdminComponent,
+    LoginComponent,
     
 
   ],
