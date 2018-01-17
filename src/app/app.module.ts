@@ -48,7 +48,7 @@ import { DistanceDataService } from './google-distance.service';
     ClaimItemComponent,
     ManagecharitiesComponent,
     ManagedonorsComponent,
-    AdminComponent,
+    AdminComponent
     
 
   ],
