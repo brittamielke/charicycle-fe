@@ -13,6 +13,7 @@ import { ClaimItemComponent } from '../claim-item/claim-item.component';
 import { ManagecharitiesComponent } from '../managecharities/managecharities.component';
 import { ManagedonorsComponent } from '../managedonors/managedonors.component';
 import { AdminComponent } from '../admin/admin.component';
+import { LoginComponent } from '../login/login.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'donatedItem/add/:id', component: DonatedItemFormComponent },
   { path: 'dashboard/donor/:id', component: DashboardComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'login', component: LoginComponent },
  
 ];
 

@@ -12,12 +12,12 @@
   <form novalidate (ngSubmit)="saveCharity(charityForm)"  #charityForm="ngForm" class="form-horizontal">
     <input [ngModel]="charityId" ngModel #charity_charityId="ngModel" type="hidden" name="charityId">
           <div class="form-group">
-            <label for="userName" class="col-sm-2 control-label">*User Name:</label>
+            <label for="username" class="col-sm-2 control-label">*User Name:</label>
             <div class="col-sm-10">
-              <input [ngModel]="charity?.userName" ngModel #logInId="ngModel" type="text" class="form-control" id="userName" name="userName"
+              <input [ngModel]="charity?.username" ngModel #logInId="ngModel" type="text" class="form-control" id="username" name="username"
                 placeholder="e.g.lisamar1" required minlength="2">
-              <span *ngIf="formErrors.userName" class="text-danger">
-                {{ formErrors.userName }}
+              <span *ngIf="formErrors.username" class="text-danger">
+                {{ formErrors.username }}
               </span>
             </div>
           </div>
