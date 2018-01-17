@@ -27,6 +27,7 @@ import { AdminComponent } from './admin/admin.component';
 import { MatDialogModule } from '@angular/material';
 import { DataTablesModule } from 'angular-datatables';
 import { DistanceDataService } from './google-distance.service';
+import { DonatedItemTableComponent } from './donated-item-table/donated-item-table.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { DistanceDataService } from './google-distance.service';
     ClaimItemComponent,
     ManagecharitiesComponent,
     ManagedonorsComponent,
-    AdminComponent
+    AdminComponent,
+    DonatedItemTableComponent,
     
 
   ],
