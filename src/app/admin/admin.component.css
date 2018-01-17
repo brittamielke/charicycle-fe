@@ -1,0 +1,9 @@
+section, body, h3 {
+    font-family: inherit;
+    font-size: 28px;
+}
+
+.btn-primary {
+    background-color:#11A6D4;
+    border-color: #11A6D4;
+}
