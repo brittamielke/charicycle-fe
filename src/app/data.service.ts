@@ -23,6 +23,13 @@ export class DataService {
             .map(this.extractData);
     }
 
+    logout(): Observable<any> {
+        let apiUrl = `${this.baseUrl}session/mine`;
+        console.log(apiUrl)
+        return this.http.delete(apiUrl, this.options)
+            .map(this.extractData);
+    }
+
     getRecords(endpoint: string): Observable<any[]> {
         let apiUrl = this.baseUrl + endpoint;
 

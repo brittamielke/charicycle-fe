@@ -14,8 +14,9 @@
         <li routerLinkActive="active">
           <a routerLink="/home">Home</a>
         </li>
-        <li routerLinkActive="active">
-          <a routerLink="/login">Login</a>
+        
+        <li routerLinkActive="active" *ngIf="user && !user.admin">
+          <a routerLink="/dashboard/{{ type }}/{{ user.id }}">Dashboard</a>
         </li>
         <li routerLinkActive="active">
           <a routerLink="/contactUs">Contact Us </a>
@@ -23,10 +24,15 @@
         <li routerLinkActive="active">
           <a routerLink="/aboutUs">About Us</a>
         </li>
-        <li routerLinkActive="active">
+        <li routerLinkActive="active" *ngIf="user && user.admin">
           <a routerLink="/admin">Admin</a>
           </li>
-        
+          <li routerLinkActive="active" *ngIf="user">
+            <a (click)="logout()" routerLink="/home">Logout</a>
+          </li>
+          <li routerLinkActive="active" *ngIf="!user">
+            <a routerLink="/login">Login</a>
+          </li>
        </ul>
     </div>
     <!--/.nav-collapse -->

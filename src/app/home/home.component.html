@@ -96,21 +96,6 @@
           </div>
     
           <!-- /END THE FEATURETTES -->
-   
- 
-   
-  Select a Charity:
-  <ul>
-    <span *ngFor='let charity of charities'>
-    <li  *ngIf="charity.confirmed"><a [routerLink]="['/dashboard/charity/', charity.id]">{{charity.companyName}}</a></li>
-    </span>
-  </ul>
- <br>
-  Select a Donor:
-  <ul>
-    <li *ngFor='let donor of donors' ><a [routerLink]="['/dashboard/donor/', donor.id]">{{donor.contactFirstName}} {{donor.contactLastName}}</a></li>
-  </ul>
-  
   
   <hr>
   <div class="row">
