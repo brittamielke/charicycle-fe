@@ -39,25 +39,6 @@ ul {
     padding-top: 0;
 }
 
-@media (min-width: 1200px) {
-.navbar-brand #logo { display: none !important;}
-}
-
-
-@media (min-width: 786px) and (max-width: 991px) {
-    .navbar-brand #logo { display: none !important;}
-    }
-    
-@media (max-width: 767px) {
-        .navbar-brand #logo { display: none !important;}
-        }
-        
-        
-@media (max-width: 480px) {
-            .navbar-brand #logo { display: none !important;}
-            }
-
-
 .navbar-brand #logo {
     width: 40%;
 }
