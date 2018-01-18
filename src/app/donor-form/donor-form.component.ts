@@ -98,7 +98,7 @@ export class DonorFormComponent implements OnInit {
     'zip': '',
     'phoneNumber': '',
     'email': '',
-    'userName': '',
+    'username': '',
     'password': '',
   };
 
@@ -107,7 +107,7 @@ export class DonorFormComponent implements OnInit {
       'minlength': 'Company name must be at least 2 characters long.',
       'maxlength': 'Company name cannot be more than 30 characters long.'
     },
-    'userName': {
+    'username': {
       'required': 'User name is required.',
       'minlength': 'User name must be at least 2 characters long.'
     },

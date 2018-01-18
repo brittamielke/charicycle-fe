@@ -86,7 +86,7 @@ export class CharityFormComponent implements OnInit {
     'contactFirstName': '',
     'contactLastName': '',
     'taxId': '',
-    'userName': '',
+    'username': '',
     'password': '',
     'addressLine': '',
     'city': '',
@@ -108,7 +108,7 @@ export class CharityFormComponent implements OnInit {
         'minlength': 'First name must be at least 2 characters long.',
         'maxlength': 'First name cannot be more than 30 characters long.'
       },
-      'userName': {
+      'username': {
         'required': 'User name is required.',
         'minlength': 'User name must be at least 2 characters long.'
       },

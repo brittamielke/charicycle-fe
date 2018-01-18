@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <div></div>
-       <a class="navbar-brand" href="#"><img alt="Charity Connect Logo" id="logo" src="assets/images/circle.jpg"/>
+       <a class="navbar-brand" href="#"><img alt="Charity Connect Logo" id="logo" src="assets/images/circle_transparent_strong.png"/>
       </a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -17,16 +17,25 @@
         <li routerLinkActive="active">
           <a routerLink="/home">Home</a>
         </li>
+        
+        <li routerLinkActive="active" *ngIf="user && !user.admin">
+          <a routerLink="/dashboard/{{ type }}/{{ user.id }}">Dashboard</a>
+        </li>
         <li routerLinkActive="active">
           <a routerLink="/contactUs">Contact Us </a>
         </li>
         <li routerLinkActive="active">
           <a routerLink="/aboutUs">About Us</a>
         </li>
-        <li routerLinkActive="active">
+        <li routerLinkActive="active" *ngIf="user && user.admin">
           <a routerLink="/admin">Admin</a>
           </li>
-        
+          <li routerLinkActive="active" *ngIf="user">
+            <a (click)="logout()" routerLink="/home">Logout</a>
+          </li>
+          <li routerLinkActive="active" *ngIf="!user">
+            <a routerLink="/login">Login</a>
+          </li>
        </ul>
     </div>
     <!--/.nav-collapse -->
