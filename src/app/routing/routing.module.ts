@@ -14,7 +14,7 @@ import { ManagecharitiesComponent } from '../managecharities/managecharities.com
 import { ManagedonorsComponent } from '../managedonors/managedonors.component';
 import { AdminComponent } from '../admin/admin.component';
 import { LoginComponent } from '../login/login.component';
-
+import { ValidateCharityComponent } from '../validate-charity/validate-charity.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -34,8 +34,8 @@ const routes: Routes = [
   { path: 'dashboard/donor/:id', component: DashboardComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'login', component: LoginComponent },
- 
-];
+  { path: 'manageCharities/validateCharity/:id', component: ValidateCharityComponent }
+ ];
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

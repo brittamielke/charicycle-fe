@@ -70,9 +70,9 @@
           <td>{{neededItem.description}}</td>
           <td>{{neededItem.charity.companyName}}</td>
           <td class="text-center">
-              <a class="text-center" class="btn btn-primary" href="https://www.google.com/maps/dir/{{ neededItem.directionsURL }}" target="_blank">Get Directions</a>&nbsp;
-              <br>
-              <br>{{ neededItem.distanceTo }}</td>
+            <a class="text-center" class="btn btn-primary" href="https://www.google.com/maps/dir/{{ neededItem.directionsURL }}" target="_blank">Get Directions</a>&nbsp;
+            <br>
+            <br>{{ neededItem.distanceTo }}</td>
         </tr>
       </tbody>
     </table>
@@ -172,7 +172,9 @@
               </span>
             </td>
             <td class="text-center">
-              <a class="text-center" class="btn btn-primary" href="https://www.google.com/maps/dir/{{ donatedItem.directionsURL }}" target="_blank">Get Directions</a>&nbsp;
+              <span *ngIf="donatedItem?.donorView.addressLine">
+                <a class="text-center" class="btn btn-primary" href="https://www.google.com/maps/dir/{{ donatedItem.directionsURL }}" target="_blank">Get Directions</a>&nbsp;
+              </span>
               <br>
               <br>{{ donatedItem.distanceTo }}</td>
             <td class="text-center">
