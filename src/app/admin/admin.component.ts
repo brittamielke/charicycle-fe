@@ -9,6 +9,7 @@ import { DataService } from '../data.service';
 export class AdminComponent implements OnInit {
   errorMessage;
   charities;
+  user;
 
   constructor(private dataService: DataService) { }
 
@@ -33,6 +34,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.getCharities();
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
 
 }
