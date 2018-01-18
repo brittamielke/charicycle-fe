@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
@@ -8,6 +8,7 @@ import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.compone
 import { fadeInAnimation } from '../animations/fade-in.animation';
 import { Subject } from 'rxjs/Subject';
 import { DistanceDataService } from '../google-distance.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -20,21 +21,18 @@ export class DashboardComponent implements OnInit {
   neededItems;
   id;
   type;
-  loggedInUser;
-  donatedItem;
-  donorId;
+  @Output() loggedInUser;
   claimedByCharity;
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
   distanceApiResult;
   destination;
-  
-
 
   constructor(private dataService: DataService,
     private distanceDataService: DistanceDataService,
     private route: ActivatedRoute,
-    private location: Location, public dialog: MatDialog) { }
+    private location: Location,
+    public dialog: MatDialog) { }
 
   //get the donated items for a specific donor
   getDonatedItems() {
@@ -47,18 +45,22 @@ export class DashboardComponent implements OnInit {
       );
   }
 
-  //get all the donated items from all donors
-  getAllDonatedItems() {
-    this.dataService.getRecords(`/donatedItems`)
+  getDistanceToItem(item) {
+    if (this.type == "donor") {
+      this.destination = item.charity.zip;
+    }
+    if (this.type == "charity") {
+      this.destination = item.donorView.zip;
+    }
+    this.distanceDataService.getDistanceFromApi(this.loggedInUser.zip, this.destination)
       .subscribe(
-      records => {
-        this.donatedItems = records;
-        this.dtTrigger.next();
-        for (let item of this.donatedItems) {
-          this.getDistanceToItem(item)
-        }
-        error => console.log(error)
-      });
+      result => {
+        this.distanceApiResult = result;
+        item.distanceTo = this.distanceApiResult.rows[0].elements[0].distance.text;
+        this.buildLinkURL(item)
+      },
+      error => console.log(error)
+      );
   }
 
   //get needed items for specific charity
@@ -83,7 +85,7 @@ export class DashboardComponent implements OnInit {
         for (let item of this.neededItems) {
           this.getDistanceToItem(item)
         }
-     
+
       },
       error => console.log("error: " + error)
       );
@@ -106,7 +108,7 @@ export class DashboardComponent implements OnInit {
 
   //delete a needed item
   deleteNeededItem(neededItem) {
-    let dialogRef = this.dialog.open(DeleteConfirmComponent, {data: `This will delete needed item with description of "${neededItem.description}"` });
+    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: `This will delete needed item with description of "${neededItem.description}"` });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.dataService.deleteRecord('neededItems', neededItem.id)
@@ -118,29 +120,7 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  updateDonatedItemToClaimed(donatedItemId) {
-    //sends the donatedItem id to the API and returns dontatedItem Object (donated item view)
-    this.dataService
-      .getRecord('donatedItems', donatedItemId)
-      .subscribe(
-      donatedItem => {
-        this.donatedItem = donatedItem;
-        //save off the donor ID since it wont be returned in the object
-        this.donorId = this.donatedItem.donorView.id;
-        //takes the logged in charity id and sends it to the donateditems API to update the claimedByCharity object on the donated item.
-        this.dataService.editRecord("donatedItems/" + this.id, this.donatedItem, donatedItemId)
-          .subscribe(
-          donatedItem => {
-            this.donatedItem = donatedItem;
-            //object returned is a donatedItem view and does not include the donor so we have to update the record again to save the donor ID
-            this.dataService
-              .editRecord('donatedItems/' + this.donorId, this.donatedItem, donatedItemId)
-              .subscribe(
-              donatedItem =>
-                this.donatedItem = donatedItem)
-          });
-      });
-  }
+
 
   //get the logged in user
   getUser(endpoint: string) {
@@ -148,9 +128,9 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => {
         console.log(this.loggedInUser = records)
-        if (this.type == "charity") {
-          this.getAllDonatedItems();
-        }
+        // if (this.type == "charity") {
+        //  this.getAllDonatedItems();
+        // }
         if (this.type == "donor") {
           this.getAllNeededItems();
         }
@@ -159,23 +139,19 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  getDistanceToItem(item) {
-    if (this.type == "donor") {
-      this.destination = item.charity.zip;
-    }
-    if (this.type == "charity") {
-      this.destination = item.donorView.zip;
-    }
-    this.distanceDataService.getDistanceFromApi(this.loggedInUser.zip, this.destination)
-      .subscribe(
-      result => {
-        this.distanceApiResult = result;
-        item.distanceTo = this.distanceApiResult.rows[0].elements[0].distance.text;
-        this.buildLinkURL(item)
-      },
-      error => console.log(error)
-      );
-  }
+  // //get all the donated items from all donors
+  // getAllDonatedItems() {
+  //   this.dataService.getRecords(`/donatedItems`)
+  //     .subscribe(
+  //     records => {
+  //       this.donatedItems = records;
+  //       this.dtTrigger.next();
+  //       for (let item of this.donatedItems) {
+  //         this.getDistanceToItem(item)
+  //       }
+  //       error => console.log(error)
+  //     });
+  // }
 
   buildLinkURL(item) {
     if (this.type == "donor") {
@@ -184,7 +160,7 @@ export class DashboardComponent implements OnInit {
     if (this.type == "charity") {
       item.directionsURL = this.loggedInUser.addressLine + "+" + this.loggedInUser.city + "+" + this.loggedInUser.state + "+" + this.loggedInUser.zip + "/" + item.donorView.addressLine + "+" + item.donorView.city + "+" + item.donorView.state + "+" + item.donorView.zip;;
     }
-    
+
     console.log(item);
   }
 
@@ -205,6 +181,22 @@ export class DashboardComponent implements OnInit {
       this.getUser('charity/' + this.id);
       this.getNeededItems();
     }
+
+    this.dtOptions = {
+      columns: [{
+        title: 'Category',
+        data: 'category.name'
+      }, {
+        title: 'Description',
+        data: 'description'
+      }, {
+        title: 'Image (Click to download)',
+        data: 'itemImageUrl'
+      }, {
+        title: 'Get Directions',
+        data: 'distanceTo'
+      }]
+    };
   };
 
 }
