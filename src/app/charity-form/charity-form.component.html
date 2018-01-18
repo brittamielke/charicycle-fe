@@ -15,7 +15,7 @@
             <label for="username" class="col-sm-2 control-label">*User Name:</label>
             <div class="col-sm-10">
               <input [ngModel]="charity?.username" ngModel #logInId="ngModel" type="text" class="form-control" id="username" name="username"
-                placeholder="e.g.lisamar1" required minlength="2">
+                placeholder="e.g. lisamar1" required minlength="2">
               <span *ngIf="formErrors.username" class="text-danger">
                 {{ formErrors.username }}
               </span>
@@ -25,7 +25,7 @@
             <label for="password" class="col-sm-2 control-label">*Password</label>
             <div class="col-sm-10">
               <input [ngModel]="charity?.password" ngModel #password="ngModel" type="password" class="form-control" id="password" name="password"
-                placeholder="e.g.mickeymouse5" required minlength="6">
+                placeholder="e.g. mickeymouse5" required minlength="6">
               <span *ngIf="formErrors.password" class="text-danger">
                 {{ formErrors.password }}
               </span>
