@@ -21,7 +21,7 @@
     <a [routerLink]="['/donatedItem/add/', id]" class="btn btn-primary">Add an item to donate</a>
     <br>
     <br>
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered" id="dataTable"
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered" id="itemDonationDataTable"
       style="width:100%">
       <thead>
         <tr>
@@ -54,7 +54,7 @@
     <br>
     <h2>Browse needs from all charities</h2>
     <br>
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered" id="dataTable"
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered" id="charityNeedsDataTable"
       style="width:100%">
       <thead>
         <tr>
@@ -70,9 +70,10 @@
           <td>{{neededItem.description}}</td>
           <td>{{neededItem.charity.companyName}}</td>
           <td class="text-center">
-            <a class="text-center" class="btn btn-primary" href="https://www.google.com/maps/dir/{{ neededItem.directionsURL }}" target="_blank">Get Directions</a>&nbsp;
-            <br>
-            <br>{{ neededItem.distanceTo }}</td>
+             <a class="text-center btn btn-primary" href="https://www.google.com/maps/dir/{{ neededItem.directionsURL }}" target="_blank">Get Directions</a>&nbsp;
+             <br>
+             <br>{{ neededItem.distanceTo }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -82,7 +83,7 @@
       <span *ngIf="loggedInUser?.companyName">{{ loggedInUser?.companyName }}'s</span>
       <span *ngIf="!loggedInUser?.companyName">{{ loggedInUser?.contactFirstName }} {{ loggedInUser?.contactLastName }}'s</span> claimed donations</h2>
     <br>
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered" id="dataTable"
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered" id="donorClaimedDataTable"
       style="width:100%">
       <thead>
         <tr>
@@ -125,7 +126,7 @@
     <a [routerLink]="['/neededItem/add/', id]" class="btn btn-primary">Add a need</a>
     <br>
     <br>
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered" id="dataTable"
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered" id="charityNeededDataTable"
       style="width:100%">
       <thead>
         <tr>
@@ -148,47 +149,12 @@
     <br>
     <h2>Browse available donated items</h2>
     <br>
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered" id="dataTable"
-      style="width:100%">
-      <thead>
-        <tr>
-          <th>Category</th>
-          <th>Description</th>
-          <th>Image (Click to download)</th>
-          <th>Approximate Distance</th>
-          <th>Claim Item</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let donatedItem of donatedItems">
-          <tr *ngIf="!donatedItem.claimedByCharity">
-            <td>{{donatedItem.category.name}}</td>
-            <td>{{donatedItem.description}}</td>
-            <td>
-              <span *ngIf="donatedItem.itemImageUrl">
-                <a href={{donatedItem.itemImageUrl}} target="_new">
-                  <img [src]="donatedItem.itemImageUrl" />
-                </a>
-              </span>
-            </td>
-            <td class="text-center">
-              <span *ngIf="donatedItem?.donorView.addressLine">
-                <a class="text-center" class="btn btn-primary" href="https://www.google.com/maps/dir/{{ donatedItem.directionsURL }}" target="_blank">Get Directions</a>&nbsp;
-              </span>
-              <br>
-              <br>{{ donatedItem.distanceTo }}</td>
-            <td class="text-center">
-              <a class="btn btn-primary" (click)="updateDonatedItemToClaimed(donatedItem.id)" [routerLink]="['/claimItem/', donatedItem.id, loggedInUser.id]">Claim Item</a>&nbsp;
-            </td>
-          </tr>
-        </ng-container>
-      </tbody>
-    </table>
+    <app-donated-item-table ></app-donated-item-table>
     <hr>
     <br>
     <h2>Items claimed by {{loggedInUser?.companyName}}</h2>
     <br>
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered" id="dataTable"
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered" id="charityClaimedDataTable"
       style="width:100%">
       <thead>
         <tr>

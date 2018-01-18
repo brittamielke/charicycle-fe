@@ -2,10 +2,26 @@ agm-map{
     height:200px;
 }
 p {
+    
 font-family:inherit;
-font-size: 28px;
+font-size: 22px;
+
 }
 section {
     font-family:inherit;
     font-size: 28px;
+}
+img {
+    float: left;
+    width: 15%;
+
+}
+h3 {
+   
+    padding-right: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    font-family: inherit;
+    font-size: 22px;
 }

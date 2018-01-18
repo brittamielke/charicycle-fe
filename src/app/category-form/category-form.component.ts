@@ -7,6 +7,8 @@ import { NgForm } from '@angular/forms';
 
 import { DataService } from '../data.service'
 import { fadeInAnimation } from '../animations/fade-in.animation';
+import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 
 @Component({
@@ -20,45 +22,91 @@ export class CategoryFormComponent implements OnInit {
   categoryForm: NgForm;
   @ViewChild('categoryForm')
   currentForm: NgForm;
+  categoryForUpdate: object = {};
 
   successMessage: string;
   errorMessage: string;
+  user;
 
-  category: object;
+  categories: object;
 
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    public dialog: MatDialog
   ) { }
 
-  getRecordForEdit(){
-    this.route.params
-      .switchMap((params: Params) => this.dataService.getRecord("category", +params['id']))
-      .subscribe(category => this.category = category);
+  ngOnInit() {
+    this.getCategories();
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
 
-  ngOnInit() {
-    this.route.params
-      .subscribe((params: Params) => {
-        (+params['id']) ? this.getRecordForEdit() : null;
-      });
+  getCategories(){
+    this.dataService.getRecords("category")
+      .subscribe(
+      categories => {
+        this.categories = categories.sort(this.compare)});
+
+  }
+
+  compare(a, b) {
+  const genreA = a.id;
+  const genreB = b.id;
+
+  let comparison = 0;
+  if (genreA > genreB) {
+    comparison = 1;
+  } else if (genreA < genreB) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
+  updateCategory(category){
+    this.categoryForUpdate = category;
+  }
+  cancelUpdate() {
+    this.categoryForUpdate = {};
   }
 
   saveCategory(categoryForm: NgForm){
     if(typeof categoryForm.value.id === "number"){
       this.dataService.editRecord("category", categoryForm.value, categoryForm.value.id)
           .subscribe(
-            category => this.successMessage = "Record updated successfully",
+            category => {this.successMessage = "Record updated successfully";
+                        this.categoryForUpdate = {};
+                        this.getCategories();
+                      },
             error =>  this.errorMessage = <any>error);
     }else{
       this.dataService.addRecord("category", categoryForm.value)
           .subscribe(
             category => this.successMessage = "Record added successfully",
             error =>  this.errorMessage = <any>error);
-            this.category = {};
+            this.getCategories();
     }
 
+  }
+
+  deleteCategory(category){
+    let deleteMessage;
+    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: "This will delete category: " + category.name });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataService.deleteRecord("category", category.id)
+          .subscribe(
+          charityInfo => {
+            this.successMessage = "Category " + category.name + " was deleted successfully";
+            this.getCategories();
+          },
+          error => {
+            this.errorMessage = "There are one or more items that have this category assigned.  Before deleting, please remove these items from the database";
+          }
+          )
+
+      }
+    })
   }
 
   ngAfterViewChecked() {

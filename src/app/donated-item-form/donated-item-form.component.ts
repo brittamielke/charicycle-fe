@@ -51,8 +51,8 @@ export class DonatedItemFormComponent implements OnInit {
     let imageUpload = image.target.files[0];
     console.log(imageUpload.name);
     console.log(image);
-    AWS.config.accessKeyId = 'AKIAI522RFFTZBENNHZA';
-    AWS.config.secretAccessKey = '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';
+    AWS.config.accessKeyId = '';
+    AWS.config.secretAccessKey = '';
     
     let bucket = new AWS.S3({ params: { Bucket: 'charicycle' } });
     let params = { Bucket: 'charicycle', Key: imageUpload.name, Body: imageUpload, ACL: "public-read" };
