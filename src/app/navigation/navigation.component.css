@@ -39,6 +39,12 @@ ul {
     padding-top: 0;
 }
 
+@media only screen and (max-width: 480px) {
+    .navbar-brand #logo {
+        display:none !important;
+    }
+
+}
 .navbar-brand #logo {
     width: 40%;
 }
