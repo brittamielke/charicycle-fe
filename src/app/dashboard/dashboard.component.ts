@@ -69,6 +69,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => {
         this.neededItems = records;
+        this.dtTrigger.next();
       },
       error => console.log("error: " + error)
       );
@@ -81,7 +82,6 @@ export class DashboardComponent implements OnInit {
 
       records => {
         this.neededItems = records
-        this.dtTrigger.next();
         for (let item of this.neededItems) {
           this.getDistanceToItem(item)
         }
@@ -137,20 +137,6 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  // //get all the donated items from all donors
-  // getAllDonatedItems() {
-  //   this.dataService.getRecords(`/donatedItems`)
-  //     .subscribe(
-  //     records => {
-  //       this.donatedItems = records;
-  //       this.dtTrigger.next();
-  //       for (let item of this.donatedItems) {
-  //         this.getDistanceToItem(item)
-  //       }
-  //       error => console.log(error)
-  //     });
-  // }
-
   buildLinkURL(item) {
     if (this.type == "donor") {
       item.directionsURL = this.loggedInUser.addressLine + "+" + this.loggedInUser.city + "+" + this.loggedInUser.state + "+" + this.loggedInUser.zip + "/" + item.charity.addressLine + "+" + item.charity.city + "+" + item.charity.state + "+" + item.charity.zip;
@@ -179,21 +165,7 @@ export class DashboardComponent implements OnInit {
       this.getNeededItems();
     }
 
-    this.dtOptions = {
-      columns: [{
-        title: 'Category',
-        data: 'category.name'
-      }, {
-        title: 'Description',
-        data: 'description'
-      }, {
-        title: 'Image (Click to download)',
-        data: 'itemImageUrl'
-      }, {
-        title: 'Get Directions',
-        data: 'distanceTo'
-      }]
-    };
+    
   };
 
 }

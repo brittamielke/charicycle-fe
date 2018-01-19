@@ -31,6 +31,8 @@ import { DonatedItemTableComponent } from './donated-item-table/donated-item-tab
 import { LoginComponent } from './login/login.component';
 import { CharityInfoService } from './charity-navigator.service';
 import { ValidateCharityComponent } from './validate-charity/validate-charity.component';
+import { ClaimedItemTableComponent } from './claimed-item-table/claimed-item-table.component';
+
 
 
 @NgModule({
@@ -56,6 +58,8 @@ import { ValidateCharityComponent } from './validate-charity/validate-charity.co
     DonatedItemTableComponent,
     LoginComponent,
     ValidateCharityComponent,
+    ClaimedItemTableComponent,
+
   ],
   imports: [
     BrowserModule,
