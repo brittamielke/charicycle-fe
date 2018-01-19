@@ -29,6 +29,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { DistanceDataService } from './google-distance.service';
 import { DonatedItemTableComponent } from './donated-item-table/donated-item-table.component';
 import { LoginComponent } from './login/login.component';
+import { ClaimedItemTableComponent } from './claimed-item-table/claimed-item-table.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { LoginComponent } from './login/login.component';
     AdminComponent,
     DonatedItemTableComponent,
     LoginComponent,
+    ClaimedItemTableComponent,
   ],
   imports: [
     BrowserModule,
