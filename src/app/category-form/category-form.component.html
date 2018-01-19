@@ -1,0 +1,72 @@
+<section @fadeInAnimation>
+  <div *ngIf="user.admin">
+    <h1>Manage Categories</h1>
+
+    <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+    <h2>Add a new category</h2>
+    <form novalidate (ngSubmit)="saveCategory(categoryForm)"  #categoryForm="ngForm" class="form-horizontal">
+      <input [ngModel]="category?.id" ngModel #category_id="ngModel" type="hidden" name="id">
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Category Name</label>
+        <div class="col-sm-10">
+          <input [ngModel]="category?.name" ngModel #name="ngModel" type="text" class="form-control" id="name" name="name" placeholder="e.g. Clothes" minlength="2" maxlength="75">
+          <span *ngIf="formErrors.name" class="text-danger">
+            {{ formErrors.name }}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button [disabled]="!categoryForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+    <h2>Update Categories</h2>
+    <table class = "table table-bordered table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Admin</th>
+        </tr>            
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td class="col-md-4">
+            <span *ngIf="category.id != categoryForUpdate.id">
+              {{ category.name }}
+            </span>
+            <span *ngIf="category.id == categoryForUpdate.id">
+              <form novalidate (ngSubmit)="saveCategory(categoryForm)" #categoryForm="ngForm" class="form-inline">
+                <input [ngModel]="categoryForUpdate?.id" ngModel #category_id="ngModel" type="hidden" name="id">
+                <div class="form-group">
+                  <div class="col-sm-3">
+                    <input [ngModel]="categoryForUpdate?.name" ngModel #name="ngModel" type="text" class="form-control" id="name" name="name"
+                      minlength="2" maxlength="75">
+                    <span *ngIf="formErrors.name" class="text-danger">
+                      {{ formErrors.name }}
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-5">
+                    <button [disabled]="!categoryForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </span>
+
+          </td>
+          <td class="col-md-2">
+            <button class="btn btn-success" (click)='updateCategory(category)'>Update</button>
+            <button class="btn btn-danger" (click)='deleteCategory(category)'>Delete</button>
+          </td>
+          
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="!user.admin">
+    <h1>You do not have access to this page</h1>
+  </div>
+</section>

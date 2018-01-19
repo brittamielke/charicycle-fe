@@ -1,0 +1,31 @@
+<section @fadeInAnimation>
+  <ol class="breadcrumb">
+    <li>
+      <a routerLink="/home">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/dashboard/charity', charityId]">Dashboard</a>
+    </li>
+    <li class="active">
+      Claim Item</li>
+  </ol>
+<a [routerLink]="['/dashboard/charity', charityId]" class="btn btn-primary">Return to dashboard</a>
+<h1>Congratulations! You have claimed an item for your Charity!</h1>
+
+<span *ngIf="donatedItem?.itemImageUrl">
+  <a href={{donatedItem?.itemImageUrl}} target="_new">
+    <img [src]="donatedItem?.itemImageUrl" />
+  </a>
+</span>
+<br>
+<h3>Item Category: {{donatedItem?.category.name}}
+  <br> Item Description: {{donatedItem?.description}}</h3>
+
+<h2>To arrange exchange of this item, please contact the donor:</h2>
+
+<h3>First Name: {{donatedItem?.donorView.contactFirstName}}
+  <br> Last Name: {{donatedItem?.donorView.contactLastName}}
+  <br> Email Address: {{donatedItem?.donorView.email}}
+  <br> Phone Number: {{donatedItem?.donorView.phoneNumber}}</h3>
+<br>
+</section>

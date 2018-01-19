@@ -1,0 +1,51 @@
+nav, {
+    background-color: #11A6D4;
+    border: 1px solid #dedede;
+    font-size: 20px;
+    
+    border-radius: 4px;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+    color: rgb(10, 3, 3);
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    width: 100%; 
+    float: left;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+}
+
+
+.navbar-inverse[_ngcontent-c1] .navbar-nav[_ngcontent-c1] > li[_ngcontent-c1] > a[_ngcontent-c1]{
+    color: white;
+    font-size: 18px;
+}
+
+    
+ul {
+    float: right
+}
+
+.navbar-header {
+    position: absolute;
+    left: 70px;
+}
+
+.navbar-brand {
+    position: fixed;
+    z-index: 1;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+@media only screen and (max-width: 480px) {
+    .navbar-brand #logo {
+        display:none !important;
+    }
+ 
+
+}
+.navbar-brand #logo {
+    width: 40%;
+}
