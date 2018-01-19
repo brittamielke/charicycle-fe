@@ -84,6 +84,7 @@ export class DashboardComponent implements OnInit {
         this.neededItems = records
         for (let item of this.neededItems) {
           this.getDistanceToItem(item)
+          this.dtTrigger.next();
         }
       },
       error => console.log("error: " + error)
