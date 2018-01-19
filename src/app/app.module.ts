@@ -29,7 +29,10 @@ import { DataTablesModule } from 'angular-datatables';
 import { DistanceDataService } from './google-distance.service';
 import { DonatedItemTableComponent } from './donated-item-table/donated-item-table.component';
 import { LoginComponent } from './login/login.component';
+import { CharityInfoService } from './charity-navigator.service';
+import { ValidateCharityComponent } from './validate-charity/validate-charity.component';
 import { ClaimedItemTableComponent } from './claimed-item-table/claimed-item-table.component';
+
 
 
 @NgModule({
@@ -54,7 +57,9 @@ import { ClaimedItemTableComponent } from './claimed-item-table/claimed-item-tab
     AdminComponent,
     DonatedItemTableComponent,
     LoginComponent,
+    ValidateCharityComponent,
     ClaimedItemTableComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,8 @@ import { ClaimedItemTableComponent } from './claimed-item-table/claimed-item-tab
     entryComponents: [DeleteConfirmComponent],
   providers: [
     DataService,
-    DistanceDataService
+    DistanceDataService,
+    CharityInfoService
   ],
   bootstrap: [AppComponent]
 })

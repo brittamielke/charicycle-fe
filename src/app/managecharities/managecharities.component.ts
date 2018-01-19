@@ -7,6 +7,7 @@ import { DataService } from '../data.service';
 import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
+
 @Component({
   selector: 'app-managecharities',
   templateUrl: './managecharities.component.html',
@@ -18,6 +19,7 @@ export class ManagecharitiesComponent implements OnInit {
   private updateCharity = null;
   successMessage: string;
   errorMessage: string;
+
 
   constructor(
     private dataService: DataService,
@@ -82,6 +84,7 @@ export class ManagecharitiesComponent implements OnInit {
       }
       )
   }
+
 
   deleteCharity(charity) {
     let deleteMessage;

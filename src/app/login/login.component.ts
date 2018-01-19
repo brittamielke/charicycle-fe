@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
           }
           
           },
-      error => this.errorMessage = <any>error);
+      error => this.errorMessage = "Login unsuccessful, invalid user name or password");
 
   }
 
