@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 body {
-    padding-top: 75px;
+    padding-top: 50px;
 }
 /* Customize container */
 @media (min-width: 600px) {
@@ -14,4 +14,7 @@ body {
     .container-fluid {
         max-width: 1024px;
     }
+}
+.background-texture {
+    background-image: url("/assets/images/background-texture.jpg");
 }
