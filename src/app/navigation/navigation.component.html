@@ -30,7 +30,7 @@
         <li routerLinkActive="active" *ngIf="user && user.admin">
           <a routerLink="/admin">Admin</a>
           </li>
-          <li routerLinkActive="active" *ngIf="user">
+          <li *ngIf="user">
             <a (click)="logout()" routerLink="/home">Logout</a>
           </li>
           <li routerLinkActive="active" *ngIf="!user">
