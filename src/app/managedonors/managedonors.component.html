@@ -7,9 +7,9 @@
 <input [ngModel]="donorId" ngModel #donor_donorId="ngModel" type="hidden" name="donorId">
 <form class="form-horizontal" #donorForm="ngForm" (ngSubmit)="submitDonor(donorForm)">
   <div class="form-group">
-    <label for="userName" class="col-sm-2 control-label">User Name*:</label>
+    <label for="username" class="col-sm-2 control-label">User Name*:</label>
     <div class="col-sm-10">
-      <input [ngModel]="updateDonor?.userName" ngModel #logInId="ngModel" type="text" class="form-control" id="userName" name="userName"
+      <input [ngModel]="updateDonor?.username" ngModel #logInId="ngModel" type="text" class="form-control" id="username" name="username"
         placeholder="e.g.lisamar1" required minlength="2">
     </div>
   </div>
@@ -108,23 +108,23 @@
         </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let donor of donors">
-        <td>{{ donor.companyName }}</td>
-        <td>{{ donor.contactFirstName }}</td>
-        <td>{{ donor.contactLastName }}</td>
-        <td>{{ donor.addressLine }}</td>
-        <td>{{ donor.city }}</td>
-        <td>{{ donor.state }}</td>
-        <td>{{ donor.zip }}</td>
-        <td>{{ donor.phoneNumber }}</td>
-        <td>{{ donor.email }}</td>
-       <td>
-          <button class="btn btn-info" (click)='editDonor(donor)'>Update</button>
-        </td>
+        <tr *ngFor="let donor of donors">
+          <td>{{ donor.companyName }}</td>
+          <td>{{ donor.contactFirstName }}</td>
+          <td>{{ donor.contactLastName }}</td>
+          <td>{{ donor.addressLine }}</td>
+          <td>{{ donor.city }}</td>
+          <td>{{ donor.state }}</td>
+          <td>{{ donor.zip }}</td>
+          <td>{{ donor.phoneNumber }}</td>
+          <td>{{ donor.email }}</td>
         <td>
-          <button class="btn btn-danger" (click)='deleteDonor(donor.id)'>Delete</button>
-        </td>
-      </tr>
+            <button class="btn btn-info" (click)='editDonor(donor)'>Update</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)='deleteDonor(donor.id)'>Delete</button>
+          </td>
+        </tr>
     </tbody>
   </table>
 </div>
