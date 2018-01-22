@@ -73,6 +73,7 @@ export class DonatedItemTableComponent implements OnInit, OnDestroy {
   }
 
   buildLinkURL(item) {
+    
     item.directionsURL = this.loggedInUser.addressLine + "+" + 
                          this.loggedInUser.city + "+" + 
                          this.loggedInUser.state + "+" + 
@@ -85,7 +86,7 @@ export class DonatedItemTableComponent implements OnInit, OnDestroy {
                             item.charity.zip;
     }
     if (this.type == "charity") {
-      item.directionsURL = item.donorView.addressLine + "+" + 
+      item.directionsURL += item.donorView.addressLine + "+" + 
                            item.donorView.city + "+" + 
                            item.donorView.state + "+" + 
                            item.donorView.zip;

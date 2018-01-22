@@ -116,10 +116,3 @@ export class ManagecharitiesComponent implements OnInit {
    
   }
 }
-    
-
-  
-  
- 
-
-  
