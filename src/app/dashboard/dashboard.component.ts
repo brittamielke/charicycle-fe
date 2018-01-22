@@ -83,7 +83,7 @@ export class DashboardComponent implements OnInit {
       records => {
         this.neededItems = records
         for (let item of this.neededItems) {
-          this.getDistanceToItem(item)
+          this.getDistanceToItem(item);
           this.dtTrigger.next();
         }
       },
@@ -126,7 +126,7 @@ export class DashboardComponent implements OnInit {
     this.dataService.getRecords(endpoint)
       .subscribe(
       records => {
-        console.log(this.loggedInUser = records)
+        this.loggedInUser = records;
         // if (this.type == "charity") {
         //  this.getAllDonatedItems();
         // }
@@ -145,7 +145,6 @@ export class DashboardComponent implements OnInit {
     if (this.type == "charity") {
       item.directionsURL = this.loggedInUser.addressLine + "+" + this.loggedInUser.city + "+" + this.loggedInUser.state + "+" + this.loggedInUser.zip + "/" + item.donorView.addressLine + "+" + item.donorView.city + "+" + item.donorView.state + "+" + item.donorView.zip;;
     }
-    console.log(item);
   }
 
   ngOnInit() {
