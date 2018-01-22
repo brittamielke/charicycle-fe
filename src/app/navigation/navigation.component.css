@@ -2,7 +2,6 @@ nav, {
     background-color: #11A6D4;
     border: 1px solid #dedede;
     font-size: 20px;
-    
     border-radius: 4px;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
     color: rgb(10, 3, 3);
@@ -39,13 +38,15 @@ ul {
     padding-top: 0;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and  (max-width: 480px) {
     .navbar-brand #logo {
         display:none !important;
     }
+    
  
 
 }
 .navbar-brand #logo {
     width: 40%;
 }
+
