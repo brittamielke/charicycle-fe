@@ -12,8 +12,8 @@
     
     <input [ngModel]="donor?.id" ngModel #donor_id="ngModel" type="hidden" name="id">
     <div class="form-group">
-      <label for="username" class="col-sm-2 control-label">User Name*:</label>
-      <div class="col-sm-10">
+      <label for="username" class="col-sm-2 control-label">*User Name:</label>
+      <div class="col-sm-5">
         <input [ngModel]="charity?.userName" ngModel #logInId="ngModel" type="text" class="form-control" id="username" name="username"
           placeholder="e.g.lisamar1" required minlength="2">
         <span *ngIf="formErrors.userName" class="text-danger">
@@ -22,8 +22,8 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="password" class="col-sm-2 control-label">Password*:</label>
-      <div class="col-sm-10">
+      <label for="password" class="col-sm-2 control-label">*Password:</label>
+      <div class="col-sm-5">
         <input [ngModel]="charity?.password" ngModel #password="ngModel" type="password" class="form-control" id="password" name="password"
           placeholder="e.g.mickeymouse5" required minlength="6">
         <span *ngIf="formErrors.password" class="text-danger">
@@ -33,7 +33,7 @@
     </div>
     <div class="form-group">
       <label for="companyName" class="col-sm-2 control-label">Company Name:</label>
-      <div class="col-sm-10">
+      <div class="col-sm-5">
         <input [ngModel]="donor?.companyName" ngModel #companyName="ngModel" type="text" class="form-control" id="companyName" name="companyName" placeholder="e.g. Target" minlength="2" maxlength="30">
          <span *ngIf="formErrors.companyName" class="text-danger">
           {{ formErrors.companyName }}
@@ -42,7 +42,7 @@
     </div>
     <div class="form-group">
       <label for="contactFirstName" class="col-sm-2 control-label">*Contact First Name:</label>
-      <div class="col-sm-10">
+      <div class="col-sm-5">
         <input [ngModel]="donor?.contactFirstName" ngModel #contactFirstName="ngModel" type="text" class="form-control" id="contactFirstName" name="contactFirstName" placeholder="e.g. Bill" required minlength="2" maxlength="30" >
         <span *ngIf="formErrors.contactFirstName" class="text-danger">
           {{ formErrors.contactFirstName }}
@@ -51,7 +51,7 @@
     </div>
     <div class="form-group">
       <label for="contactLastName" class="col-sm-2 control-label">*Contact Last Name:</label>
-      <div class="col-sm-10">
+      <div class="col-sm-5">
         <input [ngModel]="donor?.contactLastName" ngModel #contactLastName="ngModel" type="text" class="form-control" id="contactLastName" name="contactLastName"  placeholder="e.g. Smith" required minlength="2" maxlength="30" >
         <span *ngIf="formErrors.contactLastName" class="text-danger">
           {{ formErrors.contactLastName }}
@@ -60,7 +60,7 @@
     </div>
     <div class="form-group">
       <label for="addressLine" class="col-sm-2 control-label">Address Line:</label>
-      <div class="col-sm-10">
+      <div class="col-sm-5">
         <input [ngModel]="donor?.addressLine" ngModel #addressLine="ngModel" type="text" class="form-control" id="addressLine" name="addressLine"  placeholder="e.g. 1213 Happy Ln"  minlength="2" maxlength="50" >
         <span *ngIf="formErrors.addressLine" class="text-danger">
           {{ formErrors.addressLine }}
@@ -69,7 +69,7 @@
     </div>
     <div class="form-group">
       <label for="city" class="col-sm-2 control-label">City:</label>
-      <div class="col-sm-10">
+      <div class="col-sm-5">
         <input [ngModel]="donor?.city" ngModel #city="ngModel" type="text" class="form-control" id="city" name="city"  placeholder="e.g. Westfield" minlength="2" maxlength="30" >
         <span *ngIf="formErrors.city" class="text-danger">
           {{ formErrors.city }}
@@ -78,7 +78,7 @@
     </div>
     <div class="form-group">
       <label for="state" class="col-sm-2 control-label">State:</label>
-      <div class="col-sm-10">
+      <div class="col-sm-5">
         <input [ngModel]="donor?.state" ngModel #state="ngModel" type="text" class="form-control" id="state" name="state"  placeholder="e.g. Indiana" minlength="2" maxlength="30" >
         <span *ngIf="formErrors.state" class="text-danger">
           {{ formErrors.state }}
@@ -87,7 +87,7 @@
     </div>
     <div class="form-group">
       <label for="zip" class="col-sm-2 control-label">Zipcode:</label>
-      <div class="col-sm-10">
+      <div class="col-sm-5">
         <input [ngModel]="donor?.zip" ngModel #zip="ngModel" type="text" class="form-control" id="zip" name="zip"  placeholder="e.g. 46074" minlength="2" maxlength="30" pattern="\d+" >
         <span *ngIf="formErrors.zip" class="text-danger">
           {{ formErrors.zip }}
@@ -96,7 +96,7 @@
     </div>
     <div class="form-group">
       <label for="phoneNumber" class="col-sm-2 control-label">Phone Number:</label>
-      <div class="col-sm-10">
+      <div class="col-sm-5">
         <input [ngModel]="donor?.phoneNumber" ngModel #phoneNumber="ngModel" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="eg (317)-222-5555" pattern = "^(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}$" >
         <span *ngIf="formErrors.phoneNumber" class="text-danger">
           {{ formErrors.phoneNumber }}
@@ -105,7 +105,7 @@
     </div>
     <div class="form-group">
       <label for="email" class="col-sm-2 control-label">*Email:</label>
-      <div class="col-sm-10">
+      <div class="col-sm-5">
         <input [ngModel]="donor?.email" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email" required placeholder="eg bill.smith@gmail.com" pattern = "^(.+)@(.+)$" >
         <span *ngIf="formErrors.email" class="text-danger">
           {{ formErrors.email }}
@@ -113,7 +113,7 @@
       </div>
     </div>
      <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
+      <div class="col-sm-offset-2 col-sm-5">
         <button [disabled]="!donorForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
