@@ -83,7 +83,7 @@ export class DashboardComponent implements OnInit {
       records => {
         this.neededItems = records
         for (let item of this.neededItems) {
-          this.getDistanceToItem(item)
+          this.getDistanceToItem(item);
           this.dtTrigger.next();
         }
       },
