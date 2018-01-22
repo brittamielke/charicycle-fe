@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
     this.dataService.login(loginForm.value)
       .subscribe(
       user => {this.successMessage = "Login Successful";
-              console.log(this.user = user);
-        localStorage.setItem("user", JSON.stringify(user))
+        localStorage.setItem("user", JSON.stringify(user));
+        this.user = user;
         if (this.user.admin) {
           this.router.navigate([`/admin`]);
         }

@@ -26,13 +26,12 @@ export class ClaimedItemTableComponent implements OnInit {
 
   //get the donated items for a specific donor
   getDonatedItems(){
-    console.log()
     this.dataService.getRecords(`/donor/${this.id}/donatedItems`)
       .subscribe(
       records => {
         this.donatedItems = records;
         this.dtTrigger.next();
-        console.log(this.donatedItems);
+        this.donatedItems;
       },
       error => console.log(error)
       );
@@ -43,7 +42,7 @@ export class ClaimedItemTableComponent implements OnInit {
     this.dataService.getRecords(endpoint)
       .subscribe(
       records => {
-        console.log(this.loggedInUser = records)
+        this.loggedInUser = records;
        
       },
       error => console.log(error),
