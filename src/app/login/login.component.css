@@ -2,3 +2,8 @@ h1 {
 font-family:inherit;
 font-size: 28px;
 }
+
+label {
+    font-size: medium;
+  }
+  

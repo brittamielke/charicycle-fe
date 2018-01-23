@@ -97,7 +97,7 @@
     <div class="form-group">
       <label for="phoneNumber" class="col-sm-2 control-label">Phone Number:</label>
       <div class="col-sm-5">
-        <input [ngModel]="donor?.phoneNumber" ngModel #phoneNumber="ngModel" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="eg (317)-222-5555" pattern = "^(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}$" >
+        <input [ngModel]="donor?.phoneNumber" ngModel #phoneNumber="ngModel" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="e.g. (317)-222-5555" pattern = "^(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}$" >
         <span *ngIf="formErrors.phoneNumber" class="text-danger">
           {{ formErrors.phoneNumber }}
         </span>
@@ -106,7 +106,7 @@
     <div class="form-group">
       <label for="email" class="col-sm-2 control-label">*Email:</label>
       <div class="col-sm-5">
-        <input [ngModel]="donor?.email" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email" required placeholder="eg bill.smith@gmail.com" pattern = "^(.+)@(.+)$" >
+        <input [ngModel]="donor?.email" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email" required placeholder="e.g. bill.smith@gmail.com" pattern = "^(.+)@(.+)$" >
         <span *ngIf="formErrors.email" class="text-danger">
           {{ formErrors.email }}
         </span>
