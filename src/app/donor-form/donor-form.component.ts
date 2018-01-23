@@ -104,7 +104,6 @@ export class DonorFormComponent implements OnInit {
 
   validationMessages = {
     'companyName': {
-      'required':  'Company name is required.',
       'minlength': 'Company name must be at least 2 characters long.',
       'maxlength': 'Company name cannot be more than 30 characters long.'
     },
