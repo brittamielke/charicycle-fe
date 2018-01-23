@@ -52,13 +52,11 @@ export class DonatedItemTableComponent implements OnInit, OnDestroy {
   }
 
   getDistanceToItem(item) {
-    console.log(this.type);
     if (this.type == "donor") {
       this.destination = item.charity.zip;
     }
     if (this.type == "charity") {
       this.destination = item.donorView.zip;
-      console.log(item.donorView.zip);
     }
     this.distanceDataService.getDistanceFromApi(this.loggedInUser.zip, this.destination)
       .subscribe(
@@ -66,7 +64,6 @@ export class DonatedItemTableComponent implements OnInit, OnDestroy {
           this.distanceApiResult = result;
           item.distanceTo = this.distanceApiResult.rows[0].elements[0].distance.text;
           this.buildLinkURL(item)
-          console.log(this.loggedInUser.zip);
         },
         error => console.log(error)
       );
@@ -122,7 +119,7 @@ export class DonatedItemTableComponent implements OnInit, OnDestroy {
     this.dataService.getRecords(endpoint)
       .subscribe(
         records => {
-          console.log(this.loggedInUser = records)
+          this.loggedInUser = records;
           this.getAllDonatedItems();
         },
         error => console.log(error)

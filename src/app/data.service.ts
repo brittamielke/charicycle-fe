@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataService {
 
-    private baseUrl = 'http://localhost:8080/api/'
+    private baseUrl = 'https://charityconnect-be.herokuapp.com/api/'
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers, withCredentials: true });
