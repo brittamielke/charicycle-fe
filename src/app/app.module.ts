@@ -32,6 +32,7 @@ import { LoginComponent } from './login/login.component';
 import { CharityInfoService } from './charity-navigator.service';
 import { ValidateCharityComponent } from './validate-charity/validate-charity.component';
 import { ClaimedItemTableComponent } from './claimed-item-table/claimed-item-table.component';
+import { DonorNeededItemTableComponent } from './donor-needed-item-table/donor-needed-item-table.component';
 
 
 
@@ -59,6 +60,7 @@ import { ClaimedItemTableComponent } from './claimed-item-table/claimed-item-tab
     LoginComponent,
     ValidateCharityComponent,
     ClaimedItemTableComponent,
+    DonorNeededItemTableComponent,
 
   ],
   imports: [
