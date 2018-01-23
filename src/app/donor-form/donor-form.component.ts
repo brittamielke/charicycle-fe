@@ -56,6 +56,7 @@ export class DonorFormComponent implements OnInit {
             error =>  this.errorMessage = <any>error);
             this.donor = {};
     }
+    donorForm.resetForm();
 
   }
 
