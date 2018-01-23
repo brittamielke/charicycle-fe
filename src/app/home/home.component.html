@@ -64,6 +64,35 @@
           </div>
     
           <hr>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="thumbnail">
+            
+                  <div class="caption">
+                    <h3>Sign Up for Charities</h3>
+                    <p>Do you represent a charitable organization and want to create visibility into your cause? Does your organization
+                      have a need for dontated items? Sign up now!
+                    </p>
+                    <p>
+                      <!-- Need to update (ngSubmit)="method". It will send the user to the Charity Sign up form-->
+                      <a href="#" class="btn btn-primary" role="button" [routerLink]="['/charityForm/add']">Charity Sign Up</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="thumbnail">
+            
+                  <div class="caption">
+                    <h3>Sign Up for Donors</h3>
+                    <p>Do you have new or gently used items that you wish you could donate to those who are need? Are you looking for ways
+                      to connect with local charities to view their needed items? Sign up now! </p>
+                    <p>
+                      <a href="#" class="btn btn-primary" role="button" [routerLink]="['/donorForm/add']">Donor Sign Up</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
     
           <div class="row">
             <div class="col-md-7 col-md-push-5">
@@ -96,33 +125,3 @@
           <!-- /END THE FEATURETTES -->
   
   <hr>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="thumbnail">
-        
-        <div class="caption">
-          <h3>Sign Up for Charities</h3>
-          <p>Do you represent a charitable organization and want to create visibility into your cause?
-            Does your organization have a need for dontated items? 
-            Sign up now! 
-          </p>
-          <p>
-            <!-- Need to update (ngSubmit)="method". It will send the user to the Charity Sign up form-->
-            <a href="#" class="btn btn-primary" role="button" [routerLink]="['/charityForm/add']">Charity Sign Up</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="thumbnail">
-       
-        <div class="caption">
-          <h3>Sign Up for Donors</h3>
-          <p>Do you have new or gently used items that you wish you could donate to those who are need?
-            Are you looking for ways to connect with local charities to view their needed items?
-          Sign up now! </p>
-          <p>
-           <a href="#" class="btn btn-primary" role="button"  [routerLink]="['/donorForm/add']">Donor Sign Up</a>
-        </div>
-      </div>
-    </div>
-  </div>
