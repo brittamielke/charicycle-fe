@@ -7,4 +7,11 @@
     label {
         font-size: medium;
       }
+
+      table{
+          background-color: white;
+      }
+      thead{
+        background-color: darkorange;
+      }
       
