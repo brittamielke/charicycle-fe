@@ -34,7 +34,7 @@
     <div class="form-group">
         <label for="taxId" class="col-sm-2 control-label">*Tax Id:</label>
         <div class="col-sm-5">
-          <input [ngModel]="charity?.taxId" ngModel #taxId="ngModel" type="number" class="form-control" id="taxId" name="taxId" placeholder="e.g. 12-3456789" required minlength="09" maxlength="12" >
+          <input [ngModel]="charity?.taxId" ngModel #taxId="ngModel" type="number" class="form-control" id="taxId" name="taxId" placeholder="e.g. 123456789" required minlength="09" maxlength="12" >
           <span *ngIf="formErrors.taxId" class="text-danger">
             {{ formErrors.taxId }}
           </span>
