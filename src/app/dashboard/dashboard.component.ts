@@ -27,6 +27,8 @@ export class DashboardComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   distanceApiResult;
   destination;
+  charityCounter = 0;
+  donorCounter = 0;
 
   constructor(private dataService: DataService,
     private distanceDataService: DistanceDataService,
@@ -39,7 +41,7 @@ export class DashboardComponent implements OnInit {
     this.dataService.getRecords(`/donor/${this.id}/donatedItems`)
       .subscribe(
       records => {
-        this.donatedItems = records;
+        this.donatedItems = records; 
       },
       error => console.log(error)
       );
@@ -69,7 +71,10 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => {
         this.neededItems = records;
+        if(this.charityCounter == 0){
         this.dtTrigger.next();
+        this.charityCounter += 1;
+        }
       },
       error => console.log("error: " + error)
       );
@@ -79,12 +84,15 @@ export class DashboardComponent implements OnInit {
   getAllNeededItems() {
     this.dataService.getRecords('neededItems')
       .subscribe(
-
       records => {
         this.neededItems = records
+        if(this.donorCounter == 0){
+          this.dtTrigger.next();
+          this.donorCounter += 1;
+          }
         for (let item of this.neededItems) {
           this.getDistanceToItem(item);
-          this.dtTrigger.next();
+          
         }
       },
       error => console.log("error: " + error)
@@ -148,7 +156,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.route.params
       .subscribe((params: Params) => {
         (+params['id']) ? this.id = +params['id'] : null;
