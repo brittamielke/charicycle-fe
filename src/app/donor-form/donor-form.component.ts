@@ -56,6 +56,7 @@ export class DonorFormComponent implements OnInit {
             error =>  this.errorMessage = <any>error);
             this.donor = {};
     }
+    donorForm.resetForm();
 
   }
 
@@ -126,24 +127,29 @@ export class DonorFormComponent implements OnInit {
       'maxlength': 'Last name cannot be more than 30 characters long.'
     },
     'addressLine': {
+      'required':  'Address is required.',
       'minlength': 'The Address Line must be at least 2 characters long.',
       'maxlength': 'The Address Line cannot be more than 50 characters long.'
     },
     'city': {
+      'required':  'City is required.',
       'minlength': 'The City must be at least 2 characters long.',
       'maxlength': 'The City cannot be more than 30 characters long.'
     },
     'state': {
+      'required':  'State is required.',
       'minlength': 'The State must be at least 2 characters long.',
       'maxlength': 'The State cannot be more than 30 characters long.'
     },
     'zip': {
+      'required': 'Zip is required.',
       'pattern': 'The Zipcode must be a number'
     },
     'phoneNumber': { 
       'pattern': 'Please enter a phone number in the following format: (317)-222-5555'
     },
     'email': {
+      'required': 'Email is required.',
       'pattern': 'Please enter an email address'
     }
   };
