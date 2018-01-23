@@ -1,5 +1,9 @@
 <div *ngIf="user.admin">
     <ol class="breadcrumb">
+            <li>
+                <a routerLink="/home">Home</a>
+            </li>
+            <li class="active">Admin</li>
     
     </ol>
     <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
