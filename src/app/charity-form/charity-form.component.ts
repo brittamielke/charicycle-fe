@@ -41,6 +41,7 @@ export class CharityFormComponent implements OnInit {
             result => this.successMessage = "Charity submitted for admin approval",
             error =>  this.errorMessage = <any>error);
             this.charityForm.form.markAsPristine();
+            this.charityForm.resetForm();
    
     }
     deleteCharity(charityForm: NgForm){
