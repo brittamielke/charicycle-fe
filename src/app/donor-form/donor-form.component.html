@@ -59,7 +59,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="addressLine" class="col-sm-2 control-label">*Address Line:</label>
+      <label for="addressLine" class="col-sm-2 control-label">*Street Address:</label>
       <div class="col-sm-5">
         <input [ngModel]="donor?.addressLine" ngModel #addressLine="ngModel" type="text" class="form-control" id="addressLine" name="addressLine"  placeholder="e.g. 1213 Happy Ln"  required minlength="2" maxlength="50" >
         <span *ngIf="formErrors.addressLine" class="text-danger">
