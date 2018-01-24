@@ -4,6 +4,8 @@ import { Location }               from '@angular/common';
 import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service'
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-managedonors',
@@ -13,20 +15,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class ManagedonorsComponent implements OnInit {
 
   private donors;
-  private updateDonor = null;
   successMessage: string;
   errorMessage: string;
    
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    public dialog: MatDialog
   ) {}
 
-  editDonor(donor){
-    this.updateDonor = donor;
-    console.log(donor);
-  }
   
   getDonors() {
     this.dataService.getRecords("donor")
@@ -35,44 +33,25 @@ export class ManagedonorsComponent implements OnInit {
       })
   }
 
-  submitDonor(donorForm: NgForm) {
-    console.log(donorForm.value);
-    if(!this.updateDonor){
-      this.dataService.addRecord("donor", donorForm.value)
-        .subscribe(
-        donorInfo => {
-          this.getDonors();
-          this.successMessage = "Donor Added Successfully";
-        },
-        error => {
-          this.errorMessage = <any>error;
-        });
-      donorForm.resetForm();
-    }
-    else{
-      this.dataService.editRecord("donor", donorForm.value, this.updateDonor.id)
-        .subscribe(
-        donorInfo => {
-          this.successMessage = "Donor Updated Successfully"
-          this.getDonors();
-        },
-        error => {
-          this.errorMessage = <any>error;
-        }
-        )
-      this.updateDonor = null;
-    }
-    donorForm.resetForm();
-  }
-
 
   deleteDonor(donorId) {
-    this.dataService.deleteRecord("donor", donorId)
-      .subscribe(
-      donorInfo => {
-        this.getDonors();
+    let deleteMessage;
+      deleteMessage = `This will delete the donor`;
+    let dialogRef = this.dialog.open(DeleteConfirmComponent, { data: deleteMessage });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataService.deleteRecord("donor", donorId)
+          .subscribe(
+          donorInfo => {
+            this.getDonors();
+          },
+          error => {
+            this.errorMessage = <any>error;
+          }
+          )
+
       }
-      )
+    })
   }
   
   ngOnInit() {
