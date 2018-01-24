@@ -1,8 +1,15 @@
+<section @fadeInAnimation>
 <ol class="breadcrumb">
-  <li><a routerLink="/home">Home</a></li>
-  <li class="active">Manage Donors</li>
+    <li>
+      <a routerLink="/home">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/admin']">Admin Dashboard</a>
+    </li>
+    <li class="active">Manage Donors</li>
   </ol>
   <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+  <a [routerLink]="['/admin/']" class="btn btn-primary">Return to Admin Dashboard</a>
 <h2>Manage Donors</h2>
 <input [ngModel]="donorId" ngModel #donor_donorId="ngModel" type="hidden" name="donorId">
 <form class="form-horizontal" #donorForm="ngForm" (ngSubmit)="submitDonor(donorForm)">
@@ -126,6 +133,7 @@
     </tbody>
   </table>
 </div>
+</section>
 
       
       

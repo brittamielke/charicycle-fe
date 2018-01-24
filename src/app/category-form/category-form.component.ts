@@ -79,14 +79,14 @@ export class CategoryFormComponent implements OnInit {
                         this.getCategories();
                       },
             error =>  this.errorMessage = <any>error);
-    }else{
+    } else{
       this.dataService.addRecord("category", categoryForm.value)
           .subscribe(
             category => this.successMessage = "Record added successfully",
             error =>  this.errorMessage = <any>error);
             this.getCategories();
     }
-
+      categoryForm.reset();
   }
 
   deleteCategory(category){
