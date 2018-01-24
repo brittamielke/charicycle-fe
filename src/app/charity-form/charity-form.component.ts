@@ -41,6 +41,7 @@ export class CharityFormComponent implements OnInit {
             result => this.successMessage = "Charity submitted for admin approval",
             error =>  this.errorMessage = <any>error);
             this.charityForm.form.markAsPristine();
+            this.charityForm.resetForm();
    
     }
     deleteCharity(charityForm: NgForm){
@@ -99,9 +100,9 @@ export class CharityFormComponent implements OnInit {
   
     validationMessages = {
       'companyName': {
-        'required': 'Organization Name is required.',
-        'minlength': 'Company name must be at least 2 characters long.',
-        'maxlength': 'Company name cannot be more than 30 characters long.'
+        'required':  'Company Name is required.',
+        'minlength': 'Company Name must be at least 2 characters long.',
+        'maxlength': 'Company Name cannot be more than 30 characters long.'
       },
       'contactFirstName': {
         'required': 'First name is required.',
@@ -113,33 +114,42 @@ export class CharityFormComponent implements OnInit {
         'minlength': 'User name must be at least 2 characters long.'
       },
       'password': {
-        'required': 'Password is required.',
+        'required':  'Password is required.',
         'minlength': 'Password must be at least 6 characters long.'
       },
+      'taxId': {
+        'required':  'Tax Id is required.',
+        'minlength': 'TaxId must be at least 9 characters long.'
+      },
       'contactLastName': {
-        'required': 'Last name is required.',
+        'required':  'Last name is required.',
         'minlength': 'Last name must be at least 2 characters long.',
         'maxlength': 'Last name cannot be more than 30 characters long.'
       },
       'addressLine': {
+        'required': ' Addresss is required.',
         'minlength': 'The Address Line must be at least 2 characters long.',
         'maxlength': 'The Address Line cannot be more than 50 characters long.'
       },
       'city': {
+        'required':  'City is required.',
         'minlength': 'The City must be at least 2 characters long.',
         'maxlength': 'The City cannot be more than 30 characters long.'
       },
       'state': {
+        'required':  'State is required.',
         'minlength': 'The State must be at least 2 characters long.',
         'maxlength': 'The State cannot be more than 30 characters long.'
       },
       'zip': {
+        'required': 'Zip is required.',
         'pattern': 'The Zipcode must be a number'
       },
       'phoneNumber': {
         'pattern': 'Please enter a phone number in the following format: (317)-222-5555'
       },
       'email': {
+        'required': 'Email is required.',
         'pattern': 'Please enter an email address'
       }
     };
