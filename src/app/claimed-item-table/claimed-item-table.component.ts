@@ -67,7 +67,7 @@ export class ClaimedItemTableComponent implements OnInit {
           title: 'Description',
           data: 'description'
         }, {
-          title: 'Image (Click to download)',
+          title: 'Image',
           data: 'itemImageUrl'
         },  {
           title: 'Charity Information',

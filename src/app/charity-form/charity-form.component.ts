@@ -3,7 +3,8 @@ import { Component, OnInit, ViewChild }      from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 import { NgForm } from '@angular/forms';
-import { DataService } from '../data.service'
+import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-charity-form',
@@ -20,11 +21,12 @@ export class CharityFormComponent implements OnInit {
   errorMessage: string;
 
   id: number;
+  charity;
 
   constructor( 
     private dataService: DataService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location, private router: Router
   ) {}
 
   ngOnInit() {
@@ -32,17 +34,48 @@ export class CharityFormComponent implements OnInit {
     .subscribe((params: Params) =>{
       (+params['id']) ? this.id = +params['id']: null;
   });
+  if(this.id){
+  this.getCharity();
+  }
 }
 
+  getCharity() {
+    this.dataService.getRecords("charity/" + this.id)
+      .subscribe(
+      result => {
+        this.charity = result;
+        this.charity["taxId"] = result["taxId"].replace("-", "");
+        console.log(result);
+      },
+      error => this.errorMessage = <any>error);
+
+  }
   saveCharity(charityForm: NgForm){
     console.log(charityForm.value);
-      this.dataService.addRecord("charity", charityForm.value) 
-          .subscribe(
-            result => this.successMessage = "Charity submitted for admin approval",
-            error =>  this.errorMessage = <any>error);
-            this.charityForm.form.markAsPristine();
-            this.charityForm.resetForm();
-   
+    if (!this.charity) {
+      this.dataService.addRecord("charity", charityForm.value)
+        .subscribe(
+        charityInfo => {
+          this.successMessage = "Charity Added Successfully";
+        },
+        error => {
+          this.errorMessage = <any>error;
+        });
+      charityForm.resetForm();
+    }
+    else {
+      this.dataService.editRecord("charity", charityForm.value, this.id)
+        .subscribe(
+        charityInfo => {
+          this.successMessage = "Charity Updated Successfully";
+          this.router.navigate([`/manageCharities`]);
+        },
+        error => {
+          this.errorMessage = <any>error;
+        }
+        )
+    }
+    charityForm.resetForm();
     }
     deleteCharity(charityForm: NgForm){
       console.log(charityForm.value);
