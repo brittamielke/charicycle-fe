@@ -81,36 +81,36 @@ export class DonorFormComponent implements OnInit {
 
     for (let field in this.formErrors) {
       // clear previous error message (if any)
-      this.formErrors[field] = '';
+      this.formErrors[field] = [];
       const control = form.get(field);
 
       if (control && control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
         for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
+          this.formErrors[field].push(messages[key]);
         }
       }
     }
   }
 
   formErrors = {
-    'companyName': '',
-    'contactFirstName': '',
-    'contactLastName': '',
-    'addressLine': '',
-    'city': '',
-    'state': '',
-    'zip': '',
-    'phoneNumber': '',
-    'email': '',
-    'username': '',
-    'password': '',
+    'companyName': [],
+    'contactFirstName': [],
+    'contactLastName': [],
+    'addressLine': [],
+    'city': [],
+    'state': [],
+    'zip': [],
+    'phoneNumber': [],
+    'email': [],
+    'username': [],
+    'password': []
   };
 
   validationMessages = {
     'companyName': {
-      'minlength': 'Company name must be at least 2 characters long.',
-      'maxlength': 'Company name cannot be more than 30 characters long.'
+      'minlength': 'Company Name must be at least 2 characters long.',
+      'maxlength': 'Company Name cannot be more than 40 characters long.'
     },
     'username': {
       'required': 'User name is required.',
@@ -126,35 +126,36 @@ export class DonorFormComponent implements OnInit {
       'maxlength': 'First name cannot be more than 30 characters long.'
     },
     'contactLastName': {
-      'required': 'Last name is required.',
+      'required':  'Last name is required.',
       'minlength': 'Last name must be at least 2 characters long.',
       'maxlength': 'Last name cannot be more than 30 characters long.'
     },
     'addressLine': {
-      'required':  'Address is required.',
-      'minlength': 'The Address Line must be at least 2 characters long.',
-      'maxlength': 'The Address Line cannot be more than 50 characters long.'
+      'required': ' Addresss is required.',
+      'minlength': 'Address Line must be at least 2 characters long.',
+      'maxlength': 'Address Line cannot be more than 50 characters long.'
     },
     'city': {
       'required':  'City is required.',
-      'minlength': 'The City must be at least 2 characters long.',
-      'maxlength': 'The City cannot be more than 30 characters long.'
+      'minlength': 'City must be at least 2 characters long.',
+      'maxlength': 'City cannot be more than 30 characters long.'
     },
     'state': {
       'required':  'State is required.',
-      'minlength': 'The State must be at least 2 characters long.',
-      'maxlength': 'The State cannot be more than 30 characters long.'
+      'minlength': 'State must be at least 2 characters long.',
+      'maxlength': 'State cannot be more than 30 characters long.'
     },
     'zip': {
-      'required': 'Zip is required.',
-      'pattern': 'The Zipcode must be a number'
+      'required': 'Zip Code is required.',
+      'minlength': 'Zip Code must be at least 5 numbers long.',
+      'pattern': 'Zip Code must be a number'
     },
-    'phoneNumber': { 
-      'pattern': 'Please enter a phone number in the following format: (317)-222-5555'
+    'phoneNumber': {
+      'pattern': 'Please enter a phone number in the following format: 317-555-5555'
     },
     'email': {
       'required': 'Email is required.',
-      'pattern': 'Please enter an email address'
+      'pattern': 'Email address entered is not valid'
     }
   };
 

@@ -5,11 +5,13 @@
   <li class="active">Charity</li>
 </ol>
 
-  <span *ngIf="charity">
-    <a [routerLink]="['/manageCharities/']" class="btn btn-primary">Return to Admin Dashboard</a>
-  </span>
-  <h1><span *ngIf="!charity">Charity Information</span><span *ngIf="charity">Update Charity</span></h1>
-
+<span *ngIf="charity">
+  <a [routerLink]="['/manageCharities/']" class="btn btn-primary">Return to Manage Charities</a>
+</span>
+<h1>
+  <span *ngIf="!charity">Charity Information</span>
+  <span *ngIf="charity">Update Charity</span>
+</h1>
 
 <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 
@@ -21,7 +23,7 @@
     <div class="col-sm-5">
       <input [ngModel]="charity?.username" ngModel #logInId="ngModel" type="text" class="form-control" id="username" name="username"
         required minlength="2">
-      <ul class="pull-left">
+      <ul>
         <li *ngFor="let error of formErrors.username" class="text-danger">
           {{ error }}
         </li>
