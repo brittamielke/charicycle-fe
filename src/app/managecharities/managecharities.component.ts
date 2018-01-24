@@ -16,7 +16,6 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 export class ManagecharitiesComponent implements OnInit {
 
   private charities;
-  private updateCharity = null;
   successMessage: string;
   errorMessage: string;
 
@@ -29,11 +28,6 @@ export class ManagecharitiesComponent implements OnInit {
   ) {}
     
   
-  editCharity(charity){
-    this.updateCharity = charity;
-    console.log(charity);
-  }
-  
   getCharities() {
     this.dataService.getRecords("charity")
       .subscribe(charityFromAPIS => {
@@ -42,34 +36,6 @@ export class ManagecharitiesComponent implements OnInit {
   }
 
 
-  submitCharity(charityForm: NgForm) {
-    if(!this.updateCharity){
-      this.dataService.addRecord("charity", charityForm.value)
-        .subscribe(
-        charityInfo => {
-          this.getCharities();
-          this.successMessage = "Charity Added Successfully";
-        },
-        error => {
-          this.errorMessage = <any>error;  
-    });
-      charityForm.resetForm();
-    }
-    else{
-      this.dataService.editRecord("charity", charityForm.value, this.updateCharity.id)
-        .subscribe(
-        charityInfo => {
-          this.successMessage = "Charity Updated Successfully"
-          this.getCharities();
-        },
-        error => {
-          this.errorMessage = <any>error;
-        }
-        )
-      this.updateCharity = null;
-    }
-    charityForm.resetForm();
-  }
 
   confirmCharity(charity) {
     charity["confirmed"] = true;

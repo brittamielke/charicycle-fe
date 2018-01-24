@@ -2,7 +2,7 @@
   <li><a routerLink="/home">Home</a></li>
   <li class="active">Charity</li>
 </ol>
-  <h1>Charity Information</h1>
+  <h1><span *ngIf="!charity">Charity Information</span><span *ngIf="charity">Update Charity</span></h1>
  <h1>
 
  </h1>
@@ -10,6 +10,7 @@
   <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 
   <form novalidate (ngSubmit)="saveCharity(charityForm)"  #charityForm="ngForm" class="form-horizontal">
+    <input [ngModel]="charity?.confirmed" ngModel #confirmed="ngModel" type="hidden" name="confirmed" id="confirmed">
     <input [ngModel]="charityId" ngModel #charity_charityId="ngModel" type="hidden" name="charityId">
           <div class="form-group">
             <label for="username" class="col-sm-2 control-label">*User Name:</label>
@@ -121,11 +122,20 @@
         </span>
       </div>
     </div>
+    <span *ngIf="!charity">
      <div class="form-group">
       <div class="col-sm-offset-2 col-sm-5">
         <button [disabled]="!charityForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
+    </span>
+   <span *ngIf="charity">
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-5">
+          <button [disabled]="!charityForm.form.valid" type="submit" class="btn btn-primary">Update Charity</button>
+        </div>
+      </div>
+    </span>
     <p>Fields marked with a "*" are required</p>
   </form>
 
