@@ -13,3 +13,6 @@ label {
 thead{
   background-color: #337ab7;
 }
+tbody tr:nth-child(odd) {
+  background: #eee;
+}
