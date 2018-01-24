@@ -43,7 +43,7 @@
     <div class="form-group">
       <label for="companyName" class="col-sm-2 control-label">*Company Name:</label>
       <div class="col-sm-5">
-        <input [ngModel]="charity?.companyName" ngModel #companyName="ngModel" type="text" class="form-control" id="companyName" name="comanyName" placeholder="e.g. Goodwill" required minlength="2" maxlength="40">
+        <input [ngModel]="charity?.companyName" ngModel #companyName="ngModel" type="text" class="form-control" id="companyName" name="companyName" placeholder="e.g. Goodwill" required minlength="2" maxlength="40">
          <span *ngIf="formErrors.companyName" class="text-danger">
           {{ formErrors.companyName }}
         </span>
