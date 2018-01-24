@@ -1,6 +1,9 @@
 .btn-primary {
     background-color:black;
     border-color: black;
+    margin-left: 95px;
    
 }
-
+h3 {
+    text-align:center;
+}
