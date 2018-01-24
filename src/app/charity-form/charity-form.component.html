@@ -4,13 +4,12 @@
   </li>
   <li class="active">Charity</li>
 </ol>
-<span *ngIf="charity">
-  <a [routerLink]="['/admin/']" class="btn btn-primary">Return to Admin Dashboard</a>
-</span>
-<h1>
-  <span *ngIf="!charity">Charity Information</span>
-  <span *ngIf="charity">Update Charity</span>
-</h1>
+
+  <span *ngIf="charity">
+    <a [routerLink]="['/manageCharities/']" class="btn btn-primary">Return to Admin Dashboard</a>
+  </span>
+  <h1><span *ngIf="!charity">Charity Information</span><span *ngIf="charity">Update Charity</span></h1>
+
 
 <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
 

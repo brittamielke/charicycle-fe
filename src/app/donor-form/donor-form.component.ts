@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { DataService } from '../data.service'
 import { fadeInAnimation } from '../animations/fade-in.animation';
@@ -27,7 +28,8 @@ export class DonorFormComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
   getRecordForEdit(){
@@ -47,14 +49,16 @@ export class DonorFormComponent implements OnInit {
     if(typeof donorForm.value.id === "number"){
       this.dataService.editRecord("donor", donorForm.value, donorForm.value.id)
           .subscribe(
-            donor => this.successMessage = "Record updated successfully",
+            donor => {
+              this.successMessage = "Record updated successfully";
+              this.router.navigate([`/manageDonors`]);;
+            },
             error =>  this.errorMessage = <any>error);
     }else{
       this.dataService.addRecord("donor", donorForm.value)
           .subscribe(
-            donor => this.successMessage = "Record added successfully",
+            donor => this.successMessage = "Donor Added Successfully",
             error =>  this.errorMessage = <any>error);
-            this.donor = {};
     }
     donorForm.resetForm();
 
