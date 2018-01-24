@@ -150,10 +150,10 @@ export class DonatedItemTableComponent implements OnInit, OnDestroy {
         title: 'Description',
         data: 'description'
       }, {
-        title: 'Image (Click to download)',
+        title: 'Image',
         data: 'itemImageUrl'
       }, {
-        title: 'Approximate Distance',
+        title: 'Approx Distance',
         data: 'distanceTo'
       }, {
         title: 'Get Directions',
