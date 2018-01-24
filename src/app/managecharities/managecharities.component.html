@@ -1,152 +1,157 @@
-<ol class="breadcrumb">
-  <li>
-    <a routerLink="/home">Home</a>
-  </li>
-  <li class="active">Manage Charities</li>
-</ol>
-<app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+<section @fadeInAnimation>
+  <ol class="breadcrumb">
+    <li>
+      <a routerLink="/home">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/admin']">Admin Dashboard</a>
+    </li>
+    <li class="active">Manage Charities</li>
+  </ol>
+  <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+  <a [routerLink]="['/admin/']" class="btn btn-primary">Return to Admin Dashboard</a>
+  <h2>Manage Charities</h2>
+  <form class="form-horizontal" #charityForm="ngForm" (ngSubmit)="submitCharity(charityForm)">
+    <input [ngModel]="updateCharity?.confirmed" ngModel #confirmed="ngModel" type="hidden" name="confirmed" id="confirmed">
+    <div class="form-group">
+      <label for="username" class="col-sm-2 control-label">*User Name:</label>
+      <div class="col-sm-5">
+        <input [ngModel]="updateCharity?.username" ngModel #logInId="ngModel" type="text" class="form-control" id="username" name="username"
+          placeholder="e.g. lisamar1" required minlength="2">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="col-sm-2 control-label">*Password:</label>
+      <div class="col-sm-5">
+        <input [ngModel]="updateCharity?.password" ngModel #password="ngModel" type="password" class="form-control" id="password"
+          name="password" placeholder="e.g. mickeymouse5" required minlength="6">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTaxId" class="col-sm-2 control-label">*Tax Id:</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="taxId" name="taxId" [ngModel]="updateCharity?.taxId" ngModel #taxId="ngModel"
+          placeholder="12-3456789">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputCompanyName" class="col-sm-2 control-label">*Company Name</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="inputCompanyName" name="companyName" [ngModel]="updateCharity?.companyName" ngModel
+          #companyName="ngModel" placeholder="Company Name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputContactFirstName" class="col-sm-2 control-label">*Contact First Name</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="inputContactFirstName" name="contactFirstName" [ngModel]="updateCharity?.contactFirstName"
+          ngModel #contactFirstName="ngModel" placeholder="Contact First Name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputContactLastName" class="col-sm-2 control-label">*Contact Last Name</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="inputContactLastName" name="contactLastName" [ngModel]="updateCharity?.contactLastName"
+          ngModel #contactLastName="ngModel" placeholder="Contact Last Name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddressLine" class="col-sm-2 control-label">*Street Address</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="inputAddressLine" name="addressLine" [ngModel]="updateCharity?.addressLine" ngModel
+          #addressLine="ngModel" placeholder="Address Line">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputCity" class="col-sm-2 control-label">*City</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="inputCity" name="city" [ngModel]="updateCharity?.city" ngModel #city="ngModel"
+          placeholder="City">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputState" class="col-sm-2 control-label">*State</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="inputState" name="state" [ngModel]="updateCharity?.state" ngModel #state="ngModel"
+          placeholder="State">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputZip" class="col-sm-2 control-label">*Zipcode</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="inputZip" name="zip" [ngModel]="updateCharity?.zip" ngModel #zip="ngModel" placeholder="Zip">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPhoneNumber" class="col-sm-2 control-label">Phone Number</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="inputPhoneNumber" name="phoneNumber" [ngModel]="updateCharity?.phoneNumber" ngModel
+          #phoneNumber="ngModel" placeholder="Phone Number">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputEmailAddress" class="col-sm-2 control-label">*Email Address</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="inputEmailAddress" name="email" [ngModel]="updateCharity?.email" ngModel #email="ngModel"
+          placeholder="Email Address">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">
+          <span *ngIf='!updateCharity'>Add Charity</span>
+          <span *ngIf='updateCharity'>Update Charity</span>
+        </button>
+      </div>
+    </div>
+    <p>Fields marked with a "*" are required</p>
+  </form>
 
-<h2>Manage Charities</h2>
-<form class="form-horizontal" #charityForm="ngForm" (ngSubmit)="submitCharity(charityForm)">
-  <input [ngModel]="updateCharity?.confirmed" ngModel #confirmed="ngModel" type="hidden" name="confirmed" id="confirmed">
-  <div class="form-group">
-    <label for="username" class="col-sm-2 control-label">*User Name:</label>
-    <div class="col-sm-5">
-      <input [ngModel]="updateCharity?.username" ngModel #logInId="ngModel" type="text" class="form-control" id="username" name="username"
-        placeholder="e.g. lisamar1" required minlength="2">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="password" class="col-sm-2 control-label">*Password:</label>
-    <div class="col-sm-5">
-      <input [ngModel]="updateCharity?.password" ngModel #password="ngModel" type="password" class="form-control" id="password"
-        name="password" placeholder="e.g. mickeymouse5" required minlength="6">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputTaxId" class="col-sm-2 control-label">*Tax Id:</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" id="taxId" name="taxId" [ngModel]="updateCharity?.taxId" ngModel #taxId="ngModel"
-        placeholder="12-3456789">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputCompanyName" class="col-sm-2 control-label">*Company Name</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" id="inputCompanyName" name="companyName" [ngModel]="updateCharity?.companyName" ngModel
-        #companyName="ngModel" placeholder="Company Name">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputContactFirstName" class="col-sm-2 control-label">*Contact First Name</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" id="inputContactFirstName" name="contactFirstName" [ngModel]="updateCharity?.contactFirstName"
-        ngModel #contactFirstName="ngModel" placeholder="Contact First Name">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputContactLastName" class="col-sm-2 control-label">*Contact Last Name</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" id="inputContactLastName" name="contactLastName" [ngModel]="updateCharity?.contactLastName"
-        ngModel #contactLastName="ngModel" placeholder="Contact Last Name">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputAddressLine" class="col-sm-2 control-label">*Street Address</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" id="inputAddressLine" name="addressLine" [ngModel]="updateCharity?.addressLine" ngModel
-        #addressLine="ngModel" placeholder="Address Line">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputCity" class="col-sm-2 control-label">*City</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" id="inputCity" name="city" [ngModel]="updateCharity?.city" ngModel #city="ngModel"
-        placeholder="City">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputState" class="col-sm-2 control-label">*State</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" id="inputState" name="state" [ngModel]="updateCharity?.state" ngModel #state="ngModel"
-        placeholder="State">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputZip" class="col-sm-2 control-label">*Zipcode</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" id="inputZip" name="zip" [ngModel]="updateCharity?.zip" ngModel #zip="ngModel" placeholder="Zip">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPhoneNumber" class="col-sm-2 control-label">Phone Number</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" id="inputPhoneNumber" name="phoneNumber" [ngModel]="updateCharity?.phoneNumber" ngModel
-        #phoneNumber="ngModel" placeholder="Phone Number">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputEmailAddress" class="col-sm-2 control-label">*Email Address</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" id="inputEmailAddress" name="email" [ngModel]="updateCharity?.email" ngModel #email="ngModel"
-        placeholder="Email Address">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary">
-        <span *ngIf='!updateCharity'>Add Charity</span>
-        <span *ngIf='updateCharity'>Update Charity</span>
-      </button>
-    </div>
-  </div>
-  <p>Fields marked with a "*" are required</p>
-</form>
-
-<div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Company Name</th>
-        <th>Tax Id</th>
-        <th>Contact First Name</th>
-        <th>Contact Last Name</th>
-        <th>Address Line</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Zip</th>
-        <th>Phone Number</th>
-        <th>Email Address</th>
-        <th>Admin</th>
-        <th>Charity Validation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let charity of charities">
-        <td>{{ charity.companyName }}</td>
-        <td>{{ charity.taxId }}</td>
-        <td>{{ charity.contactFirstName }}</td>
-        <td>{{ charity.contactLastName }}</td>
-        <td>{{ charity.addressLine }}</td>
-        <td>{{ charity.city }}</td>
-        <td>{{ charity.state }}</td>
-        <td>{{ charity.zip }}</td>
-        <td>{{ charity.phoneNumber }}</td>
-        <td>{{ charity.email }}</td>
-        <td>
-          <span *ngIf="!charity.confirmed">
-            <button class="btn btn-success" (click)='confirmCharity(charity)'>Confirm</button>
-            <button class="btn btn-danger" (click)='deleteCharity(charity)'>Deny</button>
-          </span>
-          <span *ngIf="charity.confirmed">
-            <button class="btn btn-info" (click)='editCharity(charity)'>Update</button>
-            <button class="btn btn-danger" (click)='deleteCharity(charity)'>Delete</button>
-          </span>
-        </td>
-        <td>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Company Name</th>
+          <th>Tax Id</th>
+          <th>Contact First Name</th>
+          <th>Contact Last Name</th>
+          <th>Address Line</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip</th>
+          <th>Phone Number</th>
+          <th>Email Address</th>
+          <th>Admin</th>
+          <th>Charity Validation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let charity of charities">
+          <td>{{ charity.companyName }}</td>
+          <td>{{ charity.taxId }}</td>
+          <td>{{ charity.contactFirstName }}</td>
+          <td>{{ charity.contactLastName }}</td>
+          <td>{{ charity.addressLine }}</td>
+          <td>{{ charity.city }}</td>
+          <td>{{ charity.state }}</td>
+          <td>{{ charity.zip }}</td>
+          <td>{{ charity.phoneNumber }}</td>
+          <td>{{ charity.email }}</td>
+          <td>
+            <span *ngIf="!charity.confirmed">
+              <button class="btn btn-success" (click)='confirmCharity(charity)'>Confirm</button>
+              <button class="btn btn-danger" (click)='deleteCharity(charity)'>Deny</button>
+            </span>
+            <span *ngIf="charity.confirmed">
+              <button class="btn btn-info" (click)='editCharity(charity)'>Update</button>
+              <button class="btn btn-danger" (click)='deleteCharity(charity)'>Delete</button>
+            </span>
+          </td>
+          <td>
             <a class="btn btn-info" [routerLink]="['validateCharity', charity.id]">Get Charity Info</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
