@@ -1,11 +1,14 @@
-<ol class="breadcrumb">
-  <li>
-    <a routerLink="/home">Home</a>
-  </li>
-  <li class="active">Manage Charities</li>
-</ol>
-<app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
-
+  <ol class="breadcrumb">
+    <li>
+      <a routerLink="/home">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/admin']">Admin Dashboard</a>
+    </li>
+    <li class="active">Manage Charities</li>
+  </ol>
+  <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+  <a [routerLink]="['/admin/']" class="btn btn-primary">Return to Admin Dashboard</a>
 <h2>Manage Charities</h2>
 <div class="container">
   <table class="table">
@@ -49,8 +52,8 @@
         </td>
         <td>
             <a class="btn btn-info" [routerLink]="['validateCharity', charity.id]">Get Charity Info</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

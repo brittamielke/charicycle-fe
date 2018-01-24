@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'donatedItem/add', component: DonatedItemFormComponent },
   { path: 'dashboard/:type/:id', component: DashboardComponent},
   { path: 'donorForm/add',  component: DonorFormComponent },
+  { path: 'donorForm/add/:id', component: DonorFormComponent },
   { path: 'charityForm/add', component: CharityFormComponent },
   { path: 'charityForm/add/:id', component: CharityFormComponent },
   { path: 'neededItem/add/:id', component: NeededItemFormComponent },

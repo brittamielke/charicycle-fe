@@ -1,35 +1,51 @@
-<span *ngIf="charityInfoApiResult">
-  <h3>This charity has been found:</h3>
-  <strong>Charity Name: </strong>{{ charityInfoApiResult?.charityName }}
-  <br>
-  <strong>EIN: </strong> {{ charityInfoApiResult?.ein }}
-  <br>
-  <strong>Phone Number: </strong> {{ charityInfoApiResult?.phoneNumber }}
-  <br>
-  <strong>Website: </strong> {{ charityInfoApiResult?.websiteURL }}
-  <br>
-  <strong>General Email: </strong> {{ charityInfoApiResult?.generalEmail }}
-  <br>
-  <strong>Mailing Address: </strong>
-  <br>{{ charityInfoApiResult?.mailingAddress?.streetAddress1 }}
-  <br>{{ charityInfoApiResult?.mailingAddress?.city }}, {{ charityInfoApiResult?.mailingAddress?.stateOrProvince }} {{ charityInfoApiResult?.mailingAddress?.postalCode
-  }}
-  <br>
-  <br>
-  <strong>Current Rating: </strong> {{ charityInfoApiResult?.currentRating?.rating }}
-  <br>
-  <strong>Category: </strong> {{ charityInfoApiResult?.category?.categoryName }}
-  <br>
-  <strong>Cause: </strong> {{ charityInfoApiResult?.cause?.causeName }}
-  <br>
-  <br>
-  <strong>Charity's Mission Statement: </strong> {{ charityInfoApiResult?.mission }}
-</span>
-<span *ngIf="!charityInfoApiResult">
-  <h1>The charity entered could not be found! </h1>
-  <br>
-  <br>
-  <h3>
-    <strong>Caution:</strong> this charity might not exist. Please do more research to determine whether they should be accepted
-    to Charity Connect.</h3>
-</span>
+<section @fadeInAnimation>
+  <ol class="breadcrumb">
+    <li>
+      <a routerLink="/home">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/admin']">Admin Dashboard</a>
+    </li>
+    <li class="active">Validate Charity</li>
+  </ol>
+  <div class="container">
+    <a [routerLink]="['/admin/']" class="btn btn-primary">Return to Admin Dashboard</a>
+    <span *ngIf="charityInfoApiResult">
+      <h3>This charity has been found:</h3>
+      <strong>Charity Name: </strong>{{ charityInfoApiResult?.charityName }}
+      <br>
+      <strong>EIN: </strong> {{ charityInfoApiResult?.ein }}
+      <br>
+      <strong>Phone Number: </strong> {{ charityInfoApiResult?.phoneNumber }}
+      <br>
+      <strong>Website: </strong> {{ charityInfoApiResult?.websiteURL }}
+      <br>
+      <strong>General Email: </strong> {{ charityInfoApiResult?.generalEmail }}
+      <br>
+      <strong>Mailing Address: </strong>
+      <br>{{ charityInfoApiResult?.mailingAddress?.streetAddress1 }}
+      <br>{{ charityInfoApiResult?.mailingAddress?.city }}, {{ charityInfoApiResult?.mailingAddress?.stateOrProvince }} {{ charityInfoApiResult?.mailingAddress?.postalCode
+      }}
+      <br>
+      <br>
+      <strong>Current Rating: </strong> {{ charityInfoApiResult?.currentRating?.rating }}
+      <br>
+      <strong>Category: </strong> {{ charityInfoApiResult?.category?.categoryName }}
+      <br>
+      <strong>Cause: </strong> {{ charityInfoApiResult?.cause?.causeName }}
+      <br>
+      <br>
+      <strong>Charity's Mission Statement: </strong> {{ charityInfoApiResult?.mission }}
+    </span>
+    <span *ngIf="!charityInfoApiResult">
+      <h1>The charity entered could not be found! </h1>
+      <br>
+      <br>
+      <h3>
+        <strong>Caution:</strong> this charity might not exist. Please do more research to determine whether they should be accepted
+        to Charity Connect.</h3>
+    </span>
+    <br>
+    <br>
+  </div>
+</section>
