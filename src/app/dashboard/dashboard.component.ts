@@ -75,7 +75,10 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => {
         this.neededItems = records;
-        
+        if(this.donorCounter == 0){
+          this.dtTrigger.next();
+          this.donorCounter += 1;
+          }
       },
       error => console.log("error: " + error)
       );
@@ -87,10 +90,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(
       records => {
         this.neededItems = records
-        if(this.donorCounter == 0){
-          this.dtTrigger.next();
-          this.donorCounter += 1;
-          }
+        
         for (let item of this.neededItems) {
           this.getDistanceToItem(item);
           
