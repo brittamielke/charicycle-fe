@@ -53,7 +53,6 @@ export class ManagedonorsComponent implements OnInit {
       }
     })
   }
-  
   ngOnInit() {
     this.getDonors();
   }
