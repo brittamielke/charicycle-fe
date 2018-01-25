@@ -56,7 +56,7 @@ export class CharityFormComponent implements OnInit {
       this.dataService.addRecord("charity", charityForm.value)
         .subscribe(
         charityInfo => {
-          this.successMessage = "Charity Added Successfully";
+          this.successMessage = "Charity submitted for administrator approval";
         },
         error => {
           this.errorMessage = <any>error;
