@@ -63,6 +63,7 @@ export class DonatedItemTableComponent implements OnInit, OnDestroy {
         result => {
           this.distanceApiResult = result;
           item.distanceTo = this.distanceApiResult.rows[0].elements[0].distance.text;
+          item.distanceTo = item.distanceTo.replace(",", "");
           this.buildLinkURL(item)
         },
         error => console.log(error)
