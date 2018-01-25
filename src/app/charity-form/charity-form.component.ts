@@ -56,7 +56,7 @@ export class CharityFormComponent implements OnInit {
       this.dataService.addRecord("charity", charityForm.value)
         .subscribe(
         charityInfo => {
-          this.successMessage = "Charity Added Successfully";
+          this.successMessage = "Charity submitted for administrator approval";
         },
         error => {
           this.errorMessage = <any>error;
@@ -103,39 +103,38 @@ export class CharityFormComponent implements OnInit {
   
       for (let field in this.formErrors) {
         // clear previous error message (if any)
-        this.formErrors[field] = '';
+        this.formErrors[field] = [];
         const control = form.get(field);
   
         if (control && control.dirty && !control.valid) {
           const messages = this.validationMessages[field];
           for (const key in control.errors) {
-            this.formErrors[field] += messages[key] + ' ';
+            this.formErrors[field].push(messages[key]);
           }
         }
       }
     }
   
     formErrors = {
-    'companyName': '',
-    'contactFirstName': '',
-    'contactLastName': '',
-    'taxId': '',
-    'username': '',
-    'password': '',
-    'addressLine': '',
-    'city': '',
-    'state': '',
-    'zip': '',
-    'email': '',
-    'phoneNumber' : ''
-
+      'companyName': [],
+      'contactFirstName': [],
+      'contactLastName': [],
+      'taxId': [],
+      'username': [],
+      'password': [],
+      'addressLine': [],
+      'city': [],
+      'state': [],
+      'zip': [],
+      'email': [],
+      'phoneNumber': []
     };
   
     validationMessages = {
       'companyName': {
         'required':  'Company Name is required.',
         'minlength': 'Company Name must be at least 2 characters long.',
-        'maxlength': 'Company Name cannot be more than 30 characters long.'
+        'maxlength': 'Company Name cannot be more than 40 characters long.'
       },
       'contactFirstName': {
         'required': 'First name is required.',
@@ -151,8 +150,10 @@ export class CharityFormComponent implements OnInit {
         'minlength': 'Password must be at least 6 characters long.'
       },
       'taxId': {
-        'required':  'Tax Id is required.',
-        'minlength': 'TaxId must be at least 9 characters long.'
+        'required':  'Tax ID is required.',
+        'pattern':   'Tax ID must consist of numbers only',
+        'minlength': 'Tax ID must be at least 9 numbers long.',
+        'maxlength': 'Tax ID cannot be more than 12 numbers long.'
       },
       'contactLastName': {
         'required':  'Last name is required.',
@@ -161,29 +162,30 @@ export class CharityFormComponent implements OnInit {
       },
       'addressLine': {
         'required': ' Addresss is required.',
-        'minlength': 'The Address Line must be at least 2 characters long.',
-        'maxlength': 'The Address Line cannot be more than 50 characters long.'
+        'minlength': 'Address Line must be at least 2 characters long.',
+        'maxlength': 'Address Line cannot be more than 50 characters long.'
       },
       'city': {
         'required':  'City is required.',
-        'minlength': 'The City must be at least 2 characters long.',
-        'maxlength': 'The City cannot be more than 30 characters long.'
+        'minlength': 'City must be at least 2 characters long.',
+        'maxlength': 'City cannot be more than 30 characters long.'
       },
       'state': {
         'required':  'State is required.',
-        'minlength': 'The State must be at least 2 characters long.',
-        'maxlength': 'The State cannot be more than 30 characters long.'
+        'minlength': 'State must be at least 2 characters long.',
+        'maxlength': 'State cannot be more than 30 characters long.'
       },
       'zip': {
-        'required': 'Zip is required.',
-        'pattern': 'The Zipcode must be a number'
+        'required': 'Zip Code is required.',
+        'minlength': 'Zip Code must be at least 5 numbers long.',
+        'pattern': 'Zip Code must be a number'
       },
       'phoneNumber': {
-        'pattern': 'Please enter a phone number in the following format: (317)-222-5555'
+        'pattern': 'Please enter a phone number in the following format: 317-555-5555'
       },
       'email': {
         'required': 'Email is required.',
-        'pattern': 'Please enter an email address'
+        'pattern': 'Email address entered is not valid'
       }
     };
   

@@ -1,141 +1,180 @@
 <ol class="breadcrumb">
-  <li><a routerLink="/home">Home</a></li>
+  <li>
+    <a routerLink="/home">Home</a>
+  </li>
   <li class="active">Charity</li>
 </ol>
-  <span *ngIf="charity">
-    <a [routerLink]="['/manageCharities/']" class="btn btn-primary">Return to Admin Dashboard</a>
-  </span>
-  <h1><span *ngIf="!charity">Charity Information</span><span *ngIf="charity">Update Charity</span></h1>
 
-  <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+<span *ngIf="charity">
+  <a [routerLink]="['/manageCharities/']" class="btn btn-primary">Return to Manage Charities</a>
+</span>
+<h1>
+  <span *ngIf="!charity">Charity Information</span>
+  <span *ngIf="charity">Update Charity</span>
+</h1>
 
-  <form novalidate (ngSubmit)="saveCharity(charityForm)"  #charityForm="ngForm" class="form-horizontal">
-    <input [ngModel]="charity?.confirmed" ngModel #confirmed="ngModel" type="hidden" name="confirmed" id="confirmed">
-    <input [ngModel]="charityId" ngModel #charity_charityId="ngModel" type="hidden" name="charityId">
-          <div class="form-group">
-            <label for="username" class="col-sm-2 control-label">*User Name:</label>
-            <div class="col-sm-5">
-              <input [ngModel]="charity?.username" ngModel #logInId="ngModel" type="text" class="form-control" id="username" name="username"
-                placeholder="e.g. lisamar1" required minlength="2">
-              <span *ngIf="formErrors.username" class="text-danger">
-                {{ formErrors.username }}
-              </span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="password" class="col-sm-2 control-label">*Password:</label>
-            <div class="col-sm-5">
-              <input [ngModel]="charity?.password" ngModel #password="ngModel" type="password" class="form-control" id="password" name="password"
-                placeholder="e.g. mickeymouse5" required minlength="6">
-              <span *ngIf="formErrors.password" class="text-danger">
-                {{ formErrors.password }}
-              </span>
-            </div>
-          </div>
-    <div class="form-group">
-        <label for="taxId" class="col-sm-2 control-label">*Tax Id:</label>
-        <div class="col-sm-5">
-          <input [ngModel]="charity?.taxId" ngModel #taxId="ngModel" type="number" class="form-control" id="taxId" name="taxId" placeholder="e.g. 123456789" required minlength="09" maxlength="12" >
-          <span *ngIf="formErrors.taxId" class="text-danger">
-            {{ formErrors.taxId }}
-          </span>
-        </div>
-      </div>   
-    <div class="form-group">
-      <label for="companyName" class="col-sm-2 control-label">*Company Name:</label>
-      <div class="col-sm-5">
-        <input [ngModel]="charity?.companyName" ngModel #companyName="ngModel" type="text" class="form-control" id="companyName" name="companyName" placeholder="e.g. Goodwill" required minlength="2" maxlength="40">
-         <span *ngIf="formErrors.companyName" class="text-danger">
-          {{ formErrors.companyName }}
-        </span>
-      </div>
+<app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+
+<form (ngSubmit)="saveCharity(charityForm)" #charityForm="ngForm" class="form-horizontal">
+  <input [ngModel]="charity?.confirmed" ngModel #confirmed="ngModel" type="hidden" name="confirmed" id="confirmed">
+  <input [ngModel]="charityId" ngModel #charity_charityId="ngModel" type="hidden" name="charityId">
+  <div class="form-group">
+    <label for="username" class="col-sm-3 control-label">*User Name:</label>
+    <div class="col-sm-5">
+      <input [ngModel]="charity?.username" ngModel #logInId="ngModel" type="text" class="form-control" id="username" name="username"
+        required minlength="2">
+      <ul>
+        <li *ngFor="let error of formErrors.username" class="text-danger">
+          {{ error }}
+        </li>
+      </ul>
     </div>
-    <div class="form-group">
-      <label for="contactFirstName" class="col-sm-2 control-label">*Contact First Name:</label>
-      <div class="col-sm-5">
-        <input [ngModel]="charity?.contactFirstName" ngModel #contactFirstName="ngModel" type="text" class="form-control" id="contactFirstName" name="contactFirstName" placeholder="e.g. Bill" required minlength="2" maxlength="30" >
-        <span *ngIf="formErrors.contactFirstName" class="text-danger">
-          {{ formErrors.contactFirstName }}
-        </span>
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="col-sm-3 control-label">*Password:</label>
+    <div class="col-sm-5">
+      <input [ngModel]="charity?.password" ngModel #password="ngModel" type="password" class="form-control" id="password" name="password"
+        required minlength="6">
+      <ul>
+        <li *ngFor="let error of formErrors.password" class="text-danger">
+          {{ error }}
+        </li>
+      </ul>
     </div>
-    <div class="form-group">
-      <label for="contactLastName" class="col-sm-2 control-label">*Contact Last Name:</label>
-      <div class="col-sm-5">
-        <input [ngModel]="charity?.contactLastName" ngModel #contactLastName="ngModel" type="text" class="form-control" id="contactLastName" name="contactLastName"  placeholder="e.g. Smith" required minlength="2" maxlength="30" >
-        <span *ngIf="formErrors.contactLastName" class="text-danger">
-          {{ formErrors.contactLastName }}
-        </span>
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="taxId" class="col-sm-3 control-label">*Tax ID:</label>
+    <div class="col-sm-5">
+      <input [ngModel]="charity?.taxId" ngModel #taxId="ngModel" type="text" class="form-control" id="taxId" name="taxId" placeholder="e.g. 123456789"
+        required pattern="\d*" minlength="9" maxlength="12">
+      <ul>
+        <li *ngFor="let error of formErrors.taxId" class="text-danger">
+          {{ error }}
+        </li>
+      </ul>
     </div>
-    <div class="form-group">
-      <label for="addressLine" class="col-sm-2 control-label">*Street Address:</label>
-      <div class="col-sm-5">
-        <input [ngModel]="charity?.addressLine" ngModel #addressLine="ngModel" type="text" class="form-control" id="addressLine" name="addressLine" placeholder="e.g.100 E. Main Street" required minlength="2" maxlength="30" >
-        <span *ngIf="formErrors.addressLine" class="text-danger">
-          {{ formErrors.addressLine }}       
-        </span>
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="companyName" class="col-sm-3 control-label">*Company Name:</label>
+    <div class="col-sm-5">
+      <input [ngModel]="charity?.companyName" ngModel #companyName="ngModel" type="text" class="form-control" id="companyName"
+        name="companyName" placeholder="e.g. Goodwill" required minlength="2" maxlength="40">
+      <ul>
+        <li *ngFor="let error of formErrors.companyName" class="text-danger">
+          {{ error }}
+        </li>
+      </ul>
     </div>
-    <div class="form-group">
-      <label for="city" class="col-sm-2 control-label">*City:</label>
-      <div class="col-sm-5">
-        <input [ngModel]="charity?.city" ngModel #city="ngModel" type="text" class="form-control" id="city" name="city" placeholder="e.g.Carmel" required minlength="2" maxlength="30">
-        <span *ngIf="formErrors.city" class="text-danger">
-          {{ formErrors.city }}       
-        </span>
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="contactFirstName" class="col-sm-3 control-label">*Contact First Name:</label>
+    <div class="col-sm-5">
+      <input [ngModel]="charity?.contactFirstName" ngModel #contactFirstName="ngModel" type="text" class="form-control" id="contactFirstName"
+        name="contactFirstName" placeholder="e.g. Bill" required minlength="2" maxlength="30">
+      <ul>
+        <li *ngFor="let error of formErrors.contactFirstName" class="text-danger">
+          {{ error }}
+        </li>
+      </ul>
     </div>
-    <div class="form-group">
-      <label for="state" class="col-sm-2 control-label">*State:</label>
-      <div class="col-sm-5">
-        <input [ngModel]="charity?.state" ngModel #state="ngModel" type="text" class="form-control" id="state" name="state" placeholder="e.g. Indiana" required minlength="2" maxlength="30" >
-        <span *ngIf="formErrors.state" class="text-danger">
-          {{ formErrors.state }}       
-        </span>
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="contactLastName" class="col-sm-3 control-label">*Contact Last Name:</label>
+    <div class="col-sm-5">
+      <input [ngModel]="charity?.contactLastName" ngModel #contactLastName="ngModel" type="text" class="form-control" id="contactLastName"
+        name="contactLastName" placeholder="e.g. Smith" required minlength="2" maxlength="30">
+      <ul>
+        <li *ngFor="let error of formErrors.contactLastName" class="text-danger">
+          {{ error }}
+        </li>
+      </ul>
     </div>
-    <div class="form-group">
-      <label for="zip" class="col-sm-2 control-label">*Zipcode:</label>
-      <div class="col-sm-5">
-        <input [ngModel]="charity?.zip" ngModel #zip="ngModel" type="text" class="form-control" id="zip" name="zip" placeholder="e.g. 46032" pattern="\d+"required minlength="5" maxlength="10">
-        <span *ngIf="formErrors.zip" class="text-danger">
-          {{ formErrors.zip }}       
-        </span>
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="addressLine" class="col-sm-3 control-label">*Street Address:</label>
+    <div class="col-sm-5">
+      <input [ngModel]="charity?.addressLine" ngModel #addressLine="ngModel" type="text" class="form-control" id="addressLine"
+        name="addressLine" placeholder="e.g. 100 East Main Street" required minlength="2" maxlength="30">
+      <ul>
+        <li *ngFor="let error of formErrors.addressLine" class="text-danger">
+          {{ error }}
+        </li>
+      </ul>
     </div>
-    <div class="form-group">
-      <label for="email" class="col-sm-2 control-label">*Email Address:</label>
-      <div class="col-sm-5">
-        <input [ngModel]="charity?.email" ngModel #emailAddress="ngModel" type="text" class="form-control" id="email" name="email" required placeholder="e.g. janedoe@comcast.net" pattern = "^(.+)@(.+)$" required minlength="2" maxlength="30">
-        <span *ngIf="formErrors.email" class="text-danger">
-          {{ formErrors.email }}
-        </span>
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="city" class="col-sm-3 control-label">*City:</label>
+    <div class="col-sm-5">
+      <input [ngModel]="charity?.city" ngModel #city="ngModel" type="text" class="form-control" id="city" name="city" placeholder="e.g. Carmel"
+        required minlength="2" maxlength="30">
+      <ul>
+        <li *ngFor="let error of formErrors.city" class="text-danger">
+          {{ error }}
+        </li>
+      </ul>
     </div>
-    <div class="form-group">
-      <label for="phoneNumber" class="col-sm-2 control-label">Phone Number:</label>
-      <div class="col-sm-5">
-        <input [ngModel]="charity?.phoneNumber" ngModel #phoneNumber="ngModel" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="eg (317)-222-5555" pattern = "^(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}$">
-        <span *ngIf="formErrors.phoneNumber" class="text-danger">
-          {{ formErrors.phoneNumber }}
-        </span>
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="state" class="col-sm-3 control-label">*State:</label>
+    <div class="col-sm-5">
+      <input [ngModel]="charity?.state" ngModel #state="ngModel" type="text" class="form-control" id="state" name="state" placeholder="e.g. IN"
+        required minlength="2" maxlength="30">
+      <ul>
+        <li *ngFor="let error of formErrors.state" class="text-danger">
+          {{ error }}
+        </li>
+      </ul>
     </div>
-    <span *ngIf="!charity">
-     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-5">
+  </div>
+  <div class="form-group">
+    <label for="zip" class="col-sm-3 control-label">*Zip Code:</label>
+    <div class="col-sm-5">
+      <input [ngModel]="charity?.zip" ngModel #zip="ngModel" type="text" class="form-control" id="zip" name="zip" placeholder="e.g. 46032"
+        pattern="\d*" required minlength="5" maxlength="10">
+      <ul>
+        <li *ngFor="let error of formErrors.zip" class="text-danger">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email" class="col-sm-3 control-label">*Email Address:</label>
+    <div class="col-sm-5">
+      <input [ngModel]="charity?.email" ngModel #emailAddress="ngModel" type="text" class="form-control" id="email" name="email"
+        required placeholder="e.g. email@domain.com" pattern="^(.+)@(.+)$" required maxlength="30">
+      <ul>
+        <li *ngFor="let error of formErrors.email" class="text-danger">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="phoneNumber" class="col-sm-3 control-label">Phone Number:</label>
+    <div class="col-sm-5">
+      <input [ngModel]="charity?.phoneNumber" ngModel #phoneNumber="ngModel" type="text" class="form-control" id="phoneNumber"
+        name="phoneNumber" placeholder="e.g. 317-222-5555" pattern="^(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}$">
+      <ul>
+        <li *ngFor="let error of formErrors.phoneNumber" class="text-danger">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <span *ngIf="!charity">
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-5">
         <button [disabled]="!charityForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
-    </span>
-   <span *ngIf="charity">
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-5">
-          <button [disabled]="!charityForm.form.valid" type="submit" class="btn btn-primary">Update Charity</button>
-        </div>
+  </span>
+  <span *ngIf="charity">
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-5">
+        <button [disabled]="!charityForm.form.valid" type="submit" class="btn btn-primary">Update Charity</button>
       </div>
-    </span>
-    <p>Fields marked with a "*" are required</p>
-  </form>
-
+    </div>
+  </span>
+  <p>Fields marked with a "*" are required</p>
+</form>
